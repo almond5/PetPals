@@ -1,22 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
+**1) Clone the repo:** ```git clone https://github.com/almond5/POOSD_MERN_WEB/ .```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**2) Install all the dependencies:** ```npm i```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**3) Copy over Firebase Secrets**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**4) Run the app:** ```npm run dev```
