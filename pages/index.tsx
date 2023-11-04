@@ -1,14 +1,16 @@
 import Link from 'next/link';
-import Dashboard from './dashboard';
 
 const Index = () => {
   return (
     <div>
-        <Link href={'/dashboard'}>
-            Click me For SSR via Firebase
-        </Link>
+      <div>
+      <button> <Link href="/Login">Click Me to Login </Link></button>
+      </div>
+      <div>
+        <button> <Link href="/Register">Click Me to Register </Link></button>
+      </div>
     </div>
-  )
+  );
 };
 
 export default Index;
