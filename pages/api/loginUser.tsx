@@ -8,9 +8,15 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
-      const { username, password } = req.body;
+      let { userEmail, password } = req.body;
 
-      signInWithEmailAndPassword(FIREBASE_AUTH, username, password)
+      if (typeof req.body !== 'object')
+      {
+        userEmail = JSON.parse(userEmail);
+        password = JSON.parse(password);
+      }
+
+      signInWithEmailAndPassword(FIREBASE_AUTH, userEmail, password)
         .then((userCredential) => {
           const user = userCredential.user;
         })

@@ -59,7 +59,7 @@ const Login = () => {
               type="text"
               className="input-field w-full"
               id="user_name"
-              placeholder="Enter your username"
+              placeholder="Enter your Email"
               onChange={(e) => setUserEmail(e.target.value)}
               required
             />
