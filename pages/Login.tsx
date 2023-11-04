@@ -69,7 +69,7 @@ const Login = () => {
               type="password"
               id="password"
               placeholder="Enter your password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handlePassword(e)}
               required
               className="input-field w-full"
             />
