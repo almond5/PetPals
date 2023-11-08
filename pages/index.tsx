@@ -30,7 +30,6 @@
 
 // export default Index;
 
-
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import styles from '../styles/Index.module.css'; // Make sure to create this CSS module
@@ -38,8 +37,12 @@ import styles from '../styles/Index.module.css'; // Make sure to create this CSS
 const Index = () => {
   return (
     <div className={styles.container}>
-      <img src="/img/index.png" alt="Pet and Mouse" className={styles.petImage} />
-      <div>
+      <img
+        src="/img/index.png"
+        alt="Pet and Mouse"
+        className={styles.petImage}
+      />
+      <div className="mt-48">
         <button className={`${styles.button} ${styles.signInButton}`}>
           <Link
             href={'/api/auth/signin'}
@@ -48,11 +51,13 @@ const Index = () => {
               signIn('Credentials', { callbackUrl: '/Dashboard' });
             }}
           >
-            login
+            <img className="mt-2" src="/img/login.png" alt="Pet and Mouse" />
           </Link>
         </button>
         <button className={`${styles.button} ${styles.registerButton}`}>
-          <Link href="/Register">SIGN UP</Link>
+          <Link href="/Register">
+            <img className="mt-2" src="/img/signup.png" alt="Pet and Mouse" />
+          </Link>
         </button>
       </div>
     </div>

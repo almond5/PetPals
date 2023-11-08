@@ -30,32 +30,32 @@
   justify-content: center;
   gap: 20px;
   margin-top: 20px;
-    top: 80%; 
-
+  top: 80%; 
 }
 
 .button {
   position: absolute;
   background-color: transparent;
   color: transparent;
-  padding: 10px 20px;
+  padding: 10px 50px;
   border: none;
   cursor: pointer;
   font-weight: bold; 
 }
 
-/* .button:hover {
-  background-color: #333;
-} */
-
 .signInButton {
-  top: 89%;
-  left: 48.5%;
+  top: 88%;
+  left: 49%;
+  color: clear; 
+  border: none; 
+  width: 320px; 
+  height: 55px; 
+  line-height: 50px; 
+  text-align: center; 
+  min-width: 100px; 
+  min-height: 20px; 
   transform: translate(-50%, -50%);
-  padding: 15px 30px; 
-  font-size: 38px; 
-  min-width: 150px; 
-  min-height: 50px; 
+  padding: 15px 40px; 
 }
 
 .registerButton {
@@ -65,8 +65,10 @@
   color: clear; 
   border: none; 
   width: 320px; 
-  height: 77px; 
+  height: 70px; 
   line-height: 50px; 
   text-align: center; 
   font-size: 69px; 
+  min-width: 100px; 
+  min-height: 20px; 
 }
