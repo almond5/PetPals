@@ -49,11 +49,11 @@ const Dashboard = ({profile}: {profile: any}) => {
     router.push('/');
   }
 
-  if (userProfile === null) {
+  if (userProfile === null || userProfile === undefined) {
     router.push('/Profile');
   }
 
-  if (sesh === 'authenticated') {
+  if (sesh === 'authenticated' && userProfile !== null ) {
     return (
       <div className="py-10">
         <div>Hi {userProfile.id}</div>

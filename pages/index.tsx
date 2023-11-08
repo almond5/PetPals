@@ -45,10 +45,10 @@ const Index = () => {
       <div className="mt-48">
         <button className={`${styles.button} ${styles.signInButton}`}>
           <Link
-            href={'/api/auth/signin'}
+            href={'/auth/signin'}
             onClick={(e) => {
               e.preventDefault();
-              signIn('Credentials', { callbackUrl: '/Dashboard' });
+              signIn();
             }}
           >
             <img className="mt-2" src="/img/login.png" alt="Pet and Mouse" />
