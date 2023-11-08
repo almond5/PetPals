@@ -1,9 +1,9 @@
 ## Getting Started
 
-**1) Clone the repo:** ```git clone https://github.com/almond5/POOSD_MERN_WEB/ .```
+```bash
+Install all the dependencies: 'npm i'
 
-**2) Install all the dependencies:** ```npm i```
+Run the development server: 'npm run dev'
 
-**3) Copy over Firebase Secrets**
-
-**4) Run the app:** ```npm run dev```
+Open the link provided within the terminal: 'http://localhost:3000'
+```

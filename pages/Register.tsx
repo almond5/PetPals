@@ -1,3 +1,4 @@
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import router from 'next/router';
 import { useState } from 'react';
@@ -89,7 +90,13 @@ const Login = () => {
           </div>
           <button type="submit">Submit</button>
           <div className="text-center mt-6">
-            <Link href="/Login">Already have an account?</Link>
+          <Link
+            href={'/api/auth/signin'}
+            onClick={(e) => {
+              e.preventDefault();
+              signIn('Credentials', { callbackUrl: '/' });
+            }}
+          >Already have an account?</Link>
           </div>
         </form>
       </div>
