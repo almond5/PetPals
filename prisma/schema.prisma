@@ -22,7 +22,6 @@ model User {
 
 model Profile {
   id          String     @id @default(cuid())
-  name        String     @db.Text
   description String     @db.Text
   locationId  String?    @unique
   location    Location?  @relation(fields: [locationId], references: [id], onDelete: Cascade)
