@@ -25,7 +25,7 @@ export default NextAuth({
         if (user === null || user === undefined) {
           return null;
         } else {
-          return user;
+          return { success: 'Invalid Credentials' };
         }
       },
     }),

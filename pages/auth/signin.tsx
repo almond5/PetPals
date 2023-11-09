@@ -1,14 +1,9 @@
-import type {
-  GetServerSidePropsContext,
-  InferGetServerSidePropsType,
-} from 'next';
-import { getCsrfToken, signIn } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 import router from 'next/router';
 import { useState } from 'react';
+import styles from '/styles/Index.module.css'; // Make sure to create this CSS module
 
-export default function SignIn({
-  csrfToken,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function SignIn() {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
 
@@ -23,55 +18,67 @@ export default function SignIn({
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    await signIn(
-      'credentials',
-      {
-        username: username,
-        password: password,
-        callbackUrl: '/Dashboard'
-      }
-    );
+    const res = await signIn('credentials', {
+      username: username,
+      password: password,
+      redirect: false,
+    });
 
-    router.push('../Dashboard');
+    if (res?.status === 200) {
+      router.push('/Dashboard');
+    } else if (res?.status === 401) {
+      alert('Invalid Credentials');
+    } else {
+      alert('Error');
+    }
+
+    setPassword('');
+    setUsername('');
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-200">
-      <div className="w-full max-w-xs">
-        <form
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-center"
-          onSubmit={handleSubmit}
-        >
-          <div className="mb-4">
-            <input
-              onChange={(e) => setUsername(e.target.value)}
-              type="email"
-              id="email"
-              placeholder="Enter your Email"
-              className="input-field w-full"
-            />
-          </div>
-          <div className="mb-4">
-            <input
-              onChange={(e) => handlePassword(e)}
-              type="password"
-              id="password"
-              placeholder="Enter your Password"
-              required
-              className="input-field w-full"
-            />
-          </div>
-          <button type="submit">Sign in</button>
-        </form>
-      </div>
+    <div className={styles.container}>
+      <img
+        src="/img/FormContainer.png"
+        alt="Pet and Mouse"
+        className={styles.petImage2}
+      />
+      <form className="rounded px-8 text-center" onSubmit={handleSubmit}>
+        <div className="mt-24 flex flex-auto">
+          <img
+            src="/img/username.png"
+            alt="Pet and Mouse"
+            className={styles.username}
+          />
+          <input
+            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            id="email"
+            required
+            placeholder="Meow Meow Meow Meow Meow Meow Meow"
+            className="border-none outline-none absolute mt-16 ml-6 w-[350px]"
+          />
+        </div>
+        <div className="mt-4 mb-6 flex flex-auto">
+          <img
+            src="/img/password.png"
+            alt="Pet and Mouse"
+            className={styles.username}
+          />
+          <input
+            onChange={(e) => handlePassword(e)}
+            type="password"
+            id="password"
+            required
+            placeholder="Woof Woof Woof Woof Woof Woof Woof Woof"
+            className="border-none outline-none absolute mt-16 ml-6 w-[350px]"
+          />
+        </div>
+
+        <button className={`${styles.signInButton2}`}>
+          <img src="/img/buttonLogin2.png" alt="Pet and Mouse" />
+        </button>
+      </form>
     </div>
   );
-}
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  return {
-    props: {
-      csrfToken: await getCsrfToken(context),
-    },
-  };
 }

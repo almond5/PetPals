@@ -1,4 +1,4 @@
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import router from 'next/router';
 import { useState } from 'react';
@@ -8,6 +8,15 @@ const ProfileCreation = () => {
   const [species, setSpecies] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
   const [selectedFile, setSelectedFile] = useState<File>();
+  const { status: sesh, data: data } = useSession();
+
+  if (sesh === 'loading') {
+    return null;
+  }
+
+  if (sesh === 'unauthenticated') {
+    router.push('/');
+  }
 
   const submitProfile = async (profile: {
     description: string;
