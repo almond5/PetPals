@@ -2,6 +2,7 @@ import { signIn, signOut } from 'next-auth/react';
 import router from 'next/router';
 import { useState } from 'react';
 import styles from '/styles/Index.module.css'; // Make sure to create this CSS module
+import Link from 'next/link';
 
 export default function SignIn() {
   const [password, setPassword] = useState('');
@@ -78,6 +79,13 @@ export default function SignIn() {
         <button className={`${styles.signInButton2}`}>
           <img src="/img/buttonLogin2.png" alt="Pet and Mouse" />
         </button>
+
+        <div className="login-page-container">
+          <Link href="/Register">
+        <button style={{ textDecoration: 'underline' }}>New here? sign up</button>
+        </Link>
+
+        </div>
       </form>
     </div>
   );
