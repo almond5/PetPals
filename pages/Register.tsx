@@ -61,7 +61,7 @@ const Register = () => {
         className={styles.petImage3}
       />
       <form className="rounded px-8 text-center" onSubmit={handleSubmit}>
-        <div className="mt-24 flex flex-auto">
+        <div className="mt-28 flex flex-auto">
           <img
             src="/img/username.png"
             alt="Pet and Mouse"
@@ -102,6 +102,7 @@ const Register = () => {
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            required
             id="phone_number"
             placeholder="888-888-8888"
             className="border-none outline-none absolute mt-16 ml-6 w-[350px]"

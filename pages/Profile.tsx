@@ -1,5 +1,3 @@
-import { uploadImage } from '@/utils/cloudinary';
-import { getImage } from '@/utils/formidable';
 import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import router from 'next/router';
@@ -64,18 +62,26 @@ const ProfileCreation = () => {
   }) => {
     try {
       const formData = new FormData();
-      formData.append("image", image.imageUploaded!);
+      formData.append('file', imageUploaded!);
+      formData.append('upload_preset', 'ifs1rfae');
 
-      const response = await fetch("/api/createImage", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: formData
-      });
+      const data = await fetch(
+        'https://api.cloudinary.com/v1_1/dknxcrch0/image/upload',
+        {
+          method: 'POST',
+          body: formData
+        }
+      ).then((r) => r.json());
 
-      console.log(response)
-      console.log("HERE")
+      console.log(data)
+
+      // const response = await fetch("/api/createImage", {
+      //   method: 'POST',
+      //   body: formData
+      // });
+
+      // console.log(response)
+      // console.log("HERE")
     } catch (error) {
       // Handle other potential errors
       console.error('Error creating profile', error);
@@ -103,6 +109,7 @@ const ProfileCreation = () => {
     setDescription('');
     setSpecies('');
     setUserEmail('')
+    window.location.reload()
   };
 
   return (
