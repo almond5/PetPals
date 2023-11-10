@@ -66,14 +66,12 @@ const ProfileCreation = () => {
       formData.append('upload_preset', 'ifs1rfae');
 
       const data = await fetch(
-        'https://api.cloudinary.com/v1_1/dknxcrch0/image/upload',
+        process.env.NEXT_PUBLIC_CLOUD_URL!,
         {
           method: 'POST',
           body: formData
         }
       ).then((r) => r.json());
-
-      console.log(data)
 
       // const response = await fetch("/api/createImage", {
       //   method: 'POST',
@@ -118,7 +116,7 @@ const ProfileCreation = () => {
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={handleSubmit}
-        >
+        >          
           <div className="mb-4">
             Description
             <textarea
