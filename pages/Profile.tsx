@@ -1,3 +1,5 @@
+import { uploadImage } from '@/utils/cloudinary';
+import { getImage } from '@/utils/formidable';
 import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import router from 'next/router';
@@ -6,8 +8,8 @@ import { useState } from 'react';
 const ProfileCreation = () => {
   const [description, setDescription] = useState('');
   const [species, setSpecies] = useState('');
-  const [selectedImage, setSelectedImage] = useState('');
-  const [selectedFile, setSelectedFile] = useState<File>();
+  const [imageUploaded, setImageUploaded] = useState();
+  const [userEmail, setUserEmail] = useState('');
   const { status: sesh, data: data } = useSession();
 
   if (sesh === 'loading') {
@@ -18,9 +20,15 @@ const ProfileCreation = () => {
     router.push('/');
   }
 
+  const handleChange = (e: any) => {
+    setImageUploaded(e.target.files[0]);
+  };
+
   const submitProfile = async (profile: {
-    description: string;
-    species: string;
+    description: string | undefined | null;
+    species: string | undefined | null;
+    imageUploaded: any;
+    userEmail: string | undefined | null;
   }) => {
     try {
       const response = await fetch('/api/profileCreate', {
@@ -51,17 +59,50 @@ const ProfileCreation = () => {
     }
   };
 
+  const submitImage = async (image: {
+    imageUploaded: any;
+  }) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", image.imageUploaded!);
+
+      const response = await fetch("/api/createImage", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: formData
+      });
+
+      console.log(response)
+      console.log("HERE")
+    } catch (error) {
+      // Handle other potential errors
+      console.error('Error creating profile', error);
+    }
+  };
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    const profile = {
-      description,
-      species,
+    setUserEmail(data?.user?.email!)
+
+    const image = {
+      imageUploaded,
     };
 
-    await submitProfile(profile);
+    const profile = {
+      userEmail,
+      description,
+      species,
+      imageUploaded,
+    };
+
+    await submitImage(image)
+    // await submitProfile(profile);
     setDescription('');
     setSpecies('');
+    setUserEmail('')
   };
 
   return (
@@ -97,28 +138,13 @@ const ProfileCreation = () => {
             />
           </div>
 
-          <label>
-            <input
-              type="file"
-              hidden
-              onChange={({ target }) => {
-                if (target.files) {
-                  if (target.files.length > 0) {
-                    const file = target.files[0];
-                    setSelectedImage(URL.createObjectURL(file));
-                    setSelectedFile(file);
-                  }
-                }
-              }}
-            />
-            <div className="w-80 aspect-video rounded flex items-center justify-center border-2 border-dashed cursor-pointer">
-              {selectedImage ? (
-                <img src={selectedImage} />
-              ) : (
-                <span>Select Image</span>
-              )}
-            </div>
-          </label>
+          <input
+            onChange={handleChange}
+            accept=".jpg, .png, .gif, .jpeg"
+            type="file"
+          ></input>
+
+          <input type="submit" value="Upload" />
 
           <div className="flex items-center justify-between">
             <button

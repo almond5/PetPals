@@ -25,7 +25,6 @@ model Profile {
   description String     @db.Text
   locationId  String?    @unique
   location    Location?  @relation(fields: [locationId], references: [id], onDelete: Cascade)
-  gender      String     @db.Text
   species     String     @db.Text
   user        User       @relation(fields: [userId], references: [id])
   userId      String     @unique
@@ -34,16 +33,6 @@ model Profile {
 
   @@index([id])
   @@index([userId])
-}
-
-model Image {
-  id        String  @id @default(cuid())
-  url       String
-  profile   Profile @relation(fields: [profileId], references: [id])
-  profileId String // Foreign key reference to Profile model
-
-  @@index([id])
-  @@index([profileId])
 }
 
 model Interest {
@@ -65,4 +54,16 @@ model Location {
   profile   Profile?
 
   @@index([id])
+}
+
+model Image {
+  id       String @id @default(cuid())
+  publicId String @unique
+  format   String
+  version  String
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId String // Foreign key reference to Profile model
+
+  @@index([id])
+  @@index([profileId])
 }

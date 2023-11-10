@@ -4,7 +4,6 @@
   align-items: center;
   height: 100vh; 
   flex-direction: column;
-  position: relative;
 }
 
 .header {
@@ -18,10 +17,9 @@
 }
 
 .petImage {
-  /* max-width: 50%; */
-  max-width: 90%;
+  max-width: 50%;
   height: auto;
-  margin: 20px auto;
+  margin: 20px 0;
   position: center;
 }
 
@@ -36,13 +34,16 @@
    z-index: -1;
 }
 
-.bg-write {
-  width: 80%; 
-  max-width: 500px; 
-  min-width: 300px; 
-  margin: 0 auto; 
+.petImage3 {
+  max-width: 50%;
+  position: center;
+  height: auto;
+   min-height: 100%;
+   min-width: 950px;
+   position: fixed;
+   width: 100%;
+   z-index: -1;
 }
-
 
 .buttons {
   position: absolute;
@@ -78,47 +79,6 @@
   padding: 0px 70px; 
 }
 
-.signUpButton {
-  display: block;
-  width: 20px;
-  height:auto;
-  margin: 20px auto;
-  padding: 0;  
-  border: none; 
-  background: none; 
-  cursor: pointer;
-}
-
-.signUpButton img {
-  width: 200px;
-  height: 100px;
-  width: 100%;
-  height: auto;
-  
-}
-
-.form {
-  width: 100%;
-  max-width: 500px; 
-  padding: 1rem;
-  box-sizing: border-box; 
-  position: relative;
-}
-
-@media (max-width: 768px) {
-  .bg-write {
-    width: 95%;
-  }
-
-  .input-field {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  
-  .signUpButton img {
-    max-width: 150px; 
-  }
-}
 .registerButton {
   top: 81.8%; 
   left: 49.5%; 
@@ -151,4 +111,15 @@
   min-width: 100px; 
   min-height: 20px; 
   padding: 0px 40px; 
+}
+
+.signUpButton {
+  color: clear; 
+  border: none; 
+  width: 200px; 
+  height: 10px; 
+  text-align: center; 
+  min-width: 100px; 
+  min-height: 70px; 
+  padding: 0px 0px; 
 }
