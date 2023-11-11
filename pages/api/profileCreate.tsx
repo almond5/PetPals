@@ -7,26 +7,32 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
-      let userEmail, description, species, imageData: any;
+      let userEmail, description, species, name, imageData: any;
 
       if (typeof req.body === 'object') {
         userEmail = req.body.userEmail;
         description = req.body.description;
         species = req.body.species;
+        name = req.body.name;
         imageData = req.body.imageData;
       } else {
         const body = JSON.parse(req.body);
+        name = body.name;
         userEmail = body.userEmail;
         description = body.description;
         species = body.species;
         imageData = body.imageData;
       }
 
-      const user = await prisma.user.findFirst({
-        where: { email: userEmail },
-      });
+      console.log(name)
+      console.log(description)
+      console.log(userEmail)
+      console.log(species)
+      console.log(imageData)
 
-      console.log(user?.id)
+      const user = await prisma.user.findFirst({
+        where: { email: userEmail }
+      });
 
       const profile = await prisma.profile.create({
         data: {

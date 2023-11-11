@@ -22,6 +22,7 @@ const Register = () => {
       method: 'POST',
       body: JSON.stringify(newUser),
     });
+    
     const data = await response.json();
     if (data !== null) {
       alert(data);

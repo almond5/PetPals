@@ -1,8 +1,27 @@
-import { useSession } from 'next-auth/react';
+import { getSession, signOut, useSession } from 'next-auth/react';
 import router from 'next/router';
 import { useState } from 'react';
 import styles from '/styles/petProfile.module.css';
 import Image from 'next/image';
+
+export async function getServerSideProps(context: any) {
+  try {
+    const session = await getSession(context);
+    const currUser = session?.user;
+    console.log(currUser)
+    console.log("HERE")
+
+    return {
+      props: {
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+      },
+    };
+  }
+}
 
 const ProfileCreation = () => {
   const [description, setDescription] = useState('');
@@ -31,9 +50,10 @@ const ProfileCreation = () => {
   };
 
   const submitProfile = async (profile: {
+    userEmail: string | undefined | null;
     description: string | undefined | null;
     species: string | undefined | null;
-    userEmail: string | undefined | null;
+    name: string | undefined | null;
     imageData: any;
   }) => {
     try {
@@ -46,15 +66,9 @@ const ProfileCreation = () => {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        if (data) {
-          // Handle successful profile creation
-          alert('Profile created successfully!');
-          router.push('/Dashboard');
-        } else {
-          // Handle response when data is null
-          alert('Profile creation failed');
-        }
+        // Handle successful profile creation
+        alert('Profile created successfully!');
+        router.push('/Dashboard');
       } else {
         // Handle HTTP errors if any
         alert('Error creating profile');
@@ -78,15 +92,16 @@ const ProfileCreation = () => {
 
       return data;
     } catch (error) {
-      console.error('Error creating profile', error);
+      console.error('Error Uploading Image', error);
     }
   };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-
+    console.log("Before" + data?.user?.email!)
     setUserEmail(data?.user?.email!);
-
+    console.log(userEmail)
+    console.log(data?.user?.email!)
     const image = {
       imageUploaded,
     };
@@ -97,6 +112,7 @@ const ProfileCreation = () => {
       userEmail,
       description,
       species,
+      name,
       imageData,
     };
 
@@ -106,6 +122,7 @@ const ProfileCreation = () => {
     setSpecies('');
     setUserEmail('');
     setName('');
+    setImageToDisplay('/img/petpicture.png');
   };
 
   return (
@@ -138,6 +155,7 @@ const ProfileCreation = () => {
             onChange={handleChange}
             accept=".jpg, .png, .gif, .jpeg"
             type="file"
+            hidden
             required
           />
         </div>
@@ -212,6 +230,13 @@ const ProfileCreation = () => {
           <button type="submit">Submit</button>
         </div>
       </form>
+      <button
+            onClick={() =>
+              signOut({ callbackUrl: '/' })
+            }
+          >
+            Sign-Out
+          </button>
     </div>
   );
 };

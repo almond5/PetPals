@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function SignIn() {
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
 
   const handlePassword = async (e: {
     [x: string]: any;
@@ -20,21 +20,14 @@ export default function SignIn() {
     e.preventDefault();
 
     const res = await signIn('credentials', {
-      username: username,
+      username: email,
       password: password,
-      redirect: false,
+      callbackUrl: '/Dashboard'
     });
-
-    if (res?.status === 200) {
-      router.push('/Dashboard');
-    } else if (res?.status === 401) {
-      alert('Invalid Credentials');
-    } else {
-      alert('Error');
-    }
+    
 
     setPassword('');
-    setUsername('');
+    setEmail('');
   };
 
   return (
@@ -52,7 +45,7 @@ export default function SignIn() {
             className={styles.username}
           />
           <input
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
             id="email"
             required

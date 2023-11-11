@@ -4,12 +4,16 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import prisma from '../../../lib/prismadb';
 
 export default NextAuth({
-  adapter: PrismaAdapter(prisma),
+  adapter: { PrismaAdapter },
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        username: { label: 'Email', type: 'text', placeholder: 'example@email.com' },
+        email: {
+          label: 'Email',
+          type: 'text',
+          placeholder: 'example@email.com',
+        },
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials, req) {
@@ -25,7 +29,7 @@ export default NextAuth({
         if (user === null || user === undefined) {
           return null;
         } else {
-          return { success: 'Invalid Credentials' };
+          return user;
         }
       },
     }),
@@ -37,24 +41,22 @@ export default NextAuth({
   jwt: {},
   callbacks: {
     session: async ({ session, token }) => {
-      if (session?.user) {
-        session.user.id = token.uid;
-      }
+      session.user.id = token.id;
       return session;
     },
-    jwt: async ({ user, token }) => {      
-      if (user) {
-        token.uid = user.id;
+    jwt: async ({ user, token, account }) => {
+      if (account) {
+        token.accessToken = account.access_token;
+        token.id = user.id;
+        token.email = user.email;
       }
       return token;
     },
   },
-  session: {
-    strategy: 'jwt',
-  },
   pages: {
-    signIn: "/auth/signin",
-    },
+    signIn: '/auth/signin',
+  },
   events: {},
+  secret: process.env.NEXTAUTH_SECRET,
   debug: false,
 });
