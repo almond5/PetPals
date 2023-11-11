@@ -1,0 +1,119 @@
+/* styles/Profile.module.css */
+
+/* .profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+} */
+
+.whiteboardContainer {
+  position: relative; /* Children will be positioned relative to this container */
+}
+
+/* .whiteboardImage {
+  display: block;
+  width: 100%;
+  height: auto;
+} */
+
+.petPicture {
+  position: relative;
+  top: 3%; 
+  left: 12%;
+  width: 75%;
+  height: auto;
+
+}
+
+.nameImage {
+  position: relative;
+  width: 20%;
+  height: auto;
+}
+
+/* .editableName { 
+  border: 1px solid #000;
+  padding: 5px;
+  width: calc(100% - 10px);
+  margin-bottom: 10px;
+} */
+
+.editImage {
+  position: relative;
+  top: 29%; /* Adjust as needed */
+  left: 37%; /* Adjust as needed */
+}
+
+.speciesImage {
+  position: relative;
+  top: 20%; /* Adjust as needed */
+  width:30%;
+  height:auto;
+}
+
+.locationImage {
+  position: relative;
+  top: 90%;  
+  width: 25%;
+  height: auto;
+}
+
+.descriptionImage {
+  position: relative;
+  top: 46%;  
+  width: 40%;
+  height:auto;
+}
+
+.lineImage {
+  position: relative;
+  bottom: 10%; 
+  width: 60%;
+  height:10%;
+}
+
+
+.imagePlaceholder {
+  width: 100px;
+  height: 100px;
+  background-color: #ddd; /* Placeholder for image */
+  margin-bottom: 10px;
+}
+
+.editableName {
+  border: 1px solid #000;
+  padding: 5px;
+  width: calc(100% - 10px);
+  margin-bottom: 10px;
+}
+
+.locationInput,
+.descriptionTextarea {
+  border: 1px solid #000;
+  padding: 5px;
+  width: calc(100% - 10px);
+  margin-bottom: 10px;
+}
+
+.navigationSection {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.iconsContainer {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  height: auto; 
+}
+
+.icon {
+  flex: 0 0 auto; 
+  width: 5%; 
+  height: auto; 
+}
