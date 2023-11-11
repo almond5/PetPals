@@ -24,9 +24,9 @@ model Profile {
   id          String     @id @default(cuid())
   description String     @db.Text
   locationId  String?    @unique
-  location    Location?  @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  location    Location?
   species     String     @db.Text
-  user        User       @relation(fields: [userId], references: [id])
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String     @unique
   interests   Interest[]
   images      Image[] // New relation for images
@@ -51,18 +51,19 @@ model Location {
   name      String   @db.Text
   latitude  Float
   longitude Float
-  profile   Profile?
+  profileId String   @unique
+  profile   Profile? @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
   @@index([id])
 }
 
 model Image {
-  id       String @id @default(cuid())
-  publicId String @unique
-  format   String
-  version  String
-  profile   Profile @relation(fields: [profileId], references: [id])
-  profileId String // Foreign key reference to Profile model
+  id        String  @id @default(cuid())
+  publicId  String  @unique
+  format    String
+  version   String
+  profile   Profile @relation(fields: [profileId], references: [id],  onDelete: Cascade)
+  profileId String  @unique
 
   @@index([id])
   @@index([profileId])

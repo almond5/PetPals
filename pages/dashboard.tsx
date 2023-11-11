@@ -17,6 +17,8 @@ export async function getServerSideProps(context: any) {
       where: { userId: user?.id! },
     });
 
+    console.log(profile)
+
     if (profile === null || profile === undefined)
     {
       router.push('/Profile');
