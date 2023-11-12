@@ -1,4 +1,4 @@
-import { getSession, signOut, useSession } from 'next-auth/react';
+import { getSession, signOut } from 'next-auth/react';
 import router from 'next/router';
 import { useState } from 'react';
 import styles from '/styles/petProfile.module.css';
@@ -8,29 +8,29 @@ export async function getServerSideProps(context: any) {
   try {
     const session = await getSession(context);
 
-    console.log(session)
+    console.log(session);
 
     return {
       props: {
-        session: session
+        session: session,
       },
     };
   } catch (error) {
     return {
       props: {
-        session: null
+        session: null,
       },
     };
   }
 }
 
-const ProfileCreation = (props: {session: any }) => {
+const ProfileCreation = (props: { session: any }) => {
   const [description, setDescription] = useState('');
   const [species, setSpecies] = useState('');
   const [imageUploaded, setImageUploaded] = useState();
   const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
   const [name, setName] = useState('');
-  
+
   if (props.session === null) {
     router.push('/');
   }
@@ -54,7 +54,7 @@ const ProfileCreation = (props: {session: any }) => {
     imageData: any;
   }) => {
     try {
-      console.log(profile)
+      console.log(profile);
       const response = await fetch('/api/profileCreate', {
         method: 'POST',
         headers: {
@@ -111,7 +111,7 @@ const ProfileCreation = (props: {session: any }) => {
       imageData,
     };
 
-    console.log(userEmail)
+    console.log(userEmail);
 
     await submitProfile(profile);
 
@@ -137,7 +137,7 @@ const ProfileCreation = (props: {session: any }) => {
           <label htmlFor="fileInput">
             <Image
               src={imageToDisplay}
-              alt="Picture of the author"
+              alt=""
               sizes="500px"
               fill
               style={{
@@ -227,13 +227,7 @@ const ProfileCreation = (props: {session: any }) => {
           <button type="submit">Submit</button>
         </div>
       </form>
-      <button
-            onClick={() =>
-              signOut({ callbackUrl: '/' })
-            }
-          >
-            Sign-Out
-          </button>
+      <button onClick={() => signOut({ callbackUrl: '/' })}>Sign-Out</button>
     </div>
   );
 };

@@ -19,16 +19,8 @@ const Index = () => {
               signIn();
             }}
           >
-                      {/* <Link
-              href={'/api/auth/signin'}
-              onClick={(e) => {
-                e.preventDefault();
-                signIn('Credentials', { callbackUrl: '/Dashboard' });
-              }}
-            > */}
             <img className="mt-2" src="/img/buttonLogin1.png" alt="Pet and Mouse" />
             </Link>
-          {/* </Link> */}
         </button>
         <button className={`${styles.button} ${styles.registerButton}`}>
           <Link href="/Register">
