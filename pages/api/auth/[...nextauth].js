@@ -53,9 +53,9 @@ export default NextAuth({
       return token;
     },
   },
-  // pages: {
-  //   signIn: '/auth/signin',
-  // },
+  pages: {
+    signIn: '/auth/signin',
+  },
   events: {},
   secret: process.env.NEXTAUTH_SECRET,
   debug: false,

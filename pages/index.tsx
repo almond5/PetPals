@@ -12,20 +12,20 @@ const Index = () => {
       />
       <div className="mt-48">
         <button className={`${styles.button} ${styles.signInButton}`}>
-          {/* <Link
+          <Link
             href={'/auth/signin'}
             onClick={(e) => {
               e.preventDefault();
               signIn();
             }}
-          > */}
-                      <Link
+          >
+                      {/* <Link
               href={'/api/auth/signin'}
               onClick={(e) => {
                 e.preventDefault();
                 signIn('Credentials', { callbackUrl: '/Dashboard' });
               }}
-            >
+            > */}
             <img className="mt-2" src="/img/buttonLogin1.png" alt="Pet and Mouse" />
             </Link>
           {/* </Link> */}
