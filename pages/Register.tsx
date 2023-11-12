@@ -124,7 +124,7 @@ const Register = () => {
           href={'/api/auth/signin'}
           onClick={(e) => {
             e.preventDefault();
-            signIn('Credentials', { callbackUrl: '/' });
+            signIn('Credentials', { callbackUrl: '/Dashboard' });
           }}
           style={{ textDecoration: 'underline' }}
         >
