@@ -58,7 +58,7 @@ const Dashboard = ({profile}: {profile: any}) => {
   if (sesh === 'authenticated' && userProfile !== null ) {
     return (
       <div className="py-10">
-        <div>Hi {userProfile.id}</div>
+        <div>Hi {userProfile.name}</div>
         <button
           onClick={() =>
             signOut({ callbackUrl: '/' })

@@ -67,6 +67,7 @@ model Profile {
   description String     @db.Text
   locationId  String?    @unique
   location    Location?
+  name        String     @db.Text
   species     String     @db.Text
   user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String     @unique

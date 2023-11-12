@@ -24,12 +24,6 @@ export default async function handler(
         imageData = body.imageData;
       }
 
-      console.log(name)
-      console.log(description)
-      console.log(userEmail)
-      console.log(species)
-      console.log(imageData)
-
       const user = await prisma.user.findFirst({
         where: { email: userEmail }
       });
@@ -38,6 +32,7 @@ export default async function handler(
         data: {
           species: species,
           description: description,
+          name: name,
           user: { connect: { id: user!.id } },
           images: {
             create: {

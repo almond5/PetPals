@@ -7,38 +7,35 @@ import Image from 'next/image';
 export async function getServerSideProps(context: any) {
   try {
     const session = await getSession(context);
-    const currUser = session?.user;
-    console.log(currUser)
-    console.log("HERE")
+
+    console.log(session)
 
     return {
       props: {
+        session: session
       },
     };
   } catch (error) {
     return {
       props: {
+        session: null
       },
     };
   }
 }
 
-const ProfileCreation = () => {
+const ProfileCreation = (props: {session: any }) => {
   const [description, setDescription] = useState('');
   const [species, setSpecies] = useState('');
   const [imageUploaded, setImageUploaded] = useState();
   const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
-  const [userEmail, setUserEmail] = useState('');
   const [name, setName] = useState('');
-  const { status: sesh, data: data } = useSession();
-
-  if (sesh === 'loading') {
-    return null;
-  }
-
-  if (sesh === 'unauthenticated') {
+  
+  if (props.session === null) {
     router.push('/');
   }
+
+  const [userEmail, setUserEmail] = useState(props.session.user.email!);
 
   const handleChange = (e: any) => {
     if (e.target.files === null || e.target.files === undefined) {
@@ -57,6 +54,7 @@ const ProfileCreation = () => {
     imageData: any;
   }) => {
     try {
+      console.log(profile)
       const response = await fetch('/api/profileCreate', {
         method: 'POST',
         headers: {
@@ -98,10 +96,7 @@ const ProfileCreation = () => {
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log("Before" + data?.user?.email!)
-    setUserEmail(data?.user?.email!);
-    console.log(userEmail)
-    console.log(data?.user?.email!)
+
     const image = {
       imageUploaded,
     };
@@ -115,6 +110,8 @@ const ProfileCreation = () => {
       name,
       imageData,
     };
+
+    console.log(userEmail)
 
     await submitProfile(profile);
 
