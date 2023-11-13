@@ -1,4 +1,4 @@
-import { signIn } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import router from 'next/router';
 import { useState } from 'react';
@@ -48,7 +48,7 @@ const Register = () => {
 
     await submitUser(newUser);
     await timeout(1000);
-    router.push('/');
+    signOut({callbackUrl: '/'});
     setPhoneNumber('');
     setPassword('');
     setUserEmail('');
@@ -121,10 +121,10 @@ const Register = () => {
         </div>
 
         <Link
-          href={'/api/auth/signin'}
+          href=''
           onClick={(e) => {
             e.preventDefault();
-            signIn('Credentials', { callbackUrl: '/Dashboard' });
+            router.push('/')
           }}
           style={{ textDecoration: 'underline' }}
         >

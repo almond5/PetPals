@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import router from 'next/router';
 import prisma from '@/lib/prismadb';
 import { Profile } from '@prisma/client';
-import TinderCard from 'react-tinder-card'
 
 export async function getServerSideProps(context: any) {
   try {

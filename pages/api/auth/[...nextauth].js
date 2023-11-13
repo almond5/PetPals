@@ -16,8 +16,12 @@ export default NextAuth({
         },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const { email, password } = credentials;
+
+        if (email === null || password === null) {
+          return null;
+        }
 
         const user = await prisma.user.findFirst({
           where: {
@@ -25,6 +29,10 @@ export default NextAuth({
             password: password,
           },
         });
+
+        if (user.password !== password) {
+          return null;
+        }
 
         if (user === null || user === undefined) {
           return null;
@@ -39,20 +47,7 @@ export default NextAuth({
     strategy: 'jwt',
   },
   jwt: {},
-  callbacks: {
-    session: async ({ session, token }) => {
-      session.user.id = token.id;
-      return session;
-    },
-    jwt: async ({ user, token, account }) => {
-      if (account) {
-        token.accessToken = account.access_token;
-        token.id = user.id;
-        token.email = user.email;
-      }
-      return token;
-    },
-  },
+  callbacks: {},
   pages: {
     signIn: '/auth/signin',
   },
