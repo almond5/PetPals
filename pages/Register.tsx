@@ -1,4 +1,4 @@
-import { signIn, signOut } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import router from 'next/router';
 import { useState } from 'react';
@@ -8,6 +8,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const { status: sesh, data: data } = useSession();
 
   const timeout = (delay: number) => {
     return new Promise((res) => setTimeout(res, delay));
@@ -47,8 +48,15 @@ const Register = () => {
     };
 
     await submitUser(newUser);
-    await timeout(1000);
-    signOut({callbackUrl: '/'});
+    
+    if (sesh === 'authenticated')
+    {
+      signOut({callbackUrl: '/'});
+    }
+    else {
+      router.push('/')
+    }
+
     setPhoneNumber('');
     setPassword('');
     setUserEmail('');
