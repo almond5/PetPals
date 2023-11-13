@@ -246,10 +246,13 @@ const ProfileCreation = ({ profile }: { profile: any }) => {
     );
   } else if (
     sesh === 'authenticated' &&
-    (userProfile !== null && userProfile !== undefined) // start of edit problem
+    userProfile !== null &&
+    userProfile !== undefined // start of edit problem
   ) {
     return (
-      <>      <EditProfile profile={profile}></EditProfile>
+      <>
+        {' '}
+        <EditProfile profile={profile}></EditProfile>
       </>
       // // make handle edit
       // <div className="min-h-screen flex items-center justify-center">
@@ -294,9 +297,9 @@ const ProfileCreation = ({ profile }: { profile: any }) => {
       //         value={profile.name}
       //         onChange={(e) => setName(e.target.value)}
       //         required
-      //         className="block appearance-none w-full 
-      //     border rounded py-2 px-3 text-gray-700 
-      //     leading-tight focus:outline-none 
+      //         className="block appearance-none w-full
+      //     border rounded py-2 px-3 text-gray-700
+      //     leading-tight focus:outline-none
       //     focus:shadow-outline"
       //         maxLength={200}
       //       />
@@ -314,9 +317,9 @@ const ProfileCreation = ({ profile }: { profile: any }) => {
       //         onChange={(e) => setDescription(e.target.value)}
       //         required
       //         rows={7}
-      //         className="block appearance-none w-full 
-      //     border rounded py-2 px-3 text-gray-700 
-      //     leading-tight focus:outline-none 
+      //         className="block appearance-none w-full
+      //     border rounded py-2 px-3 text-gray-700
+      //     leading-tight focus:outline-none
       //     focus:shadow-outline"
       //         maxLength={322}
       //       ></textarea>
@@ -334,9 +337,9 @@ const ProfileCreation = ({ profile }: { profile: any }) => {
       //         value={profile.species}
       //         onChange={(e) => setSpecies(e.target.value)}
       //         required
-      //         className="block appearance-none w-full 
-      //     border rounded py-2 px-3 text-gray-700 
-      //     leading-tight focus:outline-none 
+      //         className="block appearance-none w-full
+      //     border rounded py-2 px-3 text-gray-700
+      //     leading-tight focus:outline-none
       //     focus:shadow-outline"
       //         maxLength={200}
       //       />

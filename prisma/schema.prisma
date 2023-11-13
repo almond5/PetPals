@@ -83,7 +83,7 @@ model Interest {
   profileId           String?
   profile             Profile? @relation(fields: [profileId], references: [id])
   interestedProfileId String?
-  isMatch             Boolean
+  isMatch             String   @db.Text
 
   @@index([id])
   @@index([profileId])
