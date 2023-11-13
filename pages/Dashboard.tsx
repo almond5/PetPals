@@ -50,9 +50,7 @@ const Dashboard = ({ profile, profiles }: { profile: any; profiles: any }) => {
 
   if (sesh === 'loading') {
     return <div>Loading...</div>;
-  }
-
-  if (sesh === 'unauthenticated') {
+  } else if (sesh === 'unauthenticated') {
     router.push('/');
   } else if (userProfile === null || userProfile === undefined) {
     router.push('/Profile');

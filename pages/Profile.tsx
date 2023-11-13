@@ -5,6 +5,7 @@ import styles from '/styles/petProfile.module.css';
 import Image from 'next/image';
 import prisma from '@/lib/prismadb';
 import { Profile } from '@prisma/client';
+import EditProfile from '@/components/EditProfile';
 
 export async function getServerSideProps(context: any) {
   try {
@@ -129,9 +130,7 @@ const ProfileCreation = ({ profile }: { profile: any }) => {
   // check user has a profile and make it so it uses editProfile API
   if (sesh === 'loading') {
     return <div>Loading...</div>;
-  }
-
-  if (sesh === 'unauthenticated') {
+  } else if (sesh === 'unauthenticated') {
     router.push('/');
   } else if (
     sesh === 'authenticated' &&
@@ -247,115 +246,118 @@ const ProfileCreation = ({ profile }: { profile: any }) => {
     );
   } else if (
     sesh === 'authenticated' &&
-    (userProfile !== null && userProfile !== undefined)
+    (userProfile !== null && userProfile !== undefined) // start of edit problem
   ) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <form onSubmit={handleSubmit}>
-          <div
-            className="mt-8 mb-8"
-            style={{
-              position: 'relative',
-              width: '250px',
-              height: '250px',
-              marginLeft: '50px', // Adjust the value as needed
-            }}
-          >
-            <label htmlFor="fileInput">
-              <Image
-                src={imageToDisplay}
-                alt=""
-                sizes="500px"
-                fill
-                style={{
-                  objectFit: 'contain',
-                  border: '3px solid #000000',
-                }}
-              />
-            </label>
+      <>      <EditProfile profile={profile}></EditProfile>
+      </>
+      // // make handle edit
+      // <div className="min-h-screen flex items-center justify-center">
+      //   <form onSubmit={handleSubmit}>
+      //     <div
+      //       className="mt-8 mb-8"
+      //       style={{
+      //         position: 'relative',
+      //         width: '250px',
+      //         height: '250px',
+      //         marginLeft: '50px', // Adjust the value as needed
+      //       }}
+      //     >
+      //       <label htmlFor="fileInput">
+      //         <Image
+      //           src={imageToDisplay}
+      //           alt=""
+      //           sizes="500px"
+      //           fill
+      //           style={{
+      //             objectFit: 'contain',
+      //             border: '3px solid #000000',
+      //           }}
+      //         />
+      //       </label>
 
-            <input
-              id="fileInput"
-              onChange={handleChange}
-              accept=".jpg, .png, .gif, .jpeg"
-              type="file"
-              hidden
-              required
-            />
-          </div>
+      //       <input
+      //         id="fileInput"
+      //         onChange={handleChange}
+      //         accept=".jpg, .png, .gif, .jpeg"
+      //         type="file"
+      //         hidden
+      //         required
+      //       />
+      //     </div>
 
-          <div className="mb-6">
-            <img src="/img/name.png" className={styles.nameImage} alt="Name" />
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              className="block appearance-none w-full 
-          border rounded py-2 px-3 text-gray-700 
-          leading-tight focus:outline-none 
-          focus:shadow-outline"
-              maxLength={200}
-            />
-          </div>
+      //     <div className="mb-6">
+      //       <img src="/img/name.png" className={styles.nameImage} alt="Name" />
+      //       <input
+      //         id="name"
+      //         type="text"
+      //         value={profile.name}
+      //         onChange={(e) => setName(e.target.value)}
+      //         required
+      //         className="block appearance-none w-full 
+      //     border rounded py-2 px-3 text-gray-700 
+      //     leading-tight focus:outline-none 
+      //     focus:shadow-outline"
+      //         maxLength={200}
+      //       />
+      //     </div>
 
-          <div className="mb-4">
-            <img
-              src="/img/description.png"
-              className={styles.descriptionImage}
-              alt="Description"
-            />
-            <textarea
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-              rows={7}
-              className="block appearance-none w-full 
-          border rounded py-2 px-3 text-gray-700 
-          leading-tight focus:outline-none 
-          focus:shadow-outline"
-              maxLength={322}
-            ></textarea>
-          </div>
+      //     <div className="mb-4">
+      //       <img
+      //         src="/img/description.png"
+      //         className={styles.descriptionImage}
+      //         alt="Description"
+      //       />
+      //       <textarea
+      //         id="description"
+      //         value={profile.description}
+      //         onChange={(e) => setDescription(e.target.value)}
+      //         required
+      //         rows={7}
+      //         className="block appearance-none w-full 
+      //     border rounded py-2 px-3 text-gray-700 
+      //     leading-tight focus:outline-none 
+      //     focus:shadow-outline"
+      //         maxLength={322}
+      //       ></textarea>
+      //     </div>
 
-          <div className="mb-6">
-            <img
-              src="/img/species.png"
-              className={styles.speciesImage}
-              alt="species"
-            />
-            <input
-              id="species"
-              type="text"
-              value={species}
-              onChange={(e) => setSpecies(e.target.value)}
-              required
-              className="block appearance-none w-full 
-          border rounded py-2 px-3 text-gray-700 
-          leading-tight focus:outline-none 
-          focus:shadow-outline"
-              maxLength={200}
-            />
-          </div>
+      //     <div className="mb-6">
+      //       <img
+      //         src="/img/species.png"
+      //         className={styles.speciesImage}
+      //         alt="species"
+      //       />
+      //       <input
+      //         id="species"
+      //         type="text"
+      //         value={profile.species}
+      //         onChange={(e) => setSpecies(e.target.value)}
+      //         required
+      //         className="block appearance-none w-full 
+      //     border rounded py-2 px-3 text-gray-700 
+      //     leading-tight focus:outline-none 
+      //     focus:shadow-outline"
+      //         maxLength={200}
+      //       />
+      //     </div>
 
-          <div className="mb-6">
-            <img
-              src="/img/location.png"
-              className={styles.locationImage}
-              alt="Location"
-            />
-          </div>
+      //     <div className="mb-6">
+      //       <img
+      //         src="/img/location.png"
+      //         className={styles.locationImage}
+      //         alt="Location"
+      //       />
+      //     </div>
 
-          <div className="mb-6"></div>
+      //     <div className="mb-6"></div>
 
-          <div className="flex items-center justify-between">
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-        <button onClick={() => signOut({ callbackUrl: '/' })}>Sign-Out</button>
-      </div>
+      //     <div className="flex items-center justify-between">
+      //       <button type="submit">Submit</button>
+      //     </div>
+      //   </form>
+      //   <button onClick={() => signOut({ callbackUrl: '/' })}>Sign-Out</button>
+      // </div>
     );
   }
 };
