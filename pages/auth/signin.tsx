@@ -9,7 +9,7 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
 
   const { status } = useSession();
-  
+
   if (status === 'loading') {
     return null;
   }
@@ -28,16 +28,24 @@ export default function SignIn() {
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    try {
+      const response = await signIn('credentials', {
+        email: email,
+        password: password,
+        callbackUrl: '/Dashboard',
+        redirect: false,
+      });
 
-    const res = await signIn('credentials', {
-      email: email,
-      password: password,
-      callbackUrl: '/Dashboard',
-    });
+      if (!response?.ok) {
+        alert('Invalid Credentials!');
+      }
+    } catch (error) {
+      alert('Invalid Credentials!');
+    }
 
+    window.location.reload();
     setPassword('');
     setEmail('');
-    window.location.reload()
   };
 
   if (status === 'unauthenticated') {

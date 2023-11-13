@@ -25,7 +25,7 @@ export default async function handler(
       });
 
       if (findIfExist !== null && findIfExist !== undefined) {
-        res.status(201).json('User already exists!');
+        res.status(401).json('Username Is Taken!');
         return;
       }
 

@@ -19,14 +19,22 @@ const Register = () => {
     password: string | undefined | null;
     phoneNumber: string | undefined | null;
   }) => {
-    const response = await fetch('/api/userCreate', {
-      method: 'POST',
-      body: JSON.stringify(newUser),
-    });
+    try {
+      const response = await fetch('/api/userCreate', {
+        method: 'POST',
+        body: JSON.stringify(newUser),
+      });
 
-    const data = await response.json();
-    if (data !== null) {
-      alert(data);
+      if (!response.ok) {
+        const data = await response.json();
+        alert(data);
+        return null;
+      }
+
+      return true;
+    } catch (error) {
+      alert('Invalid Credentials!');
+      return null;
     }
   };
 
@@ -47,16 +55,15 @@ const Register = () => {
       phoneNumber,
     };
 
-    await submitUser(newUser);
-    
-    if (sesh === 'authenticated')
-    {
-      signOut({callbackUrl: '/'});
-    }
-    else {
-      router.push('/')
+    const result = await submitUser(newUser);
+
+    if (sesh === 'authenticated' && result === true) {
+      await signOut({ callbackUrl: '/' });
+    } else if (result === true) {
+      router.push('/');
     }
 
+    window.location.reload();
     setPhoneNumber('');
     setPassword('');
     setUserEmail('');
@@ -129,10 +136,10 @@ const Register = () => {
         </div>
 
         <Link
-          href=''
+          href=""
           onClick={(e) => {
             e.preventDefault();
-            router.push('/')
+            router.push('/');
           }}
           style={{ textDecoration: 'underline' }}
         >
