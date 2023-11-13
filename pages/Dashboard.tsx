@@ -23,7 +23,7 @@ export async function getServerSideProps(context: any) {
       },
     });
 
-    console.log(profiles)
+    console.log(profiles);
 
     return {
       props: {
@@ -54,13 +54,9 @@ const Dashboard = ({ profile, profiles }: { profile: any; profiles: any }) => {
 
   if (sesh === 'unauthenticated') {
     router.push('/');
-  }
-
-  if (userProfile === null || userProfile === undefined) {
+  } else if (userProfile === null || userProfile === undefined) {
     router.push('/Profile');
-  }
-
-  if (sesh === 'authenticated' && userProfile !== null) {
+  } else if (sesh === 'authenticated' && userProfile !== null) {
     return (
       <div>
         <div>
