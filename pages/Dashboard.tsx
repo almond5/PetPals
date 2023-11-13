@@ -58,10 +58,13 @@ const Dashboard = ({ profile, profiles }: { profile: any; profiles: any }) => {
     return (
       <div>
         <div>
-          Hi {userProfile.name} {data.user?.email}
+          Hi {userProfile.name}
+          {data.user?.email}
         </div>
         <button onClick={() => signOut({ callbackUrl: '/' })}>Sign-Out</button>
+      
         <div className="py-20 flex justify-center">
+        Signed in user: {userProfile.id}
           <div className="container h-[580px] w-[400px] border-gray-900 border-2">
             {/* <img src="/img/card.png" /> */}
             {userProfiles.map((profile: any) => (
