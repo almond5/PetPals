@@ -56,14 +56,14 @@ const Register = () => {
     };
 
     const result = await submitUser(newUser);
-
     if (sesh === 'authenticated' && result === true) {
       await signOut({ callbackUrl: '/' });
     } else if (result === true) {
-      router.push('/');
+      await signIn();
+    } else {
+      window.location.reload();
     }
 
-    window.location.reload();
     setPhoneNumber('');
     setPassword('');
     setUserEmail('');

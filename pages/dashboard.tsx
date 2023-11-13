@@ -17,10 +17,6 @@ export async function getServerSideProps(context: any) {
       where: { userId: user?.id! },
     });
 
-    if (profile === null || profile === undefined) {
-      router.push('/Profile');
-    }
-
     const profiles = await prisma.profile.findMany({
       where: {
         NOT: { id: profile?.id },
@@ -53,7 +49,7 @@ const Dashboard = ({ profile, profiles }: { profile: any; profiles: any }) => {
   const [userProfiles] = useState<Profile[]>(profiles);
 
   if (sesh === 'loading') {
-    return null;
+    return <div>Loading...</div>;
   }
 
   if (sesh === 'unauthenticated') {

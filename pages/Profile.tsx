@@ -111,8 +111,6 @@ const ProfileCreation = (props: { session: any }) => {
       imageData,
     };
 
-    console.log(userEmail);
-
     await submitProfile(profile);
 
     setDescription('');
