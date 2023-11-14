@@ -1,6 +1,6 @@
 import { getSession, signOut, useSession } from 'next-auth/react';
 import router from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from '/styles/petProfile.module.css';
 import Image from 'next/image';
 import prisma from '@/lib/prismadb';
