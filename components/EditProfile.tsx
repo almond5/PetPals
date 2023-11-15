@@ -53,6 +53,37 @@ const EditProfile = (props: { profile: any }) => {
     }
   };
 
+  const deleteProfile = async (profile: {
+    userEmail: string | undefined | null;
+    description: string | undefined | null;
+    species: string | undefined | null;
+    name: string | undefined | null;
+    // imageData: any;
+  }) => {
+    try {
+      console.log(profile);
+      const response = await fetch('/api/profileDelete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profile),
+      });
+
+      if (response.ok) {
+        // Handle successful profile creation
+        alert('Profile deleted successfully!');
+        router.push('/Dashboard');
+      } else {
+        // Handle HTTP errors if any
+        alert('Error deleting profile');
+      }
+    } catch (error) {
+      // Handle other potential errors
+      console.error('Error deleting profile', error);
+    }
+  };
+
 //   const submitImage = async (image: { imageUploaded: any }) => {
 //     try {
 //       const formData = new FormData();
@@ -90,14 +121,32 @@ const EditProfile = (props: { profile: any }) => {
 
     await submitProfile(profile);
 
-    // // Set it to whatever API returns
-    // setDescription('');
-    // setSpecies('');
-    // setName('');
-    // setImageToDisplay('/img/petpicture.png');
+    window.location.reload();
+  };
+
+  const handleDelete = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    const image = {
+      imageUploaded,
+    };
+
+    // const imageData = await submitImage(image);
+    const userEmail = data?.user?.email;
+
+    const profile = {
+      userEmail,
+      description,
+      species,
+      name,
+    //   imageData,
+    };
+
+    await deleteProfile(profile);
 
     window.location.reload();
   };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <form onSubmit={handleSubmit}>
@@ -198,9 +247,14 @@ const EditProfile = (props: { profile: any }) => {
         </div>
 
         <div className="mb-6"></div>
-
         <div className="flex items-center justify-between">
           <button type="submit">Submit</button>
+        </div>
+      </form>
+      <form onSubmit={handleDelete}>
+        <div className ="mb-6"></div>
+        <div className ="flex items-center justify-between">
+          <button type ="submit">Delete</button>
         </div>
       </form>
       <button onClick={() => signOut({ callbackUrl: '/' })}>Sign-Out</button>
