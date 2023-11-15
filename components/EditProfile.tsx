@@ -5,11 +5,11 @@ import { useState } from 'react';
 import styles from '/styles/petProfile.module.css';
 
 const EditProfile = (props: { profile: any }) => {
-  const [description, setDescription] = useState('');
-  const [species, setSpecies] = useState('');
+  const [description, setDescription] = useState(props.profile.description);
+  const [species, setSpecies] = useState(props.profile.species);
   const [imageUploaded, setImageUploaded] = useState();
   const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
-  const [name, setName] = useState('');
+  const [name, setName] = useState(props.profile.name);
   const [userProfile] = useState<Profile>(props.profile);
   const { status: sesh, data: data } = useSession();
 
@@ -45,11 +45,11 @@ const EditProfile = (props: { profile: any }) => {
         router.push('/Dashboard');
       } else {
         // Handle HTTP errors if any
-        alert('Error creating profile');
+        alert('Error editing profile');
       }
     } catch (error) {
       // Handle other potential errors
-      console.error('Error creating profile', error);
+      console.error('Error editing profile', error);
     }
   };
 
@@ -90,10 +90,13 @@ const EditProfile = (props: { profile: any }) => {
 
     await submitProfile(profile);
 
-    setDescription('');
-    setSpecies('');
-    setName('');
-    setImageToDisplay('/img/petpicture.png');
+    // // Set it to whatever API returns
+    // setDescription('');
+    // setSpecies('');
+    // setName('');
+    // setImageToDisplay('/img/petpicture.png');
+
+    window.location.reload();
   };
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -135,7 +138,7 @@ const EditProfile = (props: { profile: any }) => {
           <input
             id="name"
             type="text"
-            value={props.profile.name}
+            value={name}
             onChange={(e) => setName(e.target.value)}
             required
             className="block appearance-none w-full 
@@ -154,7 +157,7 @@ const EditProfile = (props: { profile: any }) => {
           />
           <textarea
             id="description"
-            value={props.profile.description}
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
             rows={7}
@@ -175,7 +178,7 @@ const EditProfile = (props: { profile: any }) => {
           <input
             id="species"
             type="text"
-            value={props.profile.species}
+            value={species}
             onChange={(e) => setSpecies(e.target.value)}
             required
             className="block appearance-none w-full 
