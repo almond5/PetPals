@@ -52,6 +52,7 @@ model User {
   phoneNumber   String
   email         String    @unique
   password      String
+  description   String
   profile       Profile?
   emailVerified DateTime?
   createdAt     DateTime  @default(now())
