@@ -31,8 +31,12 @@ export default async function handler(
                 return;
             }
 
-            const updateUser = await prisma.user.delete({
+            const deleteUser = await prisma.user.delete({
                 where: { id: userId },
+            });
+
+            const deleteProfile = await prisma.profile.delete({
+                where : { userId: userId },
             });
 
             res.status(200).json('Success');

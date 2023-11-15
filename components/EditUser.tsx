@@ -2,72 +2,86 @@ import { User } from 'next-auth';
 import { signOut, useSession } from 'next-auth/react';
 import router from 'next/router';
 import { useState } from 'react';
-import styles from '/styles/petProfile.module.css';
+// import styles from '/styles/petUser.module.css';
 
 const EditUser = (props: { user: any }) => {
-    const [password, setPassword] = useState(props);
-    const [userEmail, setUserEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const { status: sesh, data: data } = useSession();
+  const [userEmail, setUserEmail] = useState(props.user.userEmail);
+  const [password, setPassword] = useState(props.user.password);
+  const [description, setDescription] = useState(props.user.description);
+  const [phoneNumber, setPhoneNumber] = useState(props.user.phoneNumber);
+  const [imageUploaded, setImageUploaded] = useState();
+  const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
+  const [userAccount] = useState<User>(props.user);
+  const { status: sesh, data: data } = useSession();
 
-  const submitUser = async (profile: {
+  const handleChange = (e: any) => {
+    if (e.target.files === null || e.target.files === undefined) {
+      return;
+    }
+
+    setImageUploaded(e.target.files[0]);
+    setImageToDisplay(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const submitUser = async (User: {
     userEmail: string | undefined | null;
     password: string | undefined | null;
+    // Description: string | undefined | null;
     phoneNumber: string | undefined | null;
     // imageData: any;
   }) => {
     try {
-      console.log(profile);
-      const response = await fetch('/api/profileEdit', {
+      console.log(User);
+      const response = await fetch('/api/userEdit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(profile),
+        body: JSON.stringify(User),
       });
 
       if (response.ok) {
-        // Handle successful profile creation
-        alert('Profile edited successfully!');
+        // Handle successful User creation
+        alert('User edited successfully!');
         router.push('/Dashboard');
       } else {
         // Handle HTTP errors if any
-        alert('Error editing profile');
+        alert('Error editing User');
       }
     } catch (error) {
       // Handle other potential errors
-      console.error('Error editing profile', error);
+      console.error('Error editing User', error);
     }
   };
 
-  const deleteProfile = async (profile: {
+  const deleteUser = async (User: {
     userEmail: string | undefined | null;
-    description: string | undefined | null;
-    species: string | undefined | null;
-    name: string | undefined | null;
+    password: string | undefined | null;
+    // Description: string | undefined | null;
+    phoneNumber: string | undefined | null;
     // imageData: any;
   }) => {
     try {
-      console.log(profile);
-      const response = await fetch('/api/profileDelete', {
+      console.log(User);
+      const response = await fetch('/api/userDelete', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(profile),
+        body: JSON.stringify(User),
       });
 
       if (response.ok) {
-        // Handle successful profile creation
-        alert('Profile deleted successfully!');
+        // Handle successful User creation
+        alert('User deleted successfully!');
         router.push('/Dashboard');
       } else {
         // Handle HTTP errors if any
-        alert('Error deleting profile');
+        alert('Error deleting User');
       }
     } catch (error) {
       // Handle other potential errors
-      console.error('Error deleting profile', error);
+      console.error('Error deleting User', error);
     }
   };
 
@@ -91,25 +105,47 @@ const EditUser = (props: { user: any }) => {
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    // const image = {
-    //   imageUploaded,
-    // };
+    const image = {
+      imageUploaded,
+    };
 
     // const imageData = await submitImage(image);
     const userEmail = data?.user?.email;
 
-    const user = {
-      userEmail,
-      password,
-      phoneNumber,
-
+    const User = {
+      userEmail : userEmail,
+      password : password,
+      phoneNumber : phoneNumber,
     //   imageData,
     };
 
-    await submitUser(user);
+    await submitUser(User);
 
     window.location.reload();
   };
+
+  const handleDelete = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    const image = {
+      imageUploaded,
+    };
+
+    // const imageData = await submitImage(image);
+    const userEmail = data?.user?.email;
+
+    const User = {
+      userEmail : userEmail,
+      password : password,
+      phoneNumber : phoneNumber,
+    //   imageData,
+    };
+
+    await deleteUser(User);
+
+    window.location.reload();
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <form onSubmit={handleSubmit}>
@@ -146,7 +182,7 @@ const EditUser = (props: { user: any }) => {
         </div> */}
 
         <div className="mb-6">
-          <img src="/img/name.png" className={styles.nameImage} alt="Name" />
+          {/* <img src="/img/name.png" className={styles.nameImage} alt="Name" /> */}
           <input
             id="Email"
             type="text"
@@ -162,11 +198,11 @@ const EditUser = (props: { user: any }) => {
         </div>
 
         <div className="mb-4">
-          <img
+          {/* <img
             src="/img/description.png"
             className={styles.descriptionImage}
             alt="Description"
-          />
+          /> */}
           <textarea
             id="Password"
             value={password}
@@ -182,13 +218,13 @@ const EditUser = (props: { user: any }) => {
         </div>
 
         <div className="mb-6">
-          <img
+          {/* <img
             src="/img/species.png"
             className={styles.speciesImage}
             alt="species"
-          />
+          /> */}
           <input
-            id="species"
+            id="phoneNumber"
             type="text"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
@@ -201,20 +237,23 @@ const EditUser = (props: { user: any }) => {
           />
         </div>
 
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <img
             src="/img/location.png"
             className={styles.locationImage}
             alt="Location"
           />
-        </div>
+        </div> */}
 
         <div className="mb-6"></div>
         <div className="flex items-center justify-between">
           <button type="submit">Submit</button>
         </div>
-        <div className="flex items-center justify-between">
-          <button type="submit">Cancel</button>
+      </form>
+      <form onSubmit={handleDelete}>
+        <div className ="mb-6"></div>
+        <div className ="flex items-center justify-between">
+          <button type ="submit">Delete</button>
         </div>
       </form>
       <button onClick={() => signOut({ callbackUrl: '/' })}>Sign-Out</button>
