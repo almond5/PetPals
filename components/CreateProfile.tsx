@@ -47,7 +47,7 @@ const PetProfileCreation = () => {
       if (response.ok) {
         // Handle successful petProfile creation
         alert('PetProfile created successfully!');
-        router.push('/Dashboard');
+        window.location.reload();
       } else {
         // Handle HTTP errors if any
         alert('Error creating petProfile');
