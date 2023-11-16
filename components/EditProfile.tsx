@@ -1,11 +1,10 @@
 import { signOut, useSession } from 'next-auth/react';
 import router from 'next/router';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import styles from '/styles/petProfile.module.css';
 import { getGeocode, getLatLng } from 'use-places-autocomplete';
 import PlacesAutocomplete from './PlaceAutoComplete';
 import { PetProfile } from '@prisma/client';
-import Script from 'next/script';
 
 const EditPetProfile = (props: { petProfile: any }) => {
   const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
@@ -19,12 +18,6 @@ const EditPetProfile = (props: { petProfile: any }) => {
   const [lng, setLng] = useState(85.31184012689732);
 
   const { status: sesh, data: data } = useSession();
-
-  useEffect(() => {
-    <Script
-      src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_MAP_API_KEY}&libraries=places`}
-    />;
-  }, []);
 
   const handleChange = (e: any) => {
     if (e.target.files === null || e.target.files === undefined) {
@@ -273,12 +266,12 @@ const EditPetProfile = (props: { petProfile: any }) => {
           <button type="submit">Submit</button>
         </div>
       </form>
-      <form onSubmit={handleDelete}>
+      {/* <form onSubmit={handleDelete}>
         <div className="mb-6"></div>
         <div className="flex items-center justify-between">
           <button type="submit">Delete</button>
         </div>
-      </form>
+      </form> */}
       <button onClick={() => signOut({ callbackUrl: '/' })}>Sign-Out</button>
     </div>
   );

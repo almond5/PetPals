@@ -12,7 +12,7 @@ const PlacesAutocomplete = ({
     setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
-    requestOptions: { componentRestrictions: { country: 'us' } },
+    requestOptions: {},
     debounce: 300,
     cache: 86400,
   });
@@ -47,6 +47,12 @@ const PlacesAutocomplete = ({
         disabled={!ready}
         onChange={(e) => setValue(e.target.value)}
         placeholder=""
+        required
+        className="block appearance-none w-full 
+      border rounded py-2 px-3 text-gray-700 
+      leading-tight focus:outline-none 
+      focus:shadow-outline"
+        maxLength={200}
       />
 
       {status === 'OK' && <ul>{renderSuggestions()}</ul>}

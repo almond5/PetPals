@@ -1,12 +1,10 @@
 import { signOut, useSession } from 'next-auth/react';
 import router from 'next/router';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import styles from '/styles/petProfile.module.css';
 import Image from 'next/image';
 import PlacesAutocomplete from './PlaceAutoComplete';
 import { getGeocode, getLatLng } from 'use-places-autocomplete';
-import { useJsApiLoader } from '@react-google-maps/api';
-import Script from 'next/script';
 
 const PetProfileCreation = () => {
   const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
@@ -17,12 +15,6 @@ const PetProfileCreation = () => {
 
   const [lat, setLat] = useState(27.672932021393862);
   const [lng, setLng] = useState(85.31184012689732);
-
-  useEffect(() => {
-    <Script
-      src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_MAP_API_KEY}&libraries=places`}
-    />;
-  }, []);
 
   const { status: sesh, data: data } = useSession();
 
