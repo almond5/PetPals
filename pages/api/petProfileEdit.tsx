@@ -7,25 +7,31 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
-      let userEmail, description, species, name, imageData: any;
+      let userEmail, description, species, name, imageData, lat, lng, address: any;
 
       if (typeof req.body === 'object') {
         userEmail = req.body.userEmail;
         description = req.body.description;
         species = req.body.species;
         name = req.body.name;
-        // imageData = req.body.imageData;
+        imageData = req.body.imageData;
+        lat = req.body.lat;
+        lng = req.body.lng;
+        address = req.body.address;
       } else {
         const body = JSON.parse(req.body);
         name = body.name;
         userEmail = body.userEmail;
         description = body.description;
         species = body.species;
-        // imageData = body.imageData;
+        imageData = body.imageData;
+        lat = body.lat;
+        lng = body.lng;
+        address = body.address;
       }
 
       const user = await prisma.user.findFirst({
-        where: { email: userEmail }
+        where: { email: userEmail },
       });
 
       const petProfile = await prisma.petProfile.update({
@@ -34,13 +40,20 @@ export default async function handler(
           species: species,
           description: description,
           name: name,
-          // images: {
-          //   create: {
-          //     publicId: imageData.public_id,
-          //     format: imageData.format,
-          //     version: imageData.version.toString(),
-          //   },
-          // },
+          image: {
+            update: {
+              publicId: imageData.public_id,
+              format: imageData.format,
+              version: imageData.version.toString(),
+            },
+          },
+          location: {
+            update: {
+              latitude: lat,
+              longitude: lng,
+              address: address
+            }
+          }
         },
       });
 

@@ -16,15 +16,17 @@ export async function getServerSideProps(context: any) {
 
     const petProfile = await prisma.petProfile.findFirst({
       where: { userId: user?.id! },
+      include: { image: {}, location: {} },
     });
 
     const petProfiles = await prisma.petProfile.findMany({
       where: {
         NOT: { id: petProfile?.id },
       },
+      include: { image: {}, location: {} },
     });
 
-    console.log(petProfiles);
+    console.log(petProfile?.image?.publicId);
 
     return {
       props: {
@@ -53,8 +55,6 @@ const Dashboard = ({
 }) => {
   const { status: sesh, data: data } = useSession();
   const [profile] = useState<PetProfile>(petProfile);
-  const [profiles] = useState<PetProfile[]>(petProfiles);
-  const [showDescription, setShowDescription] = useState(false);
   const [profileView, setProfileView] = useState(false);
   const [matchesView, setMatchesView] = useState(false);
   const [homeView, setHomeView] = useState(false);
@@ -70,13 +70,13 @@ const Dashboard = ({
   const toggleHomeView = () => {
     homeView ? setHomeView(false) : setHomeView(true);
   };
-  
+
   if (sesh === 'loading') {
     return <div>Loading...</div>;
   } else if (sesh === 'unauthenticated') {
     router.push('/');
   } else if (profile === null || profile === undefined) {
-    return (<PetProfile petProfile={undefined}></PetProfile>)
+    return <PetProfile petProfile={undefined}></PetProfile>;
   } else if (sesh === 'authenticated' && profile !== null) {
     return (
       <div>
@@ -123,10 +123,8 @@ const Dashboard = ({
           </button>
         </div>
 
-        <div className=""></div>
-
         <div className={`${homeView ? '' : 'hidden'}`}>
-          <HomeView petProfile={petProfile} petProfiles={petProfiles}/>
+          <HomeView petProfile={petProfile} petProfiles={petProfiles} />
         </div>
         {/* <div className={`${matchesView ? '' : 'hidden'}`}>
           <MatchesView unis={unis} rsos={rsos} />
@@ -135,7 +133,6 @@ const Dashboard = ({
         <div className={`${profileView ? '' : 'hidden'}`}>
           <PetProfile petProfile={petProfile} />
         </div>
-      
       </div>
     );
   }

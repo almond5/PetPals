@@ -2,8 +2,8 @@ import { useSession } from 'next-auth/react';
 import router from 'next/router';
 import { useState } from 'react';
 import { PetProfile } from '@prisma/client';
-import EditProfile from '@/components/EditProfile';
-import CreateProfile from '@/components/CreateProfile';
+import EditPetProfile from '@/components/EditPetProfile';
+import CreatePetProfile from '@/components/CreatePetProfile';
 
 const PetProfile = (props: { petProfile: any }) => {
   const [petProfile] = useState<PetProfile>(props.petProfile);
@@ -16,13 +16,13 @@ const PetProfile = (props: { petProfile: any }) => {
     sesh === 'authenticated' &&
     (petProfile === null || petProfile === undefined)
   ) {
-    return <CreateProfile></CreateProfile>
+    return <CreatePetProfile></CreatePetProfile>
   } else if (
     sesh === 'authenticated' &&
     petProfile !== null &&
     petProfile !== undefined // start of edit problem
   ) {
-    return <EditProfile petProfile={petProfile}></EditProfile>;
+    return <EditPetProfile petProfile={petProfile}></EditPetProfile>;
   }
   else {
     return <div>Error...</div>

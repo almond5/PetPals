@@ -1,9 +1,12 @@
+import { useEffect } from 'react';
 import usePlacesAutocomplete from 'use-places-autocomplete';
 
 const PlacesAutocomplete = ({
   onAddressSelect,
+  defaultValue,
 }: {
   onAddressSelect?: (address: string) => void;
+  defaultValue: any;
 }) => {
   const {
     ready,
@@ -16,6 +19,10 @@ const PlacesAutocomplete = ({
     debounce: 300,
     cache: 86400,
   });
+
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue, setValue]);
 
   const renderSuggestions = () => {
     return data.map((suggestion) => {

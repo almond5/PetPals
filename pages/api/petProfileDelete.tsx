@@ -7,21 +7,13 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
-      let userEmail, description, species, name, imageData: any;
+      let userEmail: any;
 
       if (typeof req.body === 'object') {
         userEmail = req.body.userEmail;
-        description = req.body.description;
-        species = req.body.species;
-        name = req.body.name;
-        // imageData = req.body.imageData;
       } else {
         const body = JSON.parse(req.body);
-        name = body.name;
         userEmail = body.userEmail;
-        description = body.description;
-        species = body.species;
-        // imageData = body.imageData;
       }
 
       const user = await prisma.user.findFirst({

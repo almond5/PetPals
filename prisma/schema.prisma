@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Account {
-  id                 String    @id @default(cuid()) @map("_id")
+  id                 String    @id @default(cuid()) @map("_id") @db.ObjectId
   userId             String
   providerType       String
   providerId         String
@@ -60,23 +60,18 @@ model User {
   updatedAt     DateTime    @updatedAt
   accounts      Account[]
   sessions      Session[]
-
-  @@index([id])
 }
 
 model PetProfile {
   id          String     @id @default(cuid()) @map("_id")
   description String
-  locationId  String?    @unique
   location    Location?
   name        String
   species     String
   user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String     @unique
   interests   Interest[]
-  images      Image[] // New relation for images
-
-  @@index([id])
+  image       Image?
 }
 
 model Interest {
@@ -85,29 +80,22 @@ model Interest {
   petProfile          PetProfile? @relation(fields: [profileId], references: [id])
   interestedProfileId String?
   isMatch             String
-
-  @@index([id])
-  @@index([profileId])
 }
 
 model Location {
   id         String      @id @default(cuid()) @map("_id")
-  name       String
   latitude   Float
   longitude  Float
+  address    String
   profileId  String      @unique
   petProfile PetProfile? @relation(fields: [profileId], references: [id], onDelete: Cascade)
-
-  @@index([id])
 }
 
 model Image {
   id         String     @id @default(cuid()) @map("_id")
-  publicId   String     @unique
+  publicId   String
   format     String
   version    String
   petProfile PetProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
   profileId  String     @unique
-
-  @@index([id])
 }
