@@ -1,15 +1,29 @@
 import { signOut, useSession } from 'next-auth/react';
 import router from 'next/router';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styles from '/styles/petProfile.module.css';
 import Image from 'next/image';
+import PlacesAutocomplete from './PlaceAutoComplete';
+import { getGeocode, getLatLng } from 'use-places-autocomplete';
+import { useJsApiLoader } from '@react-google-maps/api';
+import Script from 'next/script';
 
-const ProfileCreation = () => {
+const PetProfileCreation = () => {
+  const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
+  const [imageUploaded, setImageUploaded] = useState();
   const [description, setDescription] = useState('');
   const [species, setSpecies] = useState('');
-  const [imageUploaded, setImageUploaded] = useState();
-  const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
   const [name, setName] = useState('');
+
+  const [lat, setLat] = useState(27.672932021393862);
+  const [lng, setLng] = useState(85.31184012689732);
+
+  useEffect(() => {
+    <Script
+      src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_MAP_API_KEY}&libraries=places`}
+    />;
+  }, []);
+
   const { status: sesh, data: data } = useSession();
 
   const handleChange = (e: any) => {
@@ -21,7 +35,7 @@ const ProfileCreation = () => {
     setImageToDisplay(URL.createObjectURL(e.target.files[0]));
   };
 
-  const submitProfile = async (profile: {
+  const submitProfile = async (petProfile: {
     userEmail: string | undefined | null;
     description: string | undefined | null;
     species: string | undefined | null;
@@ -29,26 +43,26 @@ const ProfileCreation = () => {
     imageData: any;
   }) => {
     try {
-      console.log(profile);
-      const response = await fetch('/api/profileCreate', {
+      console.log(petProfile);
+      const response = await fetch('/api/petProfileCreate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(profile),
+        body: JSON.stringify(petProfile),
       });
 
       if (response.ok) {
-        // Handle successful profile creation
-        alert('Profile created successfully!');
+        // Handle successful petProfile creation
+        alert('PetProfile created successfully!');
         router.push('/Dashboard');
       } else {
         // Handle HTTP errors if any
-        alert('Error creating profile');
+        alert('Error creating petProfile');
       }
     } catch (error) {
       // Handle other potential errors
-      console.error('Error creating profile', error);
+      console.error('Error creating petProfile', error);
     }
   };
 
@@ -79,7 +93,7 @@ const ProfileCreation = () => {
     const imageData = await submitImage(image);
     const userEmail = data?.user?.email;
 
-    const profile = {
+    const petProfile = {
       userEmail,
       description,
       species,
@@ -87,7 +101,7 @@ const ProfileCreation = () => {
       imageData,
     };
 
-    await submitProfile(profile);
+    await submitProfile(petProfile);
 
     setDescription('');
     setSpecies('');
@@ -192,6 +206,15 @@ const ProfileCreation = () => {
             className={styles.locationImage}
             alt="Location"
           />
+          <PlacesAutocomplete
+            onAddressSelect={(address) => {
+              getGeocode({ address: address }).then((results) => {
+                const { lat, lng } = getLatLng(results[0]);
+                setLat(lat);
+                setLng(lng);
+              });
+            }}
+          />
         </div>
 
         <div className="mb-6"></div>
@@ -205,4 +228,4 @@ const ProfileCreation = () => {
   );
 };
 
-export default ProfileCreation;
+export default PetProfileCreation;

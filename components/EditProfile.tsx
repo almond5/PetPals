@@ -1,17 +1,30 @@
-import { Profile } from 'next-auth';
 import { signOut, useSession } from 'next-auth/react';
 import router from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '/styles/petProfile.module.css';
+import { getGeocode, getLatLng } from 'use-places-autocomplete';
+import PlacesAutocomplete from './PlaceAutoComplete';
+import { PetProfile } from '@prisma/client';
+import Script from 'next/script';
 
-const EditProfile = (props: { profile: any }) => {
-  const [description, setDescription] = useState(props.profile.description);
-  const [species, setSpecies] = useState(props.profile.species);
-  const [imageUploaded, setImageUploaded] = useState();
+const EditPetProfile = (props: { petProfile: any }) => {
   const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
-  const [name, setName] = useState(props.profile.name);
-  const [userProfile] = useState<Profile>(props.profile);
+  const [description, setDescription] = useState(props.petProfile.description);
+  const [species, setSpecies] = useState(props.petProfile.species);
+  const [userProfile] = useState<PetProfile>(props.petProfile);
+  const [name, setName] = useState(props.petProfile.name);
+  const [imageUploaded, setImageUploaded] = useState();
+
+  const [lat, setLat] = useState(27.672932021393862);
+  const [lng, setLng] = useState(85.31184012689732);
+
   const { status: sesh, data: data } = useSession();
+
+  useEffect(() => {
+    <Script
+      src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_MAP_API_KEY}&libraries=places`}
+    />;
+  }, []);
 
   const handleChange = (e: any) => {
     if (e.target.files === null || e.target.files === undefined) {
@@ -22,7 +35,7 @@ const EditProfile = (props: { profile: any }) => {
     setImageToDisplay(URL.createObjectURL(e.target.files[0]));
   };
 
-  const submitProfile = async (profile: {
+  const submitProfile = async (petProfile: {
     userEmail: string | undefined | null;
     description: string | undefined | null;
     species: string | undefined | null;
@@ -30,30 +43,30 @@ const EditProfile = (props: { profile: any }) => {
     // imageData: any;
   }) => {
     try {
-      console.log(profile);
-      const response = await fetch('/api/profileEdit', {
+      console.log(petProfile);
+      const response = await fetch('/api/petProfileEdit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(profile),
+        body: JSON.stringify(petProfile),
       });
 
       if (response.ok) {
-        // Handle successful profile creation
-        alert('Profile edited successfully!');
+        // Handle successful petProfile creation
+        alert('PetProfile edited successfully!');
         router.push('/Dashboard');
       } else {
         // Handle HTTP errors if any
-        alert('Error editing profile');
+        alert('Error editing petProfile');
       }
     } catch (error) {
       // Handle other potential errors
-      console.error('Error editing profile', error);
+      console.error('Error editing petProfile', error);
     }
   };
 
-  const deleteProfile = async (profile: {
+  const deleteProfile = async (petProfile: {
     userEmail: string | undefined | null;
     description: string | undefined | null;
     species: string | undefined | null;
@@ -61,45 +74,45 @@ const EditProfile = (props: { profile: any }) => {
     // imageData: any;
   }) => {
     try {
-      console.log(profile);
-      const response = await fetch('/api/profileDelete', {
+      console.log(petProfile);
+      const response = await fetch('/api/petProfileDelete', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(profile),
+        body: JSON.stringify(petProfile),
       });
 
       if (response.ok) {
-        // Handle successful profile creation
-        alert('Profile deleted successfully!');
+        // Handle successful petProfile creation
+        alert('PetProfile deleted successfully!');
         router.push('/Dashboard');
       } else {
         // Handle HTTP errors if any
-        alert('Error deleting profile');
+        alert('Error deleting petProfile');
       }
     } catch (error) {
       // Handle other potential errors
-      console.error('Error deleting profile', error);
+      console.error('Error deleting petProfile', error);
     }
   };
 
-//   const submitImage = async (image: { imageUploaded: any }) => {
-//     try {
-//       const formData = new FormData();
-//       formData.append('file', imageUploaded!);
-//       formData.append('upload_preset', 'ifs1rfae');
+  //   const submitImage = async (image: { imageUploaded: any }) => {
+  //     try {
+  //       const formData = new FormData();
+  //       formData.append('file', imageUploaded!);
+  //       formData.append('upload_preset', 'ifs1rfae');
 
-//       const data = await fetch(process.env.NEXT_PUBLIC_CLOUD_URL!, {
-//         method: 'POST',
-//         body: formData,
-//       }).then((r) => r.json());
+  //       const data = await fetch(process.env.NEXT_PUBLIC_CLOUD_URL!, {
+  //         method: 'POST',
+  //         body: formData,
+  //       }).then((r) => r.json());
 
-//       return data;
-//     } catch (error) {
-//       console.error('Error Uploading Image', error);
-//     }
-//   };
+  //       return data;
+  //     } catch (error) {
+  //       console.error('Error Uploading Image', error);
+  //     }
+  //   };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -111,15 +124,15 @@ const EditProfile = (props: { profile: any }) => {
     // const imageData = await submitImage(image);
     const userEmail = data?.user?.email;
 
-    const profile = {
+    const petProfile = {
       userEmail,
       description,
       species,
       name,
-    //   imageData,
+      //   imageData,
     };
 
-    await submitProfile(profile);
+    await submitProfile(petProfile);
 
     window.location.reload();
   };
@@ -134,15 +147,15 @@ const EditProfile = (props: { profile: any }) => {
     // const imageData = await submitImage(image);
     const userEmail = data?.user?.email;
 
-    const profile = {
+    const petProfile = {
       userEmail,
       description,
       species,
       name,
-    //   imageData,
+      //   imageData,
     };
 
-    await deleteProfile(profile);
+    await deleteProfile(petProfile);
 
     window.location.reload();
   };
@@ -244,6 +257,15 @@ const EditProfile = (props: { profile: any }) => {
             className={styles.locationImage}
             alt="Location"
           />
+          <PlacesAutocomplete
+            onAddressSelect={(address: any) => {
+              getGeocode({ address: address }).then((results) => {
+                const { lat, lng } = getLatLng(results[0]);
+                setLat(lat);
+                setLng(lng);
+              });
+            }}
+          />
         </div>
 
         <div className="mb-6"></div>
@@ -252,9 +274,9 @@ const EditProfile = (props: { profile: any }) => {
         </div>
       </form>
       <form onSubmit={handleDelete}>
-        <div className ="mb-6"></div>
-        <div className ="flex items-center justify-between">
-          <button type ="submit">Delete</button>
+        <div className="mb-6"></div>
+        <div className="flex items-center justify-between">
+          <button type="submit">Delete</button>
         </div>
       </form>
       <button onClick={() => signOut({ callbackUrl: '/' })}>Sign-Out</button>
@@ -262,4 +284,4 @@ const EditProfile = (props: { profile: any }) => {
   );
 };
 
-export default EditProfile;
+export default EditPetProfile;

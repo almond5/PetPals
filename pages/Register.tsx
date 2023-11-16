@@ -5,14 +5,11 @@ import { useState } from 'react';
 import styles from '/styles/Index.module.css';
 
 const Register = () => {
-  const [password, setPassword] = useState('');
-  const [userEmail, setUserEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
   const { status: sesh, data: data } = useSession();
-
-  const timeout = (delay: number) => {
-    return new Promise((res) => setTimeout(res, delay));
-  };
 
   const submitUser = async (newUser: {
     userEmail: string | undefined | null;

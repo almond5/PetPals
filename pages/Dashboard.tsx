@@ -2,7 +2,7 @@ import { getSession, signOut, useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 import router from 'next/router';
 import prisma from '@/lib/prismadb';
-import { Profile } from '@prisma/client';
+import { PetProfile } from '@prisma/client';
 import TinderCard from 'react-tinder-card';
 import styles from '/styles/dashboard.module.css';
 
@@ -15,40 +15,40 @@ export async function getServerSideProps(context: any) {
       where: { email: currUser?.email! },
     });
 
-    const profile = await prisma.profile.findFirst({
+    const petProfile = await prisma.petProfile.findFirst({
       where: { userId: user?.id! },
     });
 
-    const profiles = await prisma.profile.findMany({
+    const petProfiles = await prisma.petProfile.findMany({
       where: {
-        NOT: { id: profile?.id },
+        NOT: { id: petProfile?.id },
       },
     });
 
-    console.log(profiles);
+    console.log(petProfiles);
 
     return {
       props: {
-        profile: profile,
-        profiles: profiles,
+        petProfile: petProfile,
+        petProfiles: petProfiles,
       },
     };
   } catch (error) {
-    const profile = null;
-    const profiles = null;
+    const petProfile = null;
+    const petProfiles = null;
     return {
       props: {
-        profile: profile,
-        profiles: profiles,
+        petProfile: petProfile,
+        petProfiles: petProfiles,
       },
     };
   }
 }
 
-const Dashboard = ({ profile, profiles }: { profile: any; profiles: any }) => {
+const Dashboard = ({ petProfile, petProfiles }: { petProfile: any; petProfiles: any }) => {
   const { status: sesh, data: data } = useSession();
-  const [userProfile] = useState<Profile>(profile);
-  const [userProfiles] = useState<Profile[]>(profiles);
+  const [profile] = useState<PetProfile>(petProfile);
+  const [profiles] = useState<PetProfile[]>(petProfiles);
   const [showDescription, setShowDescription] = useState(false);
 
   const toggleDescription = () => {
@@ -59,19 +59,19 @@ const Dashboard = ({ profile, profiles }: { profile: any; profiles: any }) => {
     return <div>Loading...</div>;
   } else if (sesh === 'unauthenticated') {
     router.push('/');
-  } else if (userProfile === null || userProfile === undefined) {
-    router.push('/Profile');
-  } else if (sesh === 'authenticated' && userProfile !== null) {
+  } else if (profile === null || profile === undefined) {
+    router.push('/PetProfile');
+  } else if (sesh === 'authenticated' && profile !== null) {
     return (
       <div>
         <div>
-          Hi {userProfile.name}
+          Hi {profile.name}
           {data.user?.email}
         </div>
         <button onClick={() => signOut({ callbackUrl: '/' })}>Sign-Out</button>
         <div className="py-20 flex justify-center">
           <div className={styles.cardContainer}>
-            {userProfiles.map((profile: any) => (
+            {profiles.map((petProfile: any) => (
               <div className={styles.swipe}>
                 <div
                   style={{
@@ -92,7 +92,7 @@ const Dashboard = ({ profile, profiles }: { profile: any; profiles: any }) => {
                       fontSize: '24px',
                     }}
                   >
-                    {profile.name}
+                    {petProfile.name}
                   </h1>
 
                   <button
@@ -202,8 +202,8 @@ const Dashboard = ({ profile, profiles }: { profile: any; profiles: any }) => {
                   }}
                 >
                   <img
-                    src="/img/profile-icon.png"
-                    alt="Profile icon"
+                    src="/img/petProfile-icon.png"
+                    alt="PetProfile icon"
                     style={{ width: '50px', height: '50px' }}
                   />
                 </button>

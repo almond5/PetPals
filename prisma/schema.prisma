@@ -51,9 +51,10 @@ model User {
   id            String    @id @default(cuid())
   phoneNumber   String
   email         String    @unique
+  description   String    @db.Text
+  name          String    @db.Text
   password      String
-  description   String
-  profile       Profile?
+  petProfile    PetProfile?
   emailVerified DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -63,7 +64,7 @@ model User {
   @@index([id])
 }
 
-model Profile {
+model PetProfile {
   id          String     @id @default(cuid())
   description String     @db.Text
   locationId  String?    @unique
@@ -82,7 +83,7 @@ model Profile {
 model Interest {
   id                  String   @id @default(cuid())
   profileId           String?
-  profile             Profile? @relation(fields: [profileId], references: [id])
+  petProfile          PetProfile? @relation(fields: [profileId], references: [id])
   interestedProfileId String?
   isMatch             String   @db.Text
 
@@ -91,23 +92,23 @@ model Interest {
 }
 
 model Location {
-  id        String   @id @default(cuid())
-  name      String   @db.Text
-  latitude  Float
-  longitude Float
-  profileId String   @unique
-  profile   Profile? @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  id         String   @id @default(cuid())
+  name       String   @db.Text
+  latitude   Float
+  longitude  Float
+  profileId  String   @unique
+  petProfile PetProfile? @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
   @@index([id])
 }
 
 model Image {
-  id        String  @id @default(cuid())
-  publicId  String  @unique
-  format    String
-  version   String
-  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  profileId String  @unique
+  id         String  @id @default(cuid())
+  publicId   String  @unique
+  format     String
+  version    String
+  petProfile PetProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId  String  @unique
 
   @@index([id])
   @@index([profileId])
