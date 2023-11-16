@@ -4,13 +4,13 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
+  provider     = "mongodb"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
 model Account {
-  id                 String    @id @default(cuid())
+  id                 String    @id @default(cuid()) @map("_id")
   userId             String
   providerType       String
   providerId         String
@@ -26,7 +26,7 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(cuid())
+  id           String   @id @default(cuid()) @map("_id")
   userId       String
   expires      DateTime
   sessionToken String   @unique
@@ -37,7 +37,7 @@ model Session {
 }
 
 model VerificationRequest {
-  id         String   @id @default(cuid())
+  id         String   @id @default(cuid()) @map("_id")
   identifier String
   token      String   @unique
   expires    DateTime
@@ -48,16 +48,16 @@ model VerificationRequest {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String      @id @default(cuid()) @map("_id")
   phoneNumber   String
-  email         String    @unique
-  description   String    @db.Text
-  name          String    @db.Text
+  email         String      @unique
+  description   String
+  name          String
   password      String
   petProfile    PetProfile?
   emailVerified DateTime?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
   accounts      Account[]
   sessions      Session[]
 
@@ -65,51 +65,49 @@ model User {
 }
 
 model PetProfile {
-  id          String     @id @default(cuid())
-  description String     @db.Text
+  id          String     @id @default(cuid()) @map("_id")
+  description String
   locationId  String?    @unique
   location    Location?
-  name        String     @db.Text
-  species     String     @db.Text
+  name        String
+  species     String
   user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String     @unique
   interests   Interest[]
   images      Image[] // New relation for images
 
   @@index([id])
-  @@index([userId])
 }
 
 model Interest {
-  id                  String   @id @default(cuid())
+  id                  String      @id @default(cuid()) @map("_id")
   profileId           String?
   petProfile          PetProfile? @relation(fields: [profileId], references: [id])
   interestedProfileId String?
-  isMatch             String   @db.Text
+  isMatch             String
 
   @@index([id])
   @@index([profileId])
 }
 
 model Location {
-  id         String   @id @default(cuid())
-  name       String   @db.Text
+  id         String      @id @default(cuid()) @map("_id")
+  name       String
   latitude   Float
   longitude  Float
-  profileId  String   @unique
+  profileId  String      @unique
   petProfile PetProfile? @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
   @@index([id])
 }
 
 model Image {
-  id         String  @id @default(cuid())
-  publicId   String  @unique
+  id         String     @id @default(cuid()) @map("_id")
+  publicId   String     @unique
   format     String
   version    String
   petProfile PetProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  profileId  String  @unique
+  profileId  String     @unique
 
   @@index([id])
-  @@index([profileId])
 }
