@@ -63,21 +63,23 @@ model User {
 }
 
 model PetProfile {
-  id          String     @id @default(cuid()) @map("_id")
-  description String
-  location    Location?
-  name        String
-  species     String
-  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String     @unique
-  interests   Interest[]
-  image       Image?
+  id             String     @id @default(cuid()) @map("_id")
+  description    String
+  location       Location?
+  name           String
+  species        String
+  user           User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String     @unique
+  myInterests    Interest[] @relation(name: "myInterests")
+  interestedInMe Interest[] @relation(name: "interestedInMe")
+  image          Image?
 }
 
 model Interest {
   id                  String      @id @default(cuid()) @map("_id")
-  profileId           String?
-  petProfile          PetProfile? @relation(fields: [profileId], references: [id])
+  myProfileId         String?
+  myProfile           PetProfile? @relation(name: "myInterests", fields: [myProfileId], references: [id])
+  interestedProfile   PetProfile? @relation(name: "interestedInMe", fields: [interestedProfileId], references: [id])
   interestedProfileId String?
   isMatch             String
 }
