@@ -24,11 +24,10 @@
   height: 100%;
 }
 
-.card h3 {
+.cardBottomContainer {
   position: absolute;
   bottom: 0;
-  margin: 10px;
-  color: #fff;
+  background-color: #fff;
 }
 
 .infoText {
