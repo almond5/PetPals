@@ -124,56 +124,6 @@ const EditPetProfile = (props: { petProfile: any }) => {
     }
   };
 
-  // const deleteProfile = async (petProfile: {
-  //   userEmail: string | undefined | null;
-  // }) => {
-  //   try {
-  //     console.log(petProfile);
-  //     const response = await fetch('/api/petProfileDelete', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(petProfile),
-  //     });
-
-  //     if (response.ok) {
-  //       // Handle successful petProfile creation
-  //       alert('PetProfile deleted successfully!');
-  //       router.push('/Dashboard');
-  //     } else {
-  //       // Handle HTTP errors if any
-  //       alert('Error deleting petProfile');
-  //     }
-  //   } catch (error) {
-  //     // Handle other potential errors
-  //     console.error('Error deleting petProfile', error);
-  //   }
-  // };
-
-  // const handleDelete = async (e: { preventDefault: () => void }) => {
-  //   e.preventDefault();
-
-  //   const image = {
-  //     imageUploaded,
-  //   };
-
-  //   // const imageData = await submitImage(image);
-  //   const userEmail = data?.user?.email;
-
-  //   const petProfile = {
-  //     userEmail,
-  //     description,
-  //     species,
-  //     name,
-  //     imageData,
-  //   };
-
-  //   await deleteProfile(petProfile);
-
-  //   window.location.reload();
-  // };
-
   return (
     <div className="min-h-screen flex items-center justify-center">
       <form onSubmit={handleSubmit}>
@@ -193,7 +143,7 @@ const EditPetProfile = (props: { petProfile: any }) => {
               sizes="500px"
               fill
               style={{
-                objectFit: 'contain',
+                objectFit: 'cover',
                 border: '3px solid #000000',
               }}
             />
@@ -287,13 +237,6 @@ const EditPetProfile = (props: { petProfile: any }) => {
           <button type="submit">Submit</button>
         </div>
       </form>
-      {/* <form onSubmit={handleDelete}>
-        <div className="mb-6"></div>
-        <div className="flex items-center justify-between">
-          <button type="submit">Delete</button>
-        </div>
-      </form> */}
-      <button onClick={() => signOut({ callbackUrl: '/' })}>Sign-Out</button>
     </div>
   );
 };

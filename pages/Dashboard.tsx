@@ -16,7 +16,7 @@ export async function getServerSideProps(context: any) {
 
     const petProfile = await prisma.petProfile.findFirst({
       where: { userId: user?.id! },
-      include: { image: {}, location: {} },
+      include: { image: {}, location: {}, interests: {} },
     });
 
     const petProfiles = await prisma.petProfile.findMany({
