@@ -159,7 +159,7 @@ return (
 
         <div className={styles.mainContent}>
             <div className={`${homeView ? '' : 'hidden'}`}>
-              <HomeView petProfile={petProfile} petProfiles={petProfiles} />
+              <HomeView petProfile={petProfile} petProfiles={petProfiles} setProfiles={setProfiles} />
             </div>
 
             <div className={`${matchesView ? '' : 'hidden'}`}>
