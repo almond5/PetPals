@@ -41,6 +41,10 @@ const HomeView = (props: { petProfiles: any; petProfile: any }) => {
                   {' '}
                   <FcLike style={{ fontSize: '40px' }} />
                 </button>{' '}
+                <button onClick={() => {}}>
+                  {' '}
+                  Skip
+                </button>{' '}
               </div>
             </div>
           </div>

@@ -34,8 +34,6 @@ export default async function handler(
         const addInfo = await prisma.interest.create({
           data: {
             isMatch: 'Pending',
-            myProfileId: currProfileId,
-            interestedProfileId: currInterestedProfileId,
             myProfile: { connect: { id: currProfileId } },
             interestedProfile: { connect: { id: currInterestedProfileId } },
           },

@@ -28,7 +28,7 @@ const PlacesAutocomplete = ({
     return data.map((suggestion) => {
       const {
         place_id,
-        structured_formatting: { main_text, secondary_text },
+        structured_formatting: { secondary_text },
         description,
       } = suggestion;
 
@@ -41,7 +41,7 @@ const PlacesAutocomplete = ({
             onAddressSelect && onAddressSelect(description);
           }}
         >
-          <strong>{main_text}</strong> <small>{secondary_text}</small>
+          <strong></strong> <small>{secondary_text}</small>
         </li>
       );
     });

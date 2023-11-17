@@ -4,6 +4,7 @@ import router from 'next/router';
 import prisma from '@/lib/prismadb';
 import HomeView from '@/components/HomeView';
 import PetProfile from '@/components/PetProfile';
+import MatchesView from '@/components/MatchView';
 
 export async function getServerSideProps(context: any) {
   try {
@@ -16,7 +17,7 @@ export async function getServerSideProps(context: any) {
 
     const petProfile = await prisma.petProfile.findFirst({
       where: { userId: user?.id! },
-      include: { image: {}, location: {}, interests: {} },
+      include: { image: {}, location: {} },
     });
 
     const petProfiles = await prisma.petProfile.findMany({
@@ -126,9 +127,9 @@ const Dashboard = ({
         <div className={`${homeView ? '' : 'hidden'}`}>
           <HomeView petProfile={petProfile} petProfiles={petProfiles} />
         </div>
-        {/* <div className={`${matchesView ? '' : 'hidden'}`}>
-          <MatchesView unis={unis} rsos={rsos} />
-        </div> */}
+        <div className={`${matchesView ? '' : 'hidden'}`}>
+          <MatchesView petProfiles={petProfiles} petProfile={petProfile} />
+        </div>
 
         <div className={`${profileView ? '' : 'hidden'}`}>
           <PetProfile petProfile={petProfile} />
