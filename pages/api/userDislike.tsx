@@ -26,55 +26,38 @@ export default async function like(
                 currInterestedProfileId: body.interestedProfileId;
             }
 
-            // change the 'isMatch' to 'False' for the given id relation
-            const info  = await prisma.interest.upsert({
+            const infoExist = await prisma.interest.findFirst({
                 where: {
                     profileId: currProfileId,
                     interestedProfileId: currInterestedProfileId,
                 },
-                data: {
-                    isMatch: "False",
-                },
-                create: {
-                    profileId: currProfileId,
-                    interestedProfileId: currInterestedProfileId,
-                    isMatch: "False",
-                },
             });
-            res.status(200).json("Success");
 
-            // const infoExist = await prisma.interest.findFirst({
-            //     where: {
-            //         profileId: currProfileId,
-            //         interestedProfileId: currInterestedProfileId,
-            //     },
-            // });
-
-            // // change the 'isMatch' to 'False' for the given id relation
-            // if (infoExist !== null)
-            // {
-            //     const addInfo = await prisma.interest.create({
-            //         data: {
-            //             profileId: currProfileId,
-            //             interestedProfileId: currInterestedProfileId,
-            //             isMatch: "False",
-            //         }
-            //     });
-            //     res.status(200).json("Created Successfully");
-            // }
-            // else
-            // {
-            //     const updateInfo = await prisma.interest.update({
-            //         where: {
-            //             profileId: currProfileId,
-            //             interestedProfileId: currInterestedProfileId,
-            //         },
-            //         data: {
-            //             isMatch: "False",
-            //         }
-            //     });
-            //     res.status(200).json("Updated Successfully");
-            // }
+            // change the 'isMatch' to 'False' for the given id relation
+            if (infoExist !== null)
+            {
+                const addInfo = await prisma.interest.create({
+                    data: {
+                        profileId: currProfileId,
+                        interestedProfileId: currInterestedProfileId,
+                        isMatch: "False",
+                    }
+                });
+                res.status(200).json("Created Successfully");
+            }
+            else
+            {
+                const updateInfo = await prisma.interest.updateMany({
+                    where: {
+                        profileId: currProfileId,
+                        interestedProfileId: currInterestedProfileId,
+                    },
+                    data: {
+                        isMatch: "False",
+                    }
+                });
+                res.status(200).json("Updated Successfully");
+            }
         }
         catch (error)
         {
