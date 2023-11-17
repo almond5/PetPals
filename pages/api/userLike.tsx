@@ -20,12 +20,18 @@ export default async function handler(
 
       const infoExist = await prisma.interest.findFirst({
         where: {
-          myProfileId: currProfileId,
-          interestedProfileId: currInterestedProfileId,
+          OR: [
+            {
+              myProfileId: currProfileId,
+              interestedProfileId: currInterestedProfileId,
+            },
+            {
+              myProfileId: currInterestedProfileId,
+              interestedProfileId: currProfileId,
+            }
+          ],
         },
       });
-
-      console.log(infoExist);
 
       // if the interest between the two profile is not in the db
       // store it with the match status being pending; otherwise
@@ -39,19 +45,17 @@ export default async function handler(
           },
         });
 
-        console.log(addInfo);
         res.status(200).json('Created Successfully');
       } else {
         const updateInfo = await prisma.interest.updateMany({
           where: {
-            myProfileId: currProfileId,
-            interestedProfileId: currInterestedProfileId,
+            myProfileId: currInterestedProfileId,
+            interestedProfileId: currProfileId,
           },
           data: {
             isMatch: 'True',
           },
         });
-        console.log(updateInfo);
         res.status(200).json('Updated Successfully');
       }
     } catch (error) {

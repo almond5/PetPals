@@ -20,13 +20,21 @@ export default async function handler(
 
       const infoExist = await prisma.interest.findFirst({
         where: {
-          myProfileId: currProfileId,
-          interestedProfileId: currInterestedProfileId,
+          OR: [
+            {
+              myProfileId: currProfileId,
+              interestedProfileId: currInterestedProfileId,
+            },
+            {
+              myProfileId: currInterestedProfileId,
+              interestedProfileId: currProfileId,
+            }
+          ],
         },
       });
 
       // change the 'isMatch' to 'False' for the given id relation
-      if (infoExist !== null) {
+      if (infoExist === null || infoExist === undefined) {
         const addInfo = await prisma.interest.create({
           data: {
             myProfile: { connect: { id: currProfileId } },
@@ -38,8 +46,8 @@ export default async function handler(
       } else {
         const updateInfo = await prisma.interest.updateMany({
           where: {
-            myProfileId: currProfileId,
-            interestedProfileId: currInterestedProfileId,
+            myProfileId: currInterestedProfileId,
+            interestedProfileId: currProfileId,
           },
           data: {
             isMatch: 'False',
