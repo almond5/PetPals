@@ -3,7 +3,6 @@ import router from 'next/router';
 import { useState } from 'react';
 import styles from '/styles/petProfile.module.css';
 import { getGeocode, getLatLng } from 'use-places-autocomplete';
-import PlacesAutocomplete from './PlaceAutoComplete';
 import { PetProfile } from '@prisma/client';
 import Image from 'next/image';
 
@@ -19,10 +18,9 @@ const EditPetProfile = (props: { petProfile: any }) => {
   const [name, setName] = useState(props.petProfile.name);
   const [imageUploaded, setImageUploaded] = useState(undefined);
 
-  const [lat, setLat] = useState(props.petProfile.location.lat);
-  const [lng, setLng] = useState(props.petProfile.location.lng);
-  const [address, setAddress] = useState(props.petProfile.location.address);
-
+  const [countryId, setCountryid] = useState(0);
+  const [stateId, setStateId] = useState(0);
+  
   const { status: sesh, data: data } = useSession();
 
   const handleChange = (e: any) => {
@@ -63,9 +61,8 @@ const EditPetProfile = (props: { petProfile: any }) => {
       species,
       name,
       imageData,
-      lat,
-      lng,
-      address,
+      stateId,
+      countryId
     };
 
     await submitProfileEdit(petProfile);
@@ -79,9 +76,8 @@ const EditPetProfile = (props: { petProfile: any }) => {
     species: string | undefined | null;
     name: string | undefined | null;
     imageData: any;
-    lat: number | undefined | null;
-    lng: number | undefined | null;
-    address: string | undefined | null;
+    stateId: number | undefined | null;
+    countryId: number | undefined | null;
   }) => {
     try {
       console.log(petProfile);
@@ -134,6 +130,7 @@ const EditPetProfile = (props: { petProfile: any }) => {
             width: '250px',
             height: '250px',
             marginLeft: '50px', // Adjust the value as needed
+            marginRight: '50px',
           }}
         >
           <label htmlFor="fileInput">
@@ -158,7 +155,7 @@ const EditPetProfile = (props: { petProfile: any }) => {
         </div>
 
         <div className="mb-6">
-          <img src="/img/name.png" className={styles.nameImage} alt="Name" />
+          <div className="font-bold">Name</div>
           <input
             id="name"
             type="text"
@@ -174,11 +171,7 @@ const EditPetProfile = (props: { petProfile: any }) => {
         </div>
 
         <div className="mb-4">
-          <img
-            src="/img/description.png"
-            className={styles.descriptionImage}
-            alt="Description"
-          />
+          <div className="font-bold">Description</div>
           <textarea
             id="description"
             value={description}
@@ -194,11 +187,7 @@ const EditPetProfile = (props: { petProfile: any }) => {
         </div>
 
         <div className="mb-6">
-          <img
-            src="/img/species.png"
-            className={styles.speciesImage}
-            alt="species"
-          />
+          <div className="font-bold">Species</div>
           <input
             id="species"
             type="text"
@@ -214,26 +203,26 @@ const EditPetProfile = (props: { petProfile: any }) => {
         </div>
 
         <div className="mb-6">
-          <img
-            src="/img/location.png"
-            className={styles.locationImage}
-            alt="Location"
-          />
-          <PlacesAutocomplete
-            defaultValue={address}
-            onAddressSelect={(address: any) => {
-              getGeocode({ address: address }).then((results) => {
-                const { lat, lng } = getLatLng(results[0]);
-                setLat(lat);
-                setLng(lng);
-                setAddress(address);
-              });
-            }}
+          <div className="font-bold">Location</div>
+          
+        </div>
+        <div className="mb-6">
+          <div className="font-bold">Phone Number</div>
+          <input
+            id="phonenumber"
+            type="text"
+            value={species}
+            onChange={(e) => setSpecies(e.target.value)}
+            required
+            className="block appearance-none w-full 
+          border rounded py-2 px-3 text-gray-700 
+          leading-tight focus:outline-none 
+          focus:shadow-outline"
+            maxLength={200}
           />
         </div>
-
         <div className="mb-6"></div>
-        <div className="flex items-center justify-between">
+        <div className="flex mx-auto justify-center">
           <button type="submit">Submit</button>
         </div>
       </form>

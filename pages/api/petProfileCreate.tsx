@@ -7,7 +7,7 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
-      let userEmail, description, species, name, imageData, lat, lng, address: any;
+      let userEmail, description, species, name, imageData, stateId, countryId: any;
 
       if (typeof req.body === 'object') {
         userEmail = req.body.userEmail;
@@ -15,9 +15,8 @@ export default async function handler(
         species = req.body.species;
         name = req.body.name;
         imageData = req.body.imageData;
-        lat = req.body.lat;
-        lng = req.body.lng;
-        address = req.body.address;
+        stateId = req.body.stateId;
+        countryId = req.body.countryId;
       } else {
         const body = JSON.parse(req.body);
         name = body.name;
@@ -25,9 +24,8 @@ export default async function handler(
         description = body.description;
         species = body.species;
         imageData = body.imageData;
-        lat = body.lat;
-        lng = body.lng;
-        address = body.address;
+        stateId = body.stateId;
+        countryId = body.countryId;
       }
 
       const user = await prisma.user.findFirst({
@@ -49,9 +47,8 @@ export default async function handler(
           },
           location: {
             create: {
-              latitude: lat,
-              longitude: lng,
-              address: address
+              stateId: stateId,
+              countryId: countryId,
             }
           }
         },

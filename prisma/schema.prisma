@@ -86,9 +86,8 @@ model Interest {
 
 model Location {
   id         String      @id @default(cuid()) @map("_id")
-  latitude   Float
-  longitude  Float
-  address    String
+  stateId    Float
+  countryId  Float
   profileId  String      @unique
   petProfile PetProfile? @relation(fields: [profileId], references: [id], onDelete: Cascade)
 }

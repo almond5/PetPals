@@ -27,7 +27,9 @@ export async function getServerSideProps(context: any) {
       include: { image: {}, location: {} },
     });
 
-    console.log(petProfile?.image?.publicId);
+    console.log(user);
+    console.log(petProfile);
+
 
     return {
       props: {
@@ -56,6 +58,8 @@ const Dashboard = ({
 }) => {
   const { status: sesh, data: data } = useSession();
   const [profile] = useState<PetProfile>(petProfile);
+  const [profiles, setProfiles] = useState<PetProfile>(petProfiles);
+
   const [profileView, setProfileView] = useState(false);
   const [matchesView, setMatchesView] = useState(false);
   const [homeView, setHomeView] = useState(false);
@@ -76,7 +80,7 @@ const Dashboard = ({
     return <div>Loading...</div>;
   } else if (sesh === 'unauthenticated') {
     router.push('/');
-  } else if (profile === null || profile === undefined) {
+  } else if (sesh === 'authenticated' && (profile === null || profile === undefined)) {
     return <PetProfile petProfile={undefined}></PetProfile>;
   } else if (sesh === 'authenticated' && profile !== null) {
     return (
@@ -85,50 +89,52 @@ const Dashboard = ({
           Hi {profile.name}
           {data.user?.email}
         </div>
-        <div className="">
-          <button
-            onClick={() => {
-              toggleProfileView();
-              setMatchesView(false);
-              setHomeView(false);
-            }}
-          >
-            Profile
-          </button>{' '}
-        </div>
-        <div className="">
-          <button
-            onClick={() => {
-              toggleMatchesView();
-              setProfileView(false);
-              setHomeView(false);
-            }}
-          >
-            Matches
-          </button>{' '}
-        </div>
-        <div className="">
-          <button
-            onClick={() => {
-              toggleHomeView();
-              setProfileView(false);
-              setMatchesView(false);
-            }}
-          >
-            Home
-          </button>{' '}
-        </div>
-        <div className="">
-          <button onClick={() => signOut({ callbackUrl: '/' })}>
-            Sign-Out
-          </button>
-        </div>
+        <div className="absolute flex flex-col">
+          <div className="py-5">
+            <button
+              onClick={() => {
+                toggleProfileView();
+                setMatchesView(false);
+                setHomeView(false);
+              }}
+            >
+              Profile
+            </button>{' '}
+          </div>
+          <div className="py-5">
+            <button
+              onClick={() => {
+                toggleMatchesView();
+                setProfileView(false);
+                setHomeView(false);
+              }}
+            >
+              Matches
+            </button>{' '}
+          </div>
+          <div className="py-5">
+            <button
+              onClick={() => {
+                toggleHomeView();
+                setProfileView(false);
+                setMatchesView(false);
+              }}
+            >
+              Home
+            </button>{' '}
+          </div>
 
+          <div className="py-5">
+            <button onClick={() => signOut({ callbackUrl: '/' })}>
+              Sign-Out
+            </button>
+          </div>
+        </div>
         <div className={`${homeView ? '' : 'hidden'}`}>
-          <HomeView petProfile={petProfile} petProfiles={petProfiles} />
+          <HomeView petProfile={petProfile} petProfiles={profiles} setProfiles={setProfiles}/>
         </div>
         <div className={`${matchesView ? '' : 'hidden'}`}>
-          <MatchesView petProfiles={petProfiles} petProfile={petProfile} />
+          <MatchesView petProfiles={profiles} petProfile={petProfile} />
         </div>
 
         <div className={`${profileView ? '' : 'hidden'}`}>

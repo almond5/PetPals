@@ -17,7 +17,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "typeRoots": [
+      "../node_modules/@types",
+      "../@types"
+    ]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/temp/[...nextatuh].js", "pages/temp/[...nextauth].js", "pages/api/auth/[...nextauth].js"],
   "exclude": ["node_modules"]

@@ -3,15 +3,22 @@ import { PetProfile } from '@prisma/client';
 import styles from '/styles/dashboard.module.css';
 import { FcDislike, FcLike } from 'react-icons/fc';
 
-const HomeView = (props: { petProfiles: any; petProfile: any }) => {
-  const [profile] = useState<PetProfile>(props.petProfile);
-  const [profiles] = useState<PetProfile[]>(props.petProfiles);
-  const [showDescription, setShowDescription] = useState(false);
+const HomeView = (props: { petProfiles: any; petProfile: any; setProfiles: any }) => {
+  const handleDislike = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    console.log('here');
+
+    // do api call [reference createProfile]
+  };
+
+  const removeItem = (index: any) => {
+    props.setProfiles(props.petProfiles.filter((i: any) => index !== i.id));
+  };
 
   return (
     <div className="py-20 flex justify-center">
       <div className={styles.cardContainer}>
-        {profiles.map((petProfile: any) => (
+        {props.petProfiles.map((petProfile: any) => (
           <div key={petProfile.id}>
             <div className={styles.swipe}>
               <div
@@ -33,7 +40,12 @@ const HomeView = (props: { petProfiles: any; petProfile: any }) => {
                 </div>
               </div>
               <div className="flex justify-evenly py-10">
-                <button onClick={() => {}}>
+                <button
+                  onClick={(e) => {
+                    removeItem(petProfile.id);
+                    handleDislike(e);
+                  }}
+                >
                   {' '}
                   <FcDislike style={{ fontSize: '40px' }} />
                 </button>
@@ -41,10 +53,7 @@ const HomeView = (props: { petProfiles: any; petProfile: any }) => {
                   {' '}
                   <FcLike style={{ fontSize: '40px' }} />
                 </button>{' '}
-                <button onClick={() => {}}>
-                  {' '}
-                  Skip
-                </button>{' '}
+                <button onClick={() => {}}> Skip</button>{' '}
               </div>
             </div>
           </div>
