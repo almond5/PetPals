@@ -1,5 +1,7 @@
 // STATUS: NEED TO BE TESTED
 
+// console.log("working...");
+
 import prisma from '@/lib/prismadb';
 import { Prisma } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -26,28 +28,22 @@ export default async function like(
                 currInterestedProfileId: body.interestedProfileId;
             }
 
+
+            // console.log(currProfileId);
+            // console.log(currInterestedProfileId);
             const infoExist = await prisma.interest.findFirst({
                 where: {
                     profileId: currProfileId,
                     interestedProfileId: currInterestedProfileId,
                 },
             });
+            // console.log(infoExist);
+            // console.log("working...");
 
             // if the interest between the two profile is not in the db
             // store it with the match status being pending; otherwise
             // update 'isMatch' to 'True'
             if (infoExist !== null)
-            {
-                const addInfo = await prisma.interest.create({
-                    data: {
-                        profileId: currProfileId,
-                        interestedProfileId: currInterestedProfileId,
-                        isMatch: "Pending",
-                    }
-                });
-                res.status(200).json("Created Successfully");
-            }
-            else
             {
                 const updateInfo = await prisma.interest.updateMany({
                     where: {
@@ -59,6 +55,21 @@ export default async function like(
                     },
                 });
                 res.status(200).json("Updated Successfully");
+            }
+            else
+            {
+                const addInfo = await prisma.interest.create({
+                    data: {
+                        profileId: currProfileId,
+                        interestedProfileId: currInterestedProfileId,
+                        isMatch: "Pending",
+                        petProfile: {
+                            connect: currProfileId,
+                        },
+                    }
+                });
+                // console.log(addInfo);
+                res.status(200).json("Created Successfully");
             }
         }
         catch (error)
