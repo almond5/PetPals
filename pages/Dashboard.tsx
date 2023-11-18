@@ -35,40 +35,26 @@ export async function getServerSideProps(context: any) {
       },
     });
 
+    let filteredProfiles = petProfiles;
+
     const matches = petProfiles?.filter((profile) =>
       profile.interestedInMe.some((interest) => interest.isMatch === 'True')
     );
 
-    let filteredProfiles = petProfiles.filter(
-      (profile) => profile.id !== 'clp4fcb42000tw85wwg6pf9p9'
-    );
+    let filteredProfilesMap: any;
 
-    filteredProfiles = filteredProfiles.filter((profile) =>
-    profile.interestedInMe.some((interest) => interest.interestedProfileId !== petProfile?.id)
-  );
+    // Filter out the id's in this map
+    if (petProfile?.myInterests !== undefined) {
+      filteredProfilesMap = petProfile?.myInterests.map(
+        (interest) => interest.interestedProfileId
+      );
+    }
 
-    // const filteredProfiles = petProfile?.myInterests.filter(
-    //   (interest) => (interest.isMatch === 'True') || (interest.isMatch === 'False')
-    // );
-    // console.log(matches);
-    // console.log(
-    //   '\n\nI am',
-    //   user?.email,
-    //   petProfile?.id,
-    //   '\nMy interests are:',
-    //   petProfile?.myInterests[0]
-    // );
-    // console.log('These people like me', petProfile?.interestedInMe[0]);
-    // console.log(
-    //   '\nProfiles:',
-    //   filteredProfiles?[0].id,
-    //   '\nMy interests are:',
-    //   filteredProfiles?[0].myInterests[0]
-    // );
-    // console.log('These people like me', filteredProfiles[0].interestedInMe[0]);
-    // console.log('\n');
+    filteredProfiles = filteredProfiles.filter((profile) => {
+      return !filteredProfilesMap.includes(profile.id);
+    })
 
-    // console.log(matches);
+    console.log(filteredProfilesMap);
 
     return {
       props: {
