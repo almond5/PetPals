@@ -5,6 +5,7 @@ import prisma from '@/lib/prismadb';
 import HomeView from '@/components/HomeView';
 import PetProfile from '@/components/PetProfile';
 import MatchesView from '@/components/MatchView';
+import { User } from '@prisma/client';
 
 export async function getServerSideProps(context: any) {
   try {
@@ -27,21 +28,20 @@ export async function getServerSideProps(context: any) {
       include: { image: {}, location: {} },
     });
 
-    console.log(user);
-    console.log(petProfile);
-
-
     return {
       props: {
+        userProfile: user,
         petProfile: petProfile,
         petProfiles: petProfiles,
       },
     };
   } catch (error) {
+    const userProfile = null;
     const petProfile = null;
     const petProfiles = null;
     return {
       props: {
+        userProfile: userProfile,
         petProfile: petProfile,
         petProfiles: petProfiles,
       },
@@ -52,17 +52,20 @@ export async function getServerSideProps(context: any) {
 const Dashboard = ({
   petProfile,
   petProfiles,
+  userProfile,
 }: {
   petProfile: any;
   petProfiles: any;
+  userProfile: any;
 }) => {
   const { status: sesh, data: data } = useSession();
   const [profile] = useState<PetProfile>(petProfile);
   const [profiles, setProfiles] = useState<PetProfile>(petProfiles);
+  const [user] = useState<User>(userProfile);
 
   const [profileView, setProfileView] = useState(false);
   const [matchesView, setMatchesView] = useState(false);
-  const [homeView, setHomeView] = useState(false);
+  const [homeView, setHomeView] = useState(true);
 
   const toggleProfileView = () => {
     profileView ? setProfileView(false) : setProfileView(true);
@@ -81,7 +84,7 @@ const Dashboard = ({
   } else if (sesh === 'unauthenticated') {
     router.push('/');
   } else if (sesh === 'authenticated' && (profile === null || profile === undefined)) {
-    return <PetProfile petProfile={undefined}></PetProfile>;
+    return <PetProfile petProfile={undefined} userProfile={user}></PetProfile>;
   } else if (sesh === 'authenticated' && profile !== null) {
     return (
       <div>
@@ -138,7 +141,7 @@ const Dashboard = ({
         </div>
 
         <div className={`${profileView ? '' : 'hidden'}`}>
-          <PetProfile petProfile={petProfile} />
+          <PetProfile petProfile={petProfile} userProfile={userProfile}/>
         </div>
       </div>
     );

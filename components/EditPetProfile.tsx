@@ -1,22 +1,22 @@
 import { useSession } from 'next-auth/react';
-import router from 'next/router';
 import { useState } from 'react';
-import { PetProfile } from '@prisma/client';
 import Image from 'next/image';
 import { CitySelect, StateSelect } from 'react-country-state-city';
 
-const EditPetProfile = (props: { petProfile: any }) => {
-  const [userProfile] = useState<PetProfile>(props.petProfile);
+const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
   const [imageToDisplay, setImageToDisplay] = useState(
     process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
       '/' +
       props.petProfile.image.publicId
   );
+
+  const [ownerName, setOwnerName] = useState(props.userProfile.name);
+  const [phoneNumber, setPhoneNumber] = useState(props.userProfile.phoneNumber);
+
   const [description, setDescription] = useState(props.petProfile.description);
   const [species, setSpecies] = useState(props.petProfile.species);
   const [name, setName] = useState(props.petProfile.name);
   const [imageUploaded, setImageUploaded] = useState(undefined);
-  const [phoneNumber, setPhoneNumber] = useState('');
 
   const [countryId] = useState(233);
   const [stateId, setStateId] = useState(props.petProfile.location.stateId);
@@ -25,6 +25,8 @@ const EditPetProfile = (props: { petProfile: any }) => {
     props.petProfile.location.stateName
   );
   const [cityName, setCityName] = useState(props.petProfile.location.cityName);
+  const defaultState = { id: stateId, name: stateName };
+  const defaultCity = { id: cityId, name: cityName };
 
   const { status: sesh, data: data } = useSession();
 
@@ -68,11 +70,43 @@ const EditPetProfile = (props: { petProfile: any }) => {
       imageData,
       stateId,
       countryId,
+      cityId,
+      stateName,
+      cityName,
+    };
+
+    const ownerProfile = {
+      ownerName,
+      phoneNumber,
+      userEmail,
     };
 
     await submitProfileEdit(petProfile);
+    await submitOwnerEdit(ownerProfile);
+  };
 
-    window.location.reload();
+  const submitOwnerEdit = async (ownerProfile: {
+    userEmail: string | undefined | null;
+    phoneNumber: string | undefined | null;
+    ownerName: string | undefined | null;
+  }) => {
+    try {
+      const response = await fetch('/api/userEdit', {
+        method: 'POST',
+        body: JSON.stringify(ownerProfile),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        alert(data);
+        return null;
+      }
+
+      return true;
+    } catch (error) {
+      alert('Invalid Credentials!');
+      return null;
+    }
   };
 
   const submitProfileEdit = async (petProfile: {
@@ -83,6 +117,9 @@ const EditPetProfile = (props: { petProfile: any }) => {
     imageData: any;
     stateId: number | undefined | null;
     countryId: number | undefined | null;
+    cityId: number | undefined | null;
+    stateName: string | undefined | null;
+    cityName: string | undefined | null;
   }) => {
     try {
       console.log(petProfile);
@@ -96,8 +133,7 @@ const EditPetProfile = (props: { petProfile: any }) => {
 
       if (response.ok) {
         // Handle successful petProfile creation
-        alert('Profile edited successfully!');
-        router.push('/Dashboard');
+        // router.push('/Dashboard');
       } else {
         // Handle HTTP errors if any
         alert('Error Editing Profile');
@@ -158,9 +194,8 @@ const EditPetProfile = (props: { petProfile: any }) => {
             type="file"
           />
         </div>
-
         <div className="mb-6">
-          <div className="font-bold">Name</div>
+          <div className="font-bold">Pet's Name</div>{' '}
           <input
             id="name"
             type="text"
@@ -174,9 +209,8 @@ const EditPetProfile = (props: { petProfile: any }) => {
             maxLength={200}
           />
         </div>
-
         <div className="mb-4">
-          <div className="font-bold">Description</div>
+          <div className="font-bold">Pet's Description</div>
           <textarea
             id="description"
             value={description}
@@ -190,33 +224,13 @@ const EditPetProfile = (props: { petProfile: any }) => {
             maxLength={322}
           ></textarea>
         </div>
-
         <div className="mb-6">
-          <div className="font-bold">Species</div>
+          <div className="font-bold">Pet's Species</div>
           <input
             id="species"
             type="text"
             value={species}
             onChange={(e) => setSpecies(e.target.value)}
-            required
-            className="block appearance-none w-full 
-          border rounded py-2 px-3 text-gray-700 
-          leading-tight focus:outline-none 
-          focus:shadow-outline"
-            maxLength={200}
-          />
-        </div>
-
-        <div className="mb-6">
-          <div className="font-bold">Location</div>
-        </div>
-        <div className="mb-6">
-          <div className="font-bold">Phone Number</div>
-          <input
-            id="phonenumber"
-            type="text"
-            value={species}
-            onChange={(e) => setPhoneNumber(e.target.value)}
             required
             className="block appearance-none w-full 
           border rounded py-2 px-3 text-gray-700 
@@ -231,37 +245,64 @@ const EditPetProfile = (props: { petProfile: any }) => {
           <div className="py-2"></div>
           <StateSelect
             countryid={countryId}
+            defaultValue={defaultState}
             onChange={(e: any) => {
               console.log(e.name);
               setStateId(e.id);
               setStateName(e.name);
             }}
-            placeHolder="Select State"
+            placeHolder={stateName}
           />
           <div className="py-2"></div>
           <CitySelect
-            inputClassName=""
             countryid={countryId}
             stateid={stateId}
             cityid={cityId}
+            defaultValue={defaultCity}
             onChange={(e: any) => {
               setCityId(e.id);
               setCityName(e.name);
             }}
-            placeHolder="Select City"
+            placeHolder={cityName}
           />
         </div>
-        <div className="font-bold">Owner Stuff</div>{' '}
-        <div>
-          Phone Num
+        <div className="flex mx-auto justify-center font-bold mb-6">
+          Owner Stuff
         </div>
-        <div>
-          Email
+        <div className="mb-6">
+          <div className="font-bold">Owner's Name</div>
+          <input
+            onChange={(e) => setOwnerName(e.target.value)}
+            type="text"
+            defaultValue={ownerName}
+            value={ownerName}
+            id="ownerName"
+            className="block appearance-none w-full 
+          border rounded py-2 px-3 text-gray-700 
+          leading-tight focus:outline-none 
+          focus:shadow-outline"
+          />
+        </div>
+        <div className="mb-6">
+          <div className="font-bold">Phone Number</div>
+          <input
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            type="text"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            defaultValue={phoneNumber}
+            value={phoneNumber}
+            id="phone_number"
+            placeholder="888-888-8888"
+            className="block appearance-none w-full 
+          border rounded py-2 px-3 text-gray-700 
+          leading-tight focus:outline-none 
+          focus:shadow-outline"
+          />
         </div>
         <div className="mb-6"></div>
         <div className="flex mx-auto justify-center mb-10">
           <button type="submit" className="font-bold">
-            Submit
+            Save
           </button>
         </div>
       </form>

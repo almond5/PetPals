@@ -99,7 +99,6 @@ const PetProfileCreation = () => {
 
       if (response.ok) {
         // Handle successful petProfile creation
-        alert('PetProfile created successfully!');
         window.location.reload();
       } else {
         // Handle HTTP errors if any

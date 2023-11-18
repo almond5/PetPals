@@ -3,16 +3,23 @@ import { PetProfile } from '@prisma/client';
 import styles from '/styles/dashboard.module.css';
 import { FcDislike, FcLike } from 'react-icons/fc';
 
-const HomeView = (props: { petProfiles: any; petProfile: any; setProfiles: any }) => {
+const HomeView = (props: {
+  petProfiles: any;
+  petProfile: any;
+  setProfiles: any;
+}) => {
+  const [backView, setBackView] = useState(false);
   const handleDislike = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log('here');
-
-    // do api call [reference createProfile]
+    setBackView(false)
   };
 
   const removeItem = (index: any) => {
     props.setProfiles(props.petProfiles.filter((i: any) => index !== i.id));
+  };
+
+  const toggleBack = () => {
+    backView ? setBackView(false) : setBackView(true);
   };
 
   return (
@@ -21,24 +28,56 @@ const HomeView = (props: { petProfiles: any; petProfile: any; setProfiles: any }
         {props.petProfiles.map((petProfile: any) => (
           <div key={petProfile.id}>
             <div className={styles.swipe}>
-              <div
-                style={{
-                  backgroundImage:
-                    'url(' +
-                    process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
-                    '/' +
-                    petProfile.image.publicId +
-                    ')',
-                  position: 'relative',
-                }}
-                className={styles.card}
-              >
-                <div className={styles.cardBottomContainer}>
-                  <div> {petProfile.name}</div>
-                  <div>{petProfile.description}</div>
-                  <div>{petProfile.location.address}</div>
+              <div className="py-1"></div>
+              <button onClick={() => toggleBack()}>
+                <div className={styles.card}>
+                  <div className={`${backView ? 'hidden' : ''}`}>
+                    <div
+                      style={{
+                        backgroundImage:
+                          'url(' +
+                          process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
+                          '/' +
+                          petProfile.image.publicId +
+                          ')',
+                        position: 'relative',
+                        backgroundSize: 'cover',
+                      }}
+                      className={styles.card}
+                    >
+                      <div className={styles.cardBottomContainer}>
+                        <div className="flex font-bold px-2">
+                          {petProfile.name}
+                        </div>
+                        <div className="flex px-2">
+                          {petProfile.location.cityName},{' '}
+                          {petProfile.location.stateName}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`${backView ? '' : 'hidden'}`}>
+                    <div className="flex px-2">
+                      <div className="font-bold mr-2">Name: </div>{' '}
+                      {petProfile.name}
+                    </div>
+                    <div className="flex px-2">
+                      <div className="font-bold mr-2">Location: </div>{' '}
+                      {petProfile.location.cityName},{' '}
+                      {petProfile.location.stateName}
+                    </div>
+                    <div className="flex px-2">
+                      <div className="font-bold mr-2">Species: </div>{' '}
+                      {petProfile.species}
+                    </div>
+                    <div className="flex px-2">
+                      <div className="font-bold mr-2">Description: </div>{' '}
+                      {petProfile.description}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </button>
+
               <div className="flex justify-evenly py-10">
                 <button
                   onClick={(e) => {
@@ -53,7 +92,9 @@ const HomeView = (props: { petProfiles: any; petProfile: any; setProfiles: any }
                   {' '}
                   <FcLike style={{ fontSize: '40px' }} />
                 </button>{' '}
-                <button onClick={() => {}}> Skip</button>{' '}
+                <button className="font-bold" onClick={() => {}}>
+                  Skip
+                </button>{' '}
               </div>
             </div>
           </div>

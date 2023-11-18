@@ -61,7 +61,7 @@ export default async function handler(
             },
           },
           location: {
-            create: {
+            update: {
               stateId: stateId,
               countryId: countryId,
               cityId: cityId,

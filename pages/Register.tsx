@@ -115,6 +115,7 @@ const Register = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            placeholder="Enter your name"
             className="block appearance-none w-full 
               border rounded py-2 px-3 text-gray-700 
               leading-tight focus:outline-none 

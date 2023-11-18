@@ -56,8 +56,6 @@ model User {
   password      String
   petProfile    PetProfile?
   emailVerified DateTime?
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
   accounts      Account[]
   sessions      Session[]
 }

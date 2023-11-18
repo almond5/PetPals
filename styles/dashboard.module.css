@@ -1,11 +1,15 @@
 .swipe {
   position: absolute;
+  outline: 4px solid;
+  padding: 10px 20px;
+  border-radius: 4px;
 }
 
 .cardContainer {
   width: 90vw;
   max-width: 300px;
   height: 400px;
+  text-align: left;
 }
 
 .card {
@@ -14,9 +18,10 @@
   width: 80vw;
   max-width: 300px;
   height: 400px;
-  border-radius: 10px;
+  border-radius: 4px;
   background-size: cover;
   background-position: center;
+  outline: 4px solid;
 }
 
 .cardContent {
@@ -28,4 +33,5 @@
   position: absolute;
   bottom: 0;
   background-color: #fff;
+  width: 100%;
 }
