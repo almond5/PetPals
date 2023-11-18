@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from '/styles/dashboard.module.css';
 import { FcDislike, FcLike } from 'react-icons/fc';
+import { PetProfile } from '@prisma/client';
+import ItsAMatchView from './ItsAMatchView';
 
 const HomeView = (props: {
   petProfiles: any;
@@ -8,21 +10,30 @@ const HomeView = (props: {
   setProfiles: any;
 }) => {
   const [backView, setBackView] = useState(false);
+  const [itsAMatchView, setItsAMatchView] = useState(false);
+  const [currInterestedProfile, setCurrInterestedProfile] = useState<PetProfile>();
 
   const handleDislike = async (e: { preventDefault: () => void }, id: any) => {
     e.preventDefault();
     setBackView(false);
   };
 
-  const handleLike = async (e: { preventDefault: () => void; }, petProfile: any) => {
+  const handleLike = async (
+    e: { preventDefault: () => void },
+    petProfile: any
+  ) => {
     e.preventDefault();
     const like = {
       currProfileId: props.petProfile.id,
       currInterestedProfileId: petProfile.id,
     };
     await submitLike(like);
-
-    console.log('You' + props.petProfile.id + 'liked ' + petProfile.id + '!');
+    setCurrInterestedProfile(petProfile);
+    
+    if (false){
+      setItsAMatchView(true);
+    }
+    // console.log('You' + props.petProfile.id + 'liked ' + petProfile.id + '!');
     setBackView(false);
   };
 
@@ -59,6 +70,13 @@ const HomeView = (props: {
 
   return (
     <div className="py-20 flex justify-center">
+      <div className={`${itsAMatchView ? '' : 'hidden'}`}>
+        <ItsAMatchView
+          currProfile={props.petProfile}
+          currInterestedProfile={currInterestedProfile}
+          setItsAMatchView={setItsAMatchView}
+        />
+      </div>
       <div className={styles.cardContainer}>
         {props.petProfiles.map((petProfile: any) => (
           <div key={petProfile.id}>
