@@ -14,21 +14,40 @@ const HomeView = (props: {
     setBackView(false);
   };
 
-  const handleLike = async (e: { preventDefault: () => void }) => {
+  const handleLike = async (e: { preventDefault: () => void; }, id: any) => {
     e.preventDefault();
+    const like = {
+      currProfileId: props.petProfile.id,
+      currInterestedProfileId: id,
+    };
 
-    
+    console.log(like);
 
-
-
-
-
+    await submitLike(like);
     setBackView(false);
   };
 
-  const handleSkip = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    setBackView(false);
+  const submitLike = async (like: {
+    currProfileId: string | undefined | null;
+    currInterestedProfileId: string | undefined | null;
+  }) => {
+    try {
+      const response = await fetch('/api/petProfileLike', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(like),
+      });
+
+      if (response.ok) {
+        return;
+      } else {
+        alert('Error!');
+      }
+    } catch (error) {
+      console.error('Error!', error);
+    }
   };
 
   const removeItem = (index: any) => {
@@ -98,8 +117,8 @@ const HomeView = (props: {
               <div className="flex justify-evenly py-10">
                 <button
                   onClick={(e) => {
+                    handleDislike(petProfile.id);
                     removeItem(petProfile.id);
-                    handleDislike(e);
                   }}
                 >
                   {' '}
@@ -107,8 +126,8 @@ const HomeView = (props: {
                 </button>
                 <button
                   onClick={(e) => {
+                    handleLike(e, petProfile.id);
                     removeItem(petProfile.id);
-                    handleLike(e);
                   }}
                 >
                   {' '}
@@ -117,8 +136,8 @@ const HomeView = (props: {
                 <button
                   className="font-bold"
                   onClick={(e) => {
+                    setBackView(false);
                     removeItem(petProfile.id);
-                    handleSkip(e);
                   }}
                 >
                   Skip

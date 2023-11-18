@@ -88,7 +88,6 @@ const PetProfileCreation = () => {
     cityName: string | undefined | null;
   }) => {
     try {
-      console.log(petProfile);
       const response = await fetch('/api/petProfileCreate', {
         method: 'POST',
         headers: {

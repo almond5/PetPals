@@ -10,12 +10,12 @@ export default async function handler(
       let currProfileId, currInterestedProfileId: any;
 
       if (typeof req.body === 'object') {
-        currProfileId = req.body.profileId;
-        currInterestedProfileId = req.body.interestedProfileId;
+        currProfileId = req.body.currProfileId;
+        currInterestedProfileId = req.body.currInterestedProfileId;
       } else {
         const body = JSON.parse(req.body);
-        currProfileId = body.profileId;
-        currInterestedProfileId = body.interestedProfileId;
+        currProfileId = body.currProfileId;
+        currInterestedProfileId = body.currInterestedProfileId;
       }
 
       const infoExist = await prisma.interest.findFirst({
@@ -32,6 +32,8 @@ export default async function handler(
           ],
         },
       });
+
+      console.log(infoExist);
 
       // if the interest between the two profile is not in the db
       // store it with the match status being pending; otherwise

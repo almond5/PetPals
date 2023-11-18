@@ -274,7 +274,6 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
           <input
             onChange={(e) => setOwnerName(e.target.value)}
             type="text"
-            defaultValue={ownerName}
             value={ownerName}
             id="ownerName"
             className="block appearance-none w-full 
@@ -289,7 +288,6 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            defaultValue={phoneNumber}
             value={phoneNumber}
             id="phone_number"
             placeholder="888-888-8888"
