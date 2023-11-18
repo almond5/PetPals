@@ -8,13 +8,14 @@ const Register = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [name, setName] = useState('');
   const { status: sesh, data: data } = useSession();
 
   const submitUser = async (newUser: {
     userEmail: string | undefined | null;
     password: string | undefined | null;
     phoneNumber: string | undefined | null;
+    name: string | undefined | null;
   }) => {
     try {
       const response = await fetch('/api/userCreate', {
@@ -50,6 +51,7 @@ const Register = () => {
       userEmail,
       password,
       phoneNumber,
+      name,
     };
 
     const result = await submitUser(newUser);
@@ -64,6 +66,7 @@ const Register = () => {
     setPhoneNumber('');
     setPassword('');
     setUserEmail('');
+    setName('');
   };
 
   return (
@@ -104,7 +107,21 @@ const Register = () => {
             className="border-none outline-none absolute mt-16 ml-6 w-[350px]"
           />
         </div>
-
+        <div className="mb-6">
+          <img src="/img/name.png" className={styles.nameImage} alt="Name" />
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            className="block appearance-none w-full 
+              border rounded py-2 px-3 text-gray-700 
+              leading-tight focus:outline-none 
+              focus:shadow-outline"
+            maxLength={200}
+          />
+        </div>
         <div className="mt-4 mb-6 flex flex-auto">
           <img
             src="/img/phone.png"

@@ -1,10 +1,9 @@
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import router from 'next/router';
 import { useState } from 'react';
-import styles from '/styles/petProfile.module.css';
-import { getGeocode, getLatLng } from 'use-places-autocomplete';
 import { PetProfile } from '@prisma/client';
 import Image from 'next/image';
+import { CitySelect, StateSelect } from 'react-country-state-city';
 
 const EditPetProfile = (props: { petProfile: any }) => {
   const [userProfile] = useState<PetProfile>(props.petProfile);
@@ -17,10 +16,16 @@ const EditPetProfile = (props: { petProfile: any }) => {
   const [species, setSpecies] = useState(props.petProfile.species);
   const [name, setName] = useState(props.petProfile.name);
   const [imageUploaded, setImageUploaded] = useState(undefined);
+  const [phoneNumber, setPhoneNumber] = useState('');
 
-  const [countryId, setCountryid] = useState(0);
-  const [stateId, setStateId] = useState(0);
-  
+  const [countryId] = useState(233);
+  const [stateId, setStateId] = useState(props.petProfile.location.stateId);
+  const [cityId, setCityId] = useState(props.petProfile.location.cityId);
+  const [stateName, setStateName] = useState(
+    props.petProfile.location.stateName
+  );
+  const [cityName, setCityName] = useState(props.petProfile.location.cityName);
+
   const { status: sesh, data: data } = useSession();
 
   const handleChange = (e: any) => {
@@ -62,7 +67,7 @@ const EditPetProfile = (props: { petProfile: any }) => {
       name,
       imageData,
       stateId,
-      countryId
+      countryId,
     };
 
     await submitProfileEdit(petProfile);
@@ -204,7 +209,6 @@ const EditPetProfile = (props: { petProfile: any }) => {
 
         <div className="mb-6">
           <div className="font-bold">Location</div>
-          
         </div>
         <div className="mb-6">
           <div className="font-bold">Phone Number</div>
@@ -212,7 +216,7 @@ const EditPetProfile = (props: { petProfile: any }) => {
             id="phonenumber"
             type="text"
             value={species}
-            onChange={(e) => setSpecies(e.target.value)}
+            onChange={(e) => setPhoneNumber(e.target.value)}
             required
             className="block appearance-none w-full 
           border rounded py-2 px-3 text-gray-700 
@@ -221,9 +225,44 @@ const EditPetProfile = (props: { petProfile: any }) => {
             maxLength={200}
           />
         </div>
+        <div className="font-bold">Location</div>{' '}
+        <div className="mb-6">
+          {' '}
+          <div className="py-2"></div>
+          <StateSelect
+            countryid={countryId}
+            onChange={(e: any) => {
+              console.log(e.name);
+              setStateId(e.id);
+              setStateName(e.name);
+            }}
+            placeHolder="Select State"
+          />
+          <div className="py-2"></div>
+          <CitySelect
+            inputClassName=""
+            countryid={countryId}
+            stateid={stateId}
+            cityid={cityId}
+            onChange={(e: any) => {
+              setCityId(e.id);
+              setCityName(e.name);
+            }}
+            placeHolder="Select City"
+          />
+        </div>
+        <div className="font-bold">Owner Stuff</div>{' '}
+        <div>
+          Phone Num
+        </div>
+        <div>
+          Email
+        </div>
         <div className="mb-6"></div>
-        <div className="flex mx-auto justify-center">
-          <button type="submit">Submit</button>
+        <div className="flex mx-auto justify-center mb-10">
+          <button type="submit" className="font-bold">
+            Submit
+          </button>
         </div>
       </form>
     </div>

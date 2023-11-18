@@ -19,6 +19,10 @@ const PetProfileCreation = () => {
 
   const [countryId, setCountryid] = useState(233);
   const [stateId, setStateId] = useState(0);
+  const [cityId, setCityId] = useState(0);
+  const [stateName, setStateName] = useState('');
+  const [cityName, setCityName] = useState('');
+
   const { status: sesh, data: data } = useSession();
 
   const handleChange = (e: any) => {
@@ -53,6 +57,9 @@ const PetProfileCreation = () => {
       imageData,
       stateId,
       countryId,
+      cityId,
+      stateName,
+      cityName,
     };
 
     await submitProfile(petProfile);
@@ -61,8 +68,11 @@ const PetProfileCreation = () => {
     setSpecies('');
     setName('');
     setImageToDisplay('/img/petpicture.png');
-    setCountryid(0);
+    setCountryid(233);
     setStateId(0);
+    setCityId(0);
+    setCityName('');
+    setStateName('');
   };
 
   const submitProfile = async (petProfile: {
@@ -73,6 +83,9 @@ const PetProfileCreation = () => {
     imageData: any;
     stateId: number | undefined | null;
     countryId: number | undefined | null;
+    cityId: number | undefined | null;
+    stateName: string | undefined | null;
+    cityName: string | undefined | null;
   }) => {
     try {
       console.log(petProfile);
@@ -128,7 +141,7 @@ const PetProfileCreation = () => {
               width: '250px',
               height: '250px',
               marginLeft: '50px', // Adjust the value as needed
-              marginRight: '50px',
+              marginRight: '50px', // Adjust the value as needed
             }}
           >
             <label htmlFor="fileInput">
@@ -151,9 +164,8 @@ const PetProfileCreation = () => {
               type="file"
             />
           </div>
-
           <div className="mb-6">
-            <img src="/img/name.png" className={styles.nameImage} alt="Name" />
+            <div className="font-bold">Pet's Name</div>{' '}
             <input
               id="name"
               type="text"
@@ -167,13 +179,8 @@ const PetProfileCreation = () => {
               maxLength={200}
             />
           </div>
-
           <div className="mb-4">
-            <img
-              src="/img/description.png"
-              className={styles.descriptionImage}
-              alt="Description"
-            />
+            <div className="font-bold">Pet's Description</div>{' '}
             <textarea
               id="description"
               value={description}
@@ -187,13 +194,8 @@ const PetProfileCreation = () => {
               maxLength={322}
             ></textarea>
           </div>
-
           <div className="mb-6">
-            <img
-              src="/img/species.png"
-              className={styles.speciesImage}
-              alt="species"
-            />
+            <div className="font-bold">Pet's Species</div>{' '}
             <input
               id="species"
               type="text"
@@ -207,37 +209,36 @@ const PetProfileCreation = () => {
               maxLength={200}
             />
           </div>
-
+          <div className="font-bold">Location</div>{' '}
           <div className="mb-6">
-            <img
-              src="/img/location.png"
-              className={styles.locationImage}
-              alt="Location"
-            />
-
-            <h6>State</h6>
+            {' '}
+            <div className="py-2"></div>
             <StateSelect
               countryid={countryId}
-              onChange={(e: { id: any }) => {
+              onChange={(e: any) => {
+                console.log(e.name);
                 setStateId(e.id);
+                setStateName(e.name);
               }}
               placeHolder="Select State"
             />
-            <h6>City</h6>
+            <div className="py-2"></div>
             <CitySelect
+              inputClassName=""
               countryid={countryId}
               stateid={stateId}
               onChange={(e: any) => {
-                console.log(e);
+                setCityId(e.id);
+                setCityName(e.name);
               }}
               placeHolder="Select City"
             />
           </div>
-
           <div className="mb-6"></div>
-
           <div className="flex mx-auto justify-center mb-10">
-            <button type="submit">Submit</button>
+            <button type="submit" className="font-bold">
+              Submit
+            </button>
           </div>
         </form>
       </div>

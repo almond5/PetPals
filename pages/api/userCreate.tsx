@@ -7,17 +7,19 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
-      let userEmail, password, phoneNumber: any;
+      let userEmail, password, phoneNumber, name: any;
 
       if (typeof req.body === 'object') {
         userEmail = req.body.userEmail;
         password = req.body.password;
         phoneNumber = req.body.phoneNumber;
+        name = req.body.name;
       } else {
         const body = JSON.parse(req.body);
         userEmail = body.userEmail;
         password = body.password;
         phoneNumber = body.phoneNumber;
+        name = body.name;
       }
 
       const findIfExist = await prisma.user.findFirst({
@@ -34,7 +36,7 @@ export default async function handler(
           email: userEmail,
           password: password,
           phoneNumber: phoneNumber,
-          name: '',
+          name: name,
           description: '',
         },
       });
