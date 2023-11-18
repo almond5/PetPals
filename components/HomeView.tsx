@@ -13,8 +13,19 @@ const HomeView = (props: {
   const [itsAMatchView, setItsAMatchView] = useState(false);
   const [currInterestedProfile, setCurrInterestedProfile] = useState<PetProfile>();
 
-  const handleDislike = async (e: { preventDefault: () => void }, id: any) => {
+  const handleDislike = async (
+    e: { preventDefault: () => void },
+    petProfile: any
+  ) => {
     e.preventDefault();
+
+    const dislike = {
+      currProfileId: props.petProfile.id,
+      currInterestedProfileId: petProfile.id,
+    };
+    await intrestApiCall(dislike, '/api/petProfileDislike');
+    setCurrInterestedProfile(petProfile);
+
     setBackView(false);
   };
 
@@ -27,7 +38,7 @@ const HomeView = (props: {
       currProfileId: props.petProfile.id,
       currInterestedProfileId: petProfile.id,
     };
-    await submitLike(like);
+    await intrestApiCall(like, '/api/petProfileLike');
     setCurrInterestedProfile(petProfile);
     
     if (false){
@@ -37,17 +48,17 @@ const HomeView = (props: {
     setBackView(false);
   };
 
-  const submitLike = async (like: {
+  const intrestApiCall = async (info: {
     currProfileId: string | undefined | null;
     currInterestedProfileId: string | undefined | null;
-  }) => {
+  }, url: any) => {
     try {
-      const response = await fetch('/api/petProfileLike', {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(like),
+        body: JSON.stringify(info),
       });
 
       if (response.ok) {
