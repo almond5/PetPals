@@ -4,7 +4,7 @@ import router from 'next/router';
 import prisma from '@/lib/prismadb';
 import HomeView from '@/components/HomeView';
 import PetProfile from '@/components/PetProfile';
-import MatchesView from '@/components/MatchView';
+import MatchesView from '@/components/MatchesView';
 import { User } from '@prisma/client';
 
 export async function getServerSideProps(context: any) {
@@ -39,37 +39,48 @@ export async function getServerSideProps(context: any) {
       (profile) => profile.id !== 'clp4fcb42000tw85wwg6pf9p9'
     );
 
+    const matches = petProfile?.myInterests.filter((interest) =>
+      interest.isMatch === 'True'
+    );
+
     console.log(
-      '\nI am B',
+      '\n\nI am', user?.email,
       petProfile?.id,
       '\nMy interests are:',
       petProfile?.myInterests[0]
     );
     console.log('These people like me', petProfile?.interestedInMe[0]);
     console.log(
-      '\nI am',
+      '\nProfiles:',
       filteredProfiles[0].id,
       '\nMy interests are:',
       filteredProfiles[0].myInterests[0]
     );
     console.log('These people like me', filteredProfiles[0].interestedInMe[0]);
+    console.log('\n')
+
+
+    console.log(matches)
 
     return {
       props: {
         userProfile: user,
         petProfile: petProfile,
         petProfiles: filteredProfiles,
+        matches: matches
       },
     };
   } catch (error) {
     const userProfile = null;
     const petProfile = null;
     const petProfiles = null;
+    const matches = null;
     return {
       props: {
         userProfile: userProfile,
         petProfile: petProfile,
         petProfiles: petProfiles,
+        matches: matches
       },
     };
   }
@@ -79,10 +90,12 @@ const Dashboard = ({
   petProfile,
   petProfiles,
   userProfile,
+  matches,
 }: {
   petProfile: any;
   petProfiles: any;
   userProfile: any;
+  matches: any;
 }) => {
   const { status: sesh, data: data } = useSession();
   const [profile] = useState<PetProfile>(petProfile);
@@ -170,7 +183,7 @@ const Dashboard = ({
           />
         </div>
         <div className={`${matchesView ? '' : 'hidden'}`}>
-          <MatchesView petProfiles={profiles} petProfile={petProfile} />
+          <MatchesView matches={matches} petProfile={petProfile} />
         </div>
 
         <div className={`${profileView ? '' : 'hidden'}`}>
