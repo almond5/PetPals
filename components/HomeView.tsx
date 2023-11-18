@@ -9,7 +9,7 @@ const HomeView = (props: {
 }) => {
   const [backView, setBackView] = useState(false);
 
-  const handleDislike = async (e: { preventDefault: () => void }) => {
+  const handleDislike = async (e: { preventDefault: () => void }, id: any) => {
     e.preventDefault();
     setBackView(false);
   };
@@ -117,7 +117,7 @@ const HomeView = (props: {
               <div className="flex justify-evenly py-10">
                 <button
                   onClick={(e) => {
-                    handleDislike(petProfile.id);
+                    handleLike(e, petProfile.id);
                     removeItem(petProfile.id);
                   }}
                 >
