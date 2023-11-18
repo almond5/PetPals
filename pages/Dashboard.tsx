@@ -54,7 +54,7 @@ export async function getServerSideProps(context: any) {
       return !filteredProfilesMap.includes(profile.id);
     })
 
-    console.log(filteredProfilesMap);
+    // filter out those whom I have disliked
 
     return {
       props: {
