@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { PetProfile } from '@prisma/client';
 import styles from '/styles/dashboard.module.css';
 import { FcDislike, FcLike } from 'react-icons/fc';
 
@@ -9,9 +8,27 @@ const HomeView = (props: {
   setProfiles: any;
 }) => {
   const [backView, setBackView] = useState(false);
+
   const handleDislike = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    setBackView(false)
+    setBackView(false);
+  };
+
+  const handleLike = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    
+
+
+
+
+
+    setBackView(false);
+  };
+
+  const handleSkip = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    setBackView(false);
   };
 
   const removeItem = (index: any) => {
@@ -88,11 +105,22 @@ const HomeView = (props: {
                   {' '}
                   <FcDislike style={{ fontSize: '40px' }} />
                 </button>
-                <button onClick={() => {}}>
+                <button
+                  onClick={(e) => {
+                    removeItem(petProfile.id);
+                    handleLike(e);
+                  }}
+                >
                   {' '}
                   <FcLike style={{ fontSize: '40px' }} />
                 </button>{' '}
-                <button className="font-bold" onClick={() => {}}>
+                <button
+                  className="font-bold"
+                  onClick={(e) => {
+                    removeItem(petProfile.id);
+                    handleSkip(e);
+                  }}
+                >
                   Skip
                 </button>{' '}
               </div>
