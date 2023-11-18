@@ -18,21 +18,47 @@ export async function getServerSideProps(context: any) {
 
     const petProfile = await prisma.petProfile.findFirst({
       where: { userId: user?.id! },
-      include: { image: {}, location: {} },
+      include: { image: {}, location: {}, myInterests: {}, interestedInMe: {} },
     });
 
     const petProfiles = await prisma.petProfile.findMany({
       where: {
-        NOT: { id: petProfile?.id },
+        NOT: {
+          id: petProfile?.id,
+        },
       },
-      include: { image: {}, location: {} },
+      include: {
+        image: {},
+        location: {},
+        myInterests: {},
+        interestedInMe: {},
+      },
     });
+
+    const filteredProfiles = petProfiles.filter(
+      (profile) => profile.id !== 'clp4fcb42000tw85wwg6pf9p9'
+    );
+
+    console.log(
+      '\nI am B',
+      petProfile?.id,
+      '\nMy interests are:',
+      petProfile?.myInterests[0]
+    );
+    console.log('These people like me', petProfile?.interestedInMe[0]);
+    console.log(
+      '\nI am',
+      filteredProfiles[0].id,
+      '\nMy interests are:',
+      filteredProfiles[0].myInterests[0]
+    );
+    console.log('These people like me', filteredProfiles[0].interestedInMe[0]);
 
     return {
       props: {
         userProfile: user,
         petProfile: petProfile,
-        petProfiles: petProfiles,
+        petProfiles: filteredProfiles,
       },
     };
   } catch (error) {
@@ -83,7 +109,10 @@ const Dashboard = ({
     return <div>Loading...</div>;
   } else if (sesh === 'unauthenticated') {
     router.push('/');
-  } else if (sesh === 'authenticated' && (profile === null || profile === undefined)) {
+  } else if (
+    sesh === 'authenticated' &&
+    (profile === null || profile === undefined)
+  ) {
     return <PetProfile petProfile={undefined} userProfile={user}></PetProfile>;
   } else if (sesh === 'authenticated' && profile !== null) {
     return (
@@ -134,14 +163,18 @@ const Dashboard = ({
           </div>
         </div>
         <div className={`${homeView ? '' : 'hidden'}`}>
-          <HomeView petProfile={petProfile} petProfiles={profiles} setProfiles={setProfiles}/>
+          <HomeView
+            petProfile={petProfile}
+            petProfiles={profiles}
+            setProfiles={setProfiles}
+          />
         </div>
         <div className={`${matchesView ? '' : 'hidden'}`}>
           <MatchesView petProfiles={profiles} petProfile={petProfile} />
         </div>
 
         <div className={`${profileView ? '' : 'hidden'}`}>
-          <PetProfile petProfile={petProfile} userProfile={userProfile}/>
+          <PetProfile petProfile={petProfile} userProfile={userProfile} />
         </div>
       </div>
     );

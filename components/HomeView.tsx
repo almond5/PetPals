@@ -14,16 +14,15 @@ const HomeView = (props: {
     setBackView(false);
   };
 
-  const handleLike = async (e: { preventDefault: () => void; }, id: any) => {
+  const handleLike = async (e: { preventDefault: () => void; }, petProfile: any) => {
     e.preventDefault();
     const like = {
       currProfileId: props.petProfile.id,
-      currInterestedProfileId: id,
+      currInterestedProfileId: petProfile.id,
     };
-
-    console.log(like);
-
     await submitLike(like);
+
+    console.log('You' + props.petProfile.id + 'liked ' + petProfile.id + '!');
     setBackView(false);
   };
 
@@ -117,7 +116,7 @@ const HomeView = (props: {
               <div className="flex justify-evenly py-10">
                 <button
                   onClick={(e) => {
-                    handleLike(e, petProfile.id);
+                    handleDislike(e, petProfile);
                     removeItem(petProfile.id);
                   }}
                 >
@@ -126,7 +125,7 @@ const HomeView = (props: {
                 </button>
                 <button
                   onClick={(e) => {
-                    handleLike(e, petProfile.id);
+                    handleLike(e, petProfile);
                     removeItem(petProfile.id);
                   }}
                 >
