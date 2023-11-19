@@ -71,96 +71,73 @@ const Register = () => {
 
   return (
     <div className={styles.container}>
-      <img
-        src="/img/FormContainer.png"
-        alt="Pet and Mouse"
-        className={styles.petImage3}
-      />
-      <form className="rounded px-8 text-center" onSubmit={handleSubmit}>
-        <div className="mt-28 flex flex-auto">
-          <img
-            src="/img/username.png"
-            alt="Pet and Mouse"
-            className={styles.username}
-          />
-          <input
-            onChange={(e) => setUserEmail(e.target.value)}
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            className="border-none outline-none absolute mt-16 ml-6 w-[350px]"
-          />
+      {/* <div> */}
+        {/* <div className={styles.catHeadComponent}>
+          <img style={{width: 100, height: 35.57}} src="../img/catHead.png" />
+          <img style={{width: 101.50, height: 14.08}} src="../img/catLegs.png" />
         </div>
-
-        <div className="mt-4 mb-6 flex flex-auto">
-          <img
-            src="/img/password.png"
-            alt="Pet and Mouse"
-            className={styles.username}
-          />
-          <input
-            onChange={(e) => handlePassword(e)}
-            type="password"
-            id="password"
-            required
-            placeholder="Enter your password"
-            className="border-none outline-none absolute mt-16 ml-6 w-[350px]"
-          />
-        </div>
-        <div className="mb-6">
-          <img src="/img/name.png" className={styles.nameImage} alt="Name" />
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            placeholder="Enter your name"
-            className="block appearance-none w-full 
-              border rounded py-2 px-3 text-gray-700 
-              leading-tight focus:outline-none 
-              focus:shadow-outline"
-            maxLength={200}
-          />
-        </div>
-        <div className="mt-4 mb-6 flex flex-auto">
-          <img
-            src="/img/phone.png"
-            alt="Pet and Mouse"
-            className={styles.username}
-          />
-          <input
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            type="text"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            required
-            id="phone_number"
-            placeholder="888-888-8888"
-            className="border-none outline-none absolute mt-16 ml-6 w-[350px]"
-          />
-        </div>
-
-        <div className="flex items-center justify-center mt-4">
-          <button type="submit">
-            <img
-              src="/img/registerSignUp.png"
-              alt="Sign Up"
-              className={styles.signUpButton}
+        <div className={styles.catTailComponent}>
+          <img style={{width: 15.53, height: 27}} src="../img/tailInner.png" />
+          <img style={{width: 22.36, height: 65}} src="../img/tailOuter.png" />
+        </div> */}
+        <form className="rounded px-8 text-center" onSubmit={handleSubmit}>
+          <div className={styles.inputContainer}>
+            <div className={styles.inputHeader}>Username</div>
+            <input
+              onChange={(e) => setUserEmail(e.target.value)}
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              className={styles.inputBox}
             />
+            <div className={styles.inputHeader}>Password</div>
+            <input
+              onChange={(e) => handlePassword(e)}
+              type="password"
+              id="password"
+              required
+              placeholder="Enter your password"
+              className={styles.inputBox}
+            />
+            <div className={styles.inputHeader}>Name</div>
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              placeholder="Enter your name"
+              className={styles.inputBox}
+              maxLength={200}
+            />
+            <div className={styles.inputHeader}>Phone</div>
+            <input
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              type="text"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              required
+              id="phone_number"
+              placeholder="888-888-8888"
+              className={`${styles.inputBox} ${styles.lastInput}`}
+            />
+          </div>
+          <button type='submit' className={`${styles.button} ${styles.signUpButton2}`}>
+            <div className={styles.signUpTxt}>Sign up</div>
           </button>
-        </div>
+            <Link
+            href=""
+            onClick={(e) => {
+              e.preventDefault();
+              router.push('/');
+            }}
+            // style={{ textDecoration: 'underline' }}
+          >
+              <div className={styles.loginTxt}>Have an account? Login</div>
+            </Link>
+        </form>
+      {/* </div> */}
 
-        <Link
-          href=""
-          onClick={(e) => {
-            e.preventDefault();
-            router.push('/');
-          }}
-          style={{ textDecoration: 'underline' }}
-        >
-          Already have an account?
-        </Link>
-      </form>
+      
     </div>
   );
 };

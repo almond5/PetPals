@@ -8,66 +8,72 @@ const Index = () => {
   if (status === 'authenticated') {
     return (
       <div className={styles.container}>
+        <div className={styles.title}>PETPALS</div>
         <img
-          src="/img/indexUpper.png"
+          src="../img/home_img.png"
           alt="Pet and Mouse"
           className={styles.petImage}
         />
-        <div className="mt-48">
-          <button className={`${styles.button} ${styles.signInButton}`}>
-            <Link href={'/Dashboard'}>
-              <img
-                className="mt-2"
-                src="/img/buttonLogin1.png"
-                alt="Pet and Mouse"
-              />
-            </Link>
-          </button>
-          <button className={`${styles.button} ${styles.registerButton}`}>
-            <Link href="/Register">
-              <img
-                className="mt-2"
-                src="/img/buttonSignup.png"
-                alt="Pet and Mouse"
-              />
-            </Link>
-          </button>
+        <div className={styles.subTitle}>FOR ALL YOUR PET’S PAL NEEDS</div>
+        <div className='mt-8'>
+          <table className={styles.tbl}>
+            <tr>
+              <button className={`${styles.button} ${styles.registerButton}`}>
+                <Link href="/Register">
+                  <div className={styles.btnText}>Sign Up</div>
+                </Link>
+              </button>
+            </tr>
+            <tr>
+              <button className={`${styles.button} ${styles.signInButton}`}>
+              <Link
+                  href={'./auth/signin'}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    signIn();
+                  }}
+                >
+                  <div className={styles.btnText2}>Login</div>
+                </Link>
+              </button>
+            </tr>
+          </table>
         </div>
       </div>
     );
   } else {
     return (
       <div className={styles.container}>
+        <div className={styles.title}>PETPALS</div>
         <img
-          src="/img/indexUpper.png"
+          src="../img/home_img.png"
           alt="Pet and Mouse"
           className={styles.petImage}
         />
-        <div className="mt-48">
-          <button className={`${styles.button} ${styles.signInButton}`}>
-            <Link
-              href={'/auth/signin'}
-              onClick={(e) => {
-                e.preventDefault();
-                signIn();
-              }}
-            >
-              <img
-                className="mt-2"
-                src="/img/buttonLogin1.png"
-                alt="Pet and Mouse"
-              />
-            </Link>
-          </button>
-          <button className={`${styles.button} ${styles.registerButton}`}>
-            <Link href="/Register">
-              <img
-                className="mt-2"
-                src="/img/buttonSignup.png"
-                alt="Pet and Mouse"
-              />
-            </Link>
-          </button>
+        <div className={styles.subTitle}>FOR ALL YOUR PET’S PAL NEEDS</div>
+        <div className='mt-8'>
+          <table className={styles.tbl}>
+            <tr>
+              <button className={`${styles.button} ${styles.registerButton}`}>
+                <Link href="/Register">
+                  <div className={styles.btnText}>Sign Up</div>
+                </Link>
+              </button>
+            </tr>
+            <tr>
+              <button className={`${styles.button} ${styles.signInButton}`}>
+                <Link
+                  href={'./auth/signin'}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    signIn();
+                  }}
+                >
+                  <div className={styles.btnText2}>Login</div>
+                </Link>
+              </button>
+            </tr>
+          </table>
         </div>
       </div>
     );
