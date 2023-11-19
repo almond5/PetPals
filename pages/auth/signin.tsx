@@ -53,7 +53,7 @@ export default function SignIn() {
       <div className={styles.container}>
         <form className="rounded px-8 text-center" onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
-            <div className={styles.inputHeader}>Username</div>
+            <div className={styles.inputHeader}>Email</div>
             <input
               onChange={(e) => setEmail(e.target.value)}
               type="email"
@@ -68,12 +68,15 @@ export default function SignIn() {
               id="password"
               required
               placeholder="Enter your password"
-              className={styles.inputBox}
+              className={`${styles.inputBox} ${styles.lastInput}`}
             />
-            </div>
+          </div>
           <button type='submit' className={`${styles.button} ${styles.signUpButton2}`}>
             <div className={styles.signUpTxt}>Login</div>
           </button>
+          <Link href="/Register">
+            <div className={styles.loginTxt}>New here? Sign Up</div>
+          </Link>
         </form>
       </div>
     );

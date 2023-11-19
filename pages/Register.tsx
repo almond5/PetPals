@@ -82,7 +82,18 @@ const Register = () => {
         </div> */}
         <form className="rounded px-8 text-center" onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
-            <div className={styles.inputHeader}>Username</div>
+            <div className={styles.inputHeader}>Name</div>
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              placeholder="Enter your name"
+              className={styles.inputBox}
+              maxLength={200}
+            />
+            <div className={styles.inputHeader}>Email</div>
             <input
               onChange={(e) => setUserEmail(e.target.value)}
               type="email"
@@ -99,17 +110,6 @@ const Register = () => {
               placeholder="Enter your password"
               className={styles.inputBox}
             />
-            <div className={styles.inputHeader}>Name</div>
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              placeholder="Enter your name"
-              className={styles.inputBox}
-              maxLength={200}
-            />
             <div className={styles.inputHeader}>Phone</div>
             <input
               onChange={(e) => setPhoneNumber(e.target.value)}
@@ -124,16 +124,17 @@ const Register = () => {
           <button type='submit' className={`${styles.button} ${styles.signUpButton2}`}>
             <div className={styles.signUpTxt}>Sign up</div>
           </button>
-            <Link
+          {/* <Link
             href=""
             onClick={(e) => {
               e.preventDefault();
               router.push('/');
             }}
-            // style={{ textDecoration: 'underline' }}
-          >
-              <div className={styles.loginTxt}>Have an account? Login</div>
-            </Link>
+          > */}
+          <Link href="auth/signin">
+
+            <div className={styles.loginTxt}>Have an account? Login</div>
+          </Link>
         </form>
       {/* </div> */}
 
