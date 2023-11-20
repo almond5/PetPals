@@ -123,29 +123,6 @@ const Dashboard = ({
   const { status: sesh, data: data } = useSession();
   const [profile] = useState<PetProfile>(petProfile);
   const [profiles, setProfiles] = useState<PetProfile>(petProfiles);
-  const [user] = useState<User>(userProfile);
-
-  const [profileView, setProfileView] = useState(false);
-  const [matchesView, setMatchesView] = useState(false);
-  const [homeView, setHomeView] = useState(true);
-
-  const toggleProfileView = () => {
-    setProfileView(true);
-    setMatchesView(false);
-    setHomeView(false);
-  };
-
-  const toggleMatchesView = () => {
-    setMatchesView(true);
-    setProfileView(false);
-    setHomeView(false);
-  };
-
-  const toggleHomeView = () => {
-    setHomeView(true);
-    setProfileView(false);
-    setMatchesView(false);
-  };
 
   if (sesh === 'loading') {
     return <div>Loading...</div>;
@@ -155,7 +132,7 @@ const Dashboard = ({
     sesh === 'authenticated' &&
     (profile === null || profile === undefined)
   ) {
-    return router.push('/Settings');
+    router.push('/Settings');
   } else if (sesh === 'authenticated' && profile !== null) {
     return (
       <div>

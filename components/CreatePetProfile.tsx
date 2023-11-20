@@ -4,6 +4,7 @@ import Image from 'next/image';
 import 'react-country-state-city/dist/react-country-state-city.css';
 import { CitySelect, StateSelect } from 'react-country-state-city';
 import { VscSignOut } from 'react-icons/vsc';
+import router from 'next/router';
 
 const PetProfileCreation = () => {
   const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
@@ -93,7 +94,7 @@ const PetProfileCreation = () => {
 
       if (response.ok) {
         // Handle successful petProfile creation
-        window.location.reload();
+        router.push('/Cards');
       } else {
         // Handle HTTP errors if any
         alert('Error creating petProfile');
