@@ -11,37 +11,45 @@ export default async function handler(
         description,
         species,
         name,
-        imageData,
         stateId,
         countryId,
         cityId,
         stateName,
-        cityName: any;
+        cityName,
+        public_id,
+        format,
+        version: any;
 
       if (typeof req.body === 'object') {
         userEmail = req.body.userEmail;
         description = req.body.description;
         species = req.body.species;
         name = req.body.name;
-        imageData = req.body.imageData;
         stateId = req.body.stateId;
         countryId = req.body.countryId;
         cityId = req.body.cityId;
         stateName = req.body.stateName;
         cityName = req.body.cityName;
+        public_id = req.body.public_id;
+        format = req.body.format;
+        version = req.body.version;
       } else {
         const body = JSON.parse(req.body);
         name = body.name;
         userEmail = body.userEmail;
         description = body.description;
         species = body.species;
-        imageData = body.imageData;
         stateId = body.stateId;
         countryId = body.countryId;
         cityId = body.cityId;
         stateName = body.stateName;
         cityName = body.cityName;
+        public_id = body.public_id;
+        format = body.format;
+        version = body.version;
       }
+
+      console.log(req.body)
 
       const user = await prisma.user.findFirst({
         where: { email: userEmail },
@@ -55,9 +63,9 @@ export default async function handler(
           name: name,
           image: {
             update: {
-              publicId: imageData.public_id,
-              format: imageData.format,
-              version: imageData.version.toString(),
+              publicId: public_id,
+              format: format,
+              version: version,
             },
           },
           location: {

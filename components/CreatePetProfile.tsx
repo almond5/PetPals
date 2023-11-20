@@ -43,19 +43,25 @@ const PetProfileCreation = () => {
     };
 
     const imageData = await submitImage(image);
+
     const userEmail = data?.user?.email;
+    const public_id = imageData.public_id;
+    const format = imageData.format;
+    const version = imageData.version.toString();
 
     const petProfile = {
       userEmail,
       description,
       species,
       name,
-      imageData,
       stateId,
       countryId,
       cityId,
       stateName,
       cityName,
+      public_id,
+      format,
+      version,
     };
 
     await submitProfile(petProfile);
@@ -76,12 +82,14 @@ const PetProfileCreation = () => {
     description: string | undefined | null;
     species: string | undefined | null;
     name: string | undefined | null;
-    imageData: any;
     stateId: number | undefined | null;
     countryId: number | undefined | null;
     cityId: number | undefined | null;
     stateName: string | undefined | null;
     cityName: string | undefined | null;
+    public_id: string | undefined | null;
+    format: string | undefined | null;
+    version: string | undefined | null;
   }) => {
     try {
       const response = await fetch('/api/petProfileCreate', {

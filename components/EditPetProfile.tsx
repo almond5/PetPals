@@ -50,14 +50,17 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
     const image = {
       imageUploaded,
     };
-    const publicId = props.petProfile.image.publicId;
-    const version = props.petProfile.image.version.toString();
-    const format = props.petProfile.image.format;
+    let public_id = props.petProfile.image.publicId;
+    let version = props.petProfile.image.version.toString();
+    let format = props.petProfile.image.format;
 
-    let imageData = { publicId, version, format };
+    let imageData = { public_id, version, format };
 
     if (imageUploaded !== undefined) {
       imageData = await submitImage(image);
+      public_id = imageData.public_id;
+      version = imageData.version.toString();
+      format = imageData.format;
     }
 
     const userEmail = data?.user?.email;
@@ -67,12 +70,14 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
       description,
       species,
       name,
-      imageData,
       stateId,
       countryId,
       cityId,
       stateName,
       cityName,
+      public_id,
+      format,
+      version,
     };
 
     const ownerProfile = {
@@ -114,12 +119,14 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
     description: string | undefined | null;
     species: string | undefined | null;
     name: string | undefined | null;
-    imageData: any;
     stateId: number | undefined | null;
     countryId: number | undefined | null;
     cityId: number | undefined | null;
     stateName: string | undefined | null;
     cityName: string | undefined | null;
+    public_id: string | undefined | null;
+    format: string | undefined | null;
+    version: string | undefined | null;
   }) => {
     try {
       console.log(petProfile);
