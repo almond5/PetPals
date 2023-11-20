@@ -2,10 +2,11 @@ import { getSession, signOut, useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 import router from 'next/router';
 import prisma from '@/lib/prismadb';
-import HomeView from '@/components/HomeView';
+import CardsView from '@/components/CardsView';
 import PetProfile from '@/components/PetProfile';
 import MatchesView from '@/components/MatchesView';
 import { User } from '@prisma/client';
+import { VscSignOut } from 'react-icons/vsc';
 
 export async function getServerSideProps(context: any) {
   try {
@@ -40,8 +41,15 @@ export async function getServerSideProps(context: any) {
     const matches = petProfiles?.filter(
       (profile) =>
         profile.interestedInMe.some(
-          (interest) => interest.isMatch === 'True'
-        ) || profile.myInterests.some((interest) => interest.isMatch === 'True')
+          (interest) =>
+            interest.isMatch === 'True' &&
+            interest.myProfileId === petProfile?.id
+        ) ||
+        profile.myInterests.some(
+          (interest) =>
+            interest.isMatch === 'True' &&
+            interest.interestedProfileId === petProfile?.id
+        )
     );
 
     let filteredMyPreviousChoicesMap: any;
@@ -153,6 +161,15 @@ const Dashboard = ({
   } else if (sesh === 'authenticated' && profile !== null) {
     return (
       <div>
+        <div className="header">
+          PetPals
+          <button
+            className="absolute right-10 top-8"
+            onClick={() => signOut({ callbackUrl: '/' })}
+          >
+            <VscSignOut style={{ fontSize: '40px' }} />
+          </button>
+        </div>
         <div>
           Hi {profile.name}
           {data.user?.email}
@@ -185,15 +202,9 @@ const Dashboard = ({
               Home
             </button>{' '}
           </div>
-
-          <div className="py-5">
-            <button onClick={() => signOut({ callbackUrl: '/' })}>
-              Sign-Out
-            </button>
-          </div>
         </div>
         <div className={`${homeView ? '' : 'hidden'}`}>
-          <HomeView
+          <CardsView
             petProfile={petProfile}
             petProfiles={profiles}
             setProfiles={setProfiles}
@@ -201,7 +212,11 @@ const Dashboard = ({
           />
         </div>
         <div className={`${matchesView ? '' : 'hidden'}`}>
-          <MatchesView matches={matches} petProfile={petProfile} likedMeCount={likedMeCount}/>
+          <MatchesView
+            matches={matches}
+            petProfile={petProfile}
+            likedMeCount={likedMeCount}
+          />
         </div>
 
         <div className={`${profileView ? '' : 'hidden'}`}>

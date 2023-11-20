@@ -1,14 +1,9 @@
 import { signOut, useSession } from 'next-auth/react';
-import router from 'next/router';
-import { SetStateAction, useState } from 'react';
-import styles from '/styles/petProfile.module.css';
+import { useState } from 'react';
 import Image from 'next/image';
 import 'react-country-state-city/dist/react-country-state-city.css';
-import {
-  CitySelect,
-  CountrySelect,
-  StateSelect,
-} from 'react-country-state-city';
+import { CitySelect, StateSelect } from 'react-country-state-city';
+import { VscSignOut } from 'react-icons/vsc';
 
 const PetProfileCreation = () => {
   const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
@@ -129,8 +124,16 @@ const PetProfileCreation = () => {
   return (
     <div>
       {' '}
-      <button onClick={() => signOut({ callbackUrl: '/' })}>Sign-Out</button>
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="header">
+        PetPals
+        <button
+          className="absolute right-10 top-8"
+          onClick={() => signOut({ callbackUrl: '/' })}
+        >
+          <VscSignOut style={{ fontSize: '40px' }} />
+        </button>
+      </div>
+      <div className="py-5 min-h-screen flex items-center justify-center">
         <form onSubmit={handleSubmit}>
           <div
             className="mt-8 mb-8"
@@ -170,10 +173,7 @@ const PetProfileCreation = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="block appearance-none w-full 
-              border rounded py-2 px-3 text-gray-700 
-              leading-tight focus:outline-none 
-              focus:shadow-outline"
+              className="w-full outline outline-2 rounded py-2 px-3"
               maxLength={200}
             />
           </div>
@@ -185,10 +185,7 @@ const PetProfileCreation = () => {
               onChange={(e) => setDescription(e.target.value)}
               required
               rows={7}
-              className="block appearance-none w-full 
-              border rounded py-2 px-3 text-gray-700 
-              leading-tight focus:outline-none 
-              focus:shadow-outline"
+              className="w-full outline outline-2 rounded py-2 px-3"
               maxLength={322}
             ></textarea>
           </div>
@@ -200,10 +197,7 @@ const PetProfileCreation = () => {
               value={species}
               onChange={(e) => setSpecies(e.target.value)}
               required
-              className="block appearance-none w-full 
-              border rounded py-2 px-3 text-gray-700 
-              leading-tight focus:outline-none 
-              focus:shadow-outline"
+              className="w-full outline outline-2 rounded py-2 px-3"
               maxLength={200}
             />
           </div>
@@ -212,6 +206,7 @@ const PetProfileCreation = () => {
             {' '}
             <div className="py-2"></div>
             <StateSelect
+              containerClassName="w-full outline outline-2 rounded py-2 px-3"
               countryid={countryId}
               onChange={(e: any) => {
                 console.log(e.name);
@@ -222,7 +217,7 @@ const PetProfileCreation = () => {
             />
             <div className="py-2"></div>
             <CitySelect
-              inputClassName=""
+              containerClassName="w-full outline outline-2 rounded py-2 px-3"
               countryid={countryId}
               stateid={stateId}
               onChange={(e: any) => {

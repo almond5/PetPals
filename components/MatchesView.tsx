@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { PetProfile } from '@prisma/client';
 import { FcLike } from 'react-icons/fc';
 
-const MatchesView = (props: { matches: any; petProfile: any; likedMeCount: any }) => {
+const MatchesView = (props: {
+  matches: any;
+  petProfile: any;
+  likedMeCount: any;
+}) => {
   const [profile] = useState<PetProfile>(props.petProfile);
   const [matches] = useState<PetProfile[]>(props.matches);
 
@@ -13,6 +17,12 @@ const MatchesView = (props: { matches: any; petProfile: any; likedMeCount: any }
       text-center rounded-xl"
       >
         Matches <FcLike style={{ fontSize: '40px' }} />
+      </div>
+      <div
+        className="flex justify-center font-normal text-black text-[24px] 
+      text-center rounded-xl"
+      >
+        Like Count: {props.likedMeCount}
       </div>
       <div className="py-4" style={{ maxHeight: '400px' }}>
         {matches.map((petProfile: any) => (

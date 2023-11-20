@@ -7,7 +7,8 @@
 
 .cardContainer {
   width: 90vw;
-  padding-left: 50px; 
+  position: absolute;
+  padding-left: 30px; 
   max-width: 400px;
   height: 400px;
 }

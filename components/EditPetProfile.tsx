@@ -202,10 +202,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="block appearance-none w-full 
-          border rounded py-2 px-3 text-gray-700 
-          leading-tight focus:outline-none 
-          focus:shadow-outline"
+            className="w-full outline outline-2 rounded py-2 px-3"
             maxLength={200}
           />
         </div>
@@ -217,10 +214,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
             onChange={(e) => setDescription(e.target.value)}
             required
             rows={7}
-            className="block appearance-none w-full 
-          border rounded py-2 px-3 text-gray-700 
-          leading-tight focus:outline-none 
-          focus:shadow-outline"
+            className="w-full outline outline-2 rounded py-2 px-3 "
             maxLength={322}
           ></textarea>
         </div>
@@ -232,10 +226,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
             value={species}
             onChange={(e) => setSpecies(e.target.value)}
             required
-            className="block appearance-none w-full 
-          border rounded py-2 px-3 text-gray-700 
-          leading-tight focus:outline-none 
-          focus:shadow-outline"
+            className="w-full outline outline-2 rounded py-2 px-3"
             maxLength={200}
           />
         </div>
@@ -244,6 +235,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
           {' '}
           <div className="py-2"></div>
           <StateSelect
+            containerClassName="w-full outline outline-2 rounded py-2 px-3"
             countryid={countryId}
             defaultValue={defaultState}
             onChange={(e: any) => {
@@ -255,6 +247,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
           />
           <div className="py-2"></div>
           <CitySelect
+            containerClassName="w-full outline outline-2 rounded py-2 px-3"
             countryid={countryId}
             stateid={stateId}
             cityid={cityId}
@@ -276,10 +269,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
             type="text"
             value={ownerName}
             id="ownerName"
-            className="block appearance-none w-full 
-          border rounded py-2 px-3 text-gray-700 
-          leading-tight focus:outline-none 
-          focus:shadow-outline"
+            className="w-full outline outline-2 rounded py-2 px-3"
           />
         </div>
         <div className="mb-6">
@@ -291,10 +281,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
             value={phoneNumber}
             id="phone_number"
             placeholder="888-888-8888"
-            className="block appearance-none w-full 
-          border rounded py-2 px-3 text-gray-700 
-          leading-tight focus:outline-none 
-          focus:shadow-outline"
+            className="w-full outline outline-2 rounded py-2 px-3"
           />
         </div>
         <div className="mb-6"></div>
