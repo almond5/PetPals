@@ -132,19 +132,19 @@ const Dashboard = ({
   const [homeView, setHomeView] = useState(true);
 
   const toggleProfileView = () => {
-    profileView ? setProfileView(false) : setProfileView(true);
+    setProfileView(true);
     setMatchesView(false);
     setHomeView(false);
   };
 
   const toggleMatchesView = () => {
-    matchesView ? setMatchesView(false) : setMatchesView(true);
+    setMatchesView(true);
     setProfileView(false);
     setHomeView(false);
   };
 
   const toggleHomeView = () => {
-    homeView ? setHomeView(false) : setHomeView(true);
+    setHomeView(true);
     setProfileView(false);
     setMatchesView(false);
   };

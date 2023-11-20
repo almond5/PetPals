@@ -91,7 +91,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
     ownerName: string | undefined | null;
   }) => {
     try {
-      const response = await fetch('/api/userEdit', {
+      const response = await fetch('/api/ownerEdit', {
         method: 'POST',
         body: JSON.stringify(ownerProfile),
       });

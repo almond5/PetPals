@@ -31,6 +31,7 @@ const ItsAMatchView = (props: {
         onClick={(e) => {
           e.preventDefault();
           props.setItsAMatchView(false);
+          window.location.reload();
           props.toggleMatchesView();
         }}
       >
