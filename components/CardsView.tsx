@@ -43,18 +43,17 @@ const CardsView = (props: {
     await interestApiCall(like, '/api/petProfileLike');
     setCurrInterestedProfile(petProfile);
 
-    // if (petProfile.interestedInMe.length > 0) {
-    //   if (
-    //     petProfile.interestedInMe.contains(
-    //       (interest: any) =>
-    //         interest.interestedProfileId === props.petProfile.id &&
-    //         interest.isMatch === 'Pending'
-    //     )
-    //   ) {
-    //     setItsAMatchView(true);
-    //     console.log('its a match!');
-    //   }
-    // }
+    if (petProfile.myInterests.length > 0) {
+      if (
+        petProfile.myInterests.some(
+          (interest: any) =>
+            interest.interestedProfileId === props.petProfile.id &&
+            interest.isMatch === 'Pending'
+        )
+      ) {
+        setItsAMatchView(true);
+      }
+    }
 
     setBackView(false);
   };
