@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import router from 'next/router';
 import prisma from '@/lib/prismadb';
 import CardsView from '@/components/CardsView';
-import PetProfile from '@/components/PetProfile';
+import Settings from '@/components/Settings';
 import MatchesView from '@/components/MatchesView';
-import { User } from '@prisma/client';
+import { PetProfile, User } from '@prisma/client';
 import { VscSignOut } from 'react-icons/vsc';
 
 export async function getServerSideProps(context: any) {
@@ -157,7 +157,7 @@ const Dashboard = ({
     sesh === 'authenticated' &&
     (profile === null || profile === undefined)
   ) {
-    return <PetProfile petProfile={undefined} userProfile={user}></PetProfile>;
+    return <Settings petProfile={undefined} userProfile={user}></Settings>;
   } else if (sesh === 'authenticated' && profile !== null) {
     return (
       <div>
@@ -220,7 +220,7 @@ const Dashboard = ({
         </div>
 
         <div className={`${profileView ? '' : 'hidden'}`}>
-          <PetProfile petProfile={petProfile} userProfile={userProfile} />
+          <Settings petProfile={petProfile} userProfile={userProfile} />
         </div>
       </div>
     );
