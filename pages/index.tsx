@@ -15,7 +15,7 @@ const Index = () => {
         />
         <div className="mt-48">
           <button className={`${styles.button} ${styles.signInButton}`}>
-            <Link href={'/Dashboard'}>
+            <Link href={'/Cards'}>
               <img
                 className="mt-2"
                 src="/img/buttonLogin1.png"

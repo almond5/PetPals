@@ -133,7 +133,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
 
       if (response.ok) {
         // Handle successful petProfile creation
-        // router.push('/Dashboard');
+        // router.push('/Cards');
       } else {
         // Handle HTTP errors if any
         alert('Error Editing Profile');

@@ -15,7 +15,7 @@ export default function SignIn() {
   }
 
   if (status === 'authenticated') {
-    router.push('/Dashboard');
+    router.push('/Cards');
   }
 
   const handlePassword = async (e: {
@@ -32,7 +32,7 @@ export default function SignIn() {
       const response = await signIn('credentials', {
         email: email,
         password: password,
-        callbackUrl: '/Dashboard',
+        callbackUrl: '/Cards',
         redirect: false,
       });
 

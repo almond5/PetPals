@@ -1,8 +1,9 @@
+import router from "next/router";
+
 const ItsAMatchView = (props: {
   currProfile: any;
   currInterestedProfile: any;
   setItsAMatchView: any;
-  toggleMatchesView: any;
 }) => {
   return (
     <div className="flex flex-col font-bold">
@@ -31,8 +32,7 @@ const ItsAMatchView = (props: {
         onClick={(e) => {
           e.preventDefault();
           props.setItsAMatchView(false);
-          window.location.reload();
-          props.toggleMatchesView();
+          router.push('/Matches')
         }}
       >
         <div>Continue</div>

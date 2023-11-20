@@ -7,27 +7,35 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
-      let userEmail, password, newEmail: any;
+      let userEmail, newEmail, newPassword, oldPassword: any;
 
       if (typeof req.body === 'object') {
         userEmail = req.body.userEmail;
-        password = req.body.password;
         newEmail = req.body.newEmail;
+        newPassword = req.body.newPassword;
+        oldPassword = req.body.oldPassword;
       } else {
         const body = JSON.parse(req.body);
         userEmail = body.userEmail;
-        password = body.password;
+        newPassword = body.newPassword;
         newEmail = body.newEmail;
+        oldPassword = body.oldPassword;
       }
 
       // Update email and password
-      const findIfExist = await prisma.user.update({
+      const findIfExist = await prisma.user.findFirst({
         where: { email: userEmail },
-        data: {
-          email: newEmail,
-          password: password,
-        },
       });
+
+      if (findIfExist?.password === oldPassword) {
+        await prisma.user.update({
+          where: { email: userEmail },
+          data: {
+            email: newEmail,
+            password: newPassword,
+          },
+        });
+      }
 
       res.status(200).json('Success');
     } catch (error) {

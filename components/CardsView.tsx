@@ -8,7 +8,6 @@ const CardsView = (props: {
   petProfiles: any;
   petProfile: any;
   setProfiles: any;
-  toggleMatchesView: any;
 }) => {
   const [backView, setBackView] = useState(false);
   const [itsAMatchView, setItsAMatchView] = useState(false);
@@ -44,17 +43,18 @@ const CardsView = (props: {
     await interestApiCall(like, '/api/petProfileLike');
     setCurrInterestedProfile(petProfile);
 
-    if (petProfile.myInterests.length > 0) {
-      if (
-        petProfile.myInterests.some(
-          (interest: any) =>
-            interest.interestedProfileId === props.petProfile.id &&
-            interest.isMatch === 'Pending'
-        )
-      ) {
-        setItsAMatchView(true);
-      }
-    }
+    // if (petProfile.interestedInMe.length > 0) {
+    //   if (
+    //     petProfile.interestedInMe.contains(
+    //       (interest: any) =>
+    //         interest.interestedProfileId === props.petProfile.id &&
+    //         interest.isMatch === 'Pending'
+    //     )
+    //   ) {
+    //     setItsAMatchView(true);
+    //     console.log('its a match!');
+    //   }
+    // }
 
     setBackView(false);
   };
@@ -101,7 +101,6 @@ const CardsView = (props: {
             currProfile={props.petProfile}
             currInterestedProfile={currInterestedProfile}
             setItsAMatchView={setItsAMatchView}
-            toggleMatchesView={props.toggleMatchesView}
           />
         </div>
         <div className={`${itsAMatchView ? 'hidden' : ''}`}>
