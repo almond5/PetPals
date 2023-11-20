@@ -46,6 +46,7 @@ export async function getServerSideProps(context: any) {
 
     let filteredMyPreviousChoicesMap: any;
     let filteredDislikedProfiles: any;
+    let likedMeCount: any;
 
     // Filter out the id's in this map
     if (petProfile?.myInterests !== undefined) {
@@ -59,6 +60,10 @@ export async function getServerSideProps(context: any) {
         if (interest.isMatch === 'False' || interest.isMatch === 'True')
           return interest.myProfileId;
       });
+
+      likedMeCount = petProfile?.interestedInMe.filter(
+        (interest) => interest.isMatch === 'Pending'
+      ).length;
     }
 
     filteredProfiles = filteredProfiles.filter((profile) => {
@@ -75,6 +80,7 @@ export async function getServerSideProps(context: any) {
         petProfile: petProfile,
         petProfiles: filteredProfiles,
         matches: matches,
+        likedMeCount: likedMeCount,
       },
     };
   } catch (error) {
@@ -82,12 +88,14 @@ export async function getServerSideProps(context: any) {
     const petProfile = null;
     const petProfiles = null;
     const matches = null;
+    const likedMeCount = null;
     return {
       props: {
         userProfile: userProfile,
         petProfile: petProfile,
         petProfiles: petProfiles,
         matches: matches,
+        likedMeCount: likedMeCount,
       },
     };
   }
@@ -98,11 +106,13 @@ const Dashboard = ({
   petProfiles,
   userProfile,
   matches,
+  likedMeCount,
 }: {
   petProfile: any;
   petProfiles: any;
   userProfile: any;
   matches: any;
+  likedMeCount: any;
 }) => {
   const { status: sesh, data: data } = useSession();
   const [profile] = useState<PetProfile>(petProfile);
@@ -191,7 +201,7 @@ const Dashboard = ({
           />
         </div>
         <div className={`${matchesView ? '' : 'hidden'}`}>
-          <MatchesView matches={matches} petProfile={petProfile} />
+          <MatchesView matches={matches} petProfile={petProfile} likedMeCount={likedMeCount}/>
         </div>
 
         <div className={`${profileView ? '' : 'hidden'}`}>

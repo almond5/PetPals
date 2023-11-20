@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PetProfile } from '@prisma/client';
 import { FcLike } from 'react-icons/fc';
 
-const MatchesView = (props: { matches: any; petProfile: any }) => {
+const MatchesView = (props: { matches: any; petProfile: any; likedMeCount: any }) => {
   const [profile] = useState<PetProfile>(props.petProfile);
   const [matches] = useState<PetProfile[]>(props.matches);
 
