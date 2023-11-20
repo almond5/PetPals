@@ -37,24 +37,37 @@ export async function getServerSideProps(context: any) {
 
     let filteredProfiles = petProfiles;
 
-    const matches = petProfiles?.filter((profile) =>
-      profile.interestedInMe.some((interest) => interest.isMatch === 'True')
+    const matches = petProfiles?.filter(
+      (profile) =>
+        profile.interestedInMe.some(
+          (interest) => interest.isMatch === 'True'
+        ) || profile.myInterests.some((interest) => interest.isMatch === 'True')
     );
 
-    let filteredProfilesMap: any;
+    let filteredMyPreviousChoicesMap: any;
+    let filteredDislikedProfiles: any;
 
     // Filter out the id's in this map
     if (petProfile?.myInterests !== undefined) {
-      filteredProfilesMap = petProfile?.myInterests.map(
-        (interest) => interest.interestedProfileId
-      );
+      filteredMyPreviousChoicesMap = petProfile?.myInterests.map((interest) => {
+        if (interest) return interest.interestedProfileId;
+      });
+    }
+
+    if (petProfile?.interestedInMe !== undefined) {
+      filteredDislikedProfiles = petProfile?.interestedInMe.map((interest) => {
+        if (interest.isMatch === 'False' || interest.isMatch === 'True')
+          return interest.myProfileId;
+      });
     }
 
     filteredProfiles = filteredProfiles.filter((profile) => {
-      return !filteredProfilesMap.includes(profile.id);
-    })
+      return !filteredMyPreviousChoicesMap.includes(profile.id);
+    });
 
-    // filter out those whom I have disliked
+    filteredProfiles = filteredProfiles.filter((profile) => {
+      return !filteredDislikedProfiles.includes(profile.id);
+    });
 
     return {
       props: {
@@ -102,14 +115,20 @@ const Dashboard = ({
 
   const toggleProfileView = () => {
     profileView ? setProfileView(false) : setProfileView(true);
+    setMatchesView(false);
+    setHomeView(false);
   };
 
   const toggleMatchesView = () => {
     matchesView ? setMatchesView(false) : setMatchesView(true);
+    setProfileView(false);
+    setHomeView(false);
   };
 
   const toggleHomeView = () => {
     homeView ? setHomeView(false) : setHomeView(true);
+    setProfileView(false);
+    setMatchesView(false);
   };
 
   if (sesh === 'loading') {
@@ -133,8 +152,6 @@ const Dashboard = ({
             <button
               onClick={() => {
                 toggleProfileView();
-                setMatchesView(false);
-                setHomeView(false);
               }}
             >
               Profile
@@ -144,8 +161,6 @@ const Dashboard = ({
             <button
               onClick={() => {
                 toggleMatchesView();
-                setProfileView(false);
-                setHomeView(false);
               }}
             >
               Matches
@@ -155,8 +170,6 @@ const Dashboard = ({
             <button
               onClick={() => {
                 toggleHomeView();
-                setProfileView(false);
-                setMatchesView(false);
               }}
             >
               Home
@@ -174,6 +187,7 @@ const Dashboard = ({
             petProfile={petProfile}
             petProfiles={profiles}
             setProfiles={setProfiles}
+            toggleMatchesView={toggleMatchesView}
           />
         </div>
         <div className={`${matchesView ? '' : 'hidden'}`}>
