@@ -129,7 +129,6 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
     version: string | undefined | null;
   }) => {
     try {
-      console.log(petProfile);
       const response = await fetch('/api/petProfileEdit', {
         method: 'POST',
         headers: {
@@ -246,7 +245,6 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
             countryid={countryId}
             defaultValue={defaultState}
             onChange={(e: any) => {
-              console.log(e.name);
               setStateId(e.id);
               setStateName(e.name);
             }}

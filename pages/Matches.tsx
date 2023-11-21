@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FcLike } from 'react-icons/fc';
+import { FcFullTrash, FcLike } from 'react-icons/fc';
 import { getSession, signOut, useSession } from 'next-auth/react';
 import prisma from '@/lib/prismadb';
 import Settings from '@/pages/Settings';
@@ -63,7 +63,7 @@ export async function getServerSideProps(context: any) {
         userProfile: user,
         petProfile: petProfile,
         petProfiles: filteredProfiles,
-        matches: matches,
+        petMatches: matches,
         likedMeCount: likedMeCount,
       },
     };
@@ -76,7 +76,7 @@ export async function getServerSideProps(context: any) {
       props: {
         userProfile: userProfile,
         petProfile: petProfile,
-        matches: matches,
+        petMatches: matches,
         likedMeCount: likedMeCount,
       },
     };
@@ -86,15 +86,53 @@ export async function getServerSideProps(context: any) {
 const Matches = ({
   userProfile,
   petProfile,
-  matches,
+  petMatches,
   likedMeCount,
 }: {
   userProfile: any;
   petProfile: any;
-  matches: any;
+  petMatches: any;
   likedMeCount: any;
 }) => {
   const { status: sesh, data: data } = useSession();
+  const [matches, setMatches] = useState<any>(petMatches);
+
+  const handleRemove = async (e: { preventDefault: () => void }, id: any) => {
+    e.preventDefault();
+    const remove = {
+      currProfileId: petProfile.id,
+      removeProfileId: id,
+    };
+
+    await removeMatch(remove);
+  };
+
+  const removeMatch = async (remove: {
+    currProfileId: string | undefined | null;
+    removeProfileId: string | undefined | null;
+  }) => {
+    try {
+      const response = await fetch('/api/removeMatch', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(remove),
+      });
+
+      if (response.ok) {
+        return;
+      } else {
+        alert('Error!');
+      }
+    } catch (error) {
+      console.error('Error!', error);
+    }
+  };
+
+  const removeItem = (index: any) => {
+    setMatches(matches.filter((i: any) => index !== i.id));
+  };
 
   if (sesh === 'loading') {
     return <div>Loading...</div>;
@@ -164,11 +202,11 @@ const Matches = ({
           </div>
           <div className="py-4" style={{ maxHeight: '400px' }}>
             {matches.map((petProfile: any) => (
-              <div key={petProfile.id} className="my-3 overflow-auto">
+              <div key={petProfile.id} className="my-3">
                 <div className="flex justify-center items-center">
                   <div
                     className="w-[340px] h-[90px] border-2 border-solid border-black 
-              relative rounded-xl"
+              relative rounded-xl overflow-auto"
                   >
                     <img
                       className="left-[18px] absolute w-[50px] h-[50px] top-[19px]
@@ -181,10 +219,20 @@ const Matches = ({
                     />
                     <div
                       className="left-[88px] absolute top-[24px] font-normal text-black 
-                text-[24px] flex px-2 flex-wrap text-left word-left break-all"
+                text-[24px] flex px-2 pr-20 flex-wrap text-left word-left break-all"
                     >
                       {petProfile.name}
                     </div>
+                    <button
+                      onClick={(e) => {
+                        handleRemove(e, petProfile.id);
+                        removeItem(petProfile.id);
+                      }}
+                    >
+                      <div className="absolute align-right right-[18px] top-[24px]">
+                        <FcFullTrash style={{ fontSize: '40px' }} />
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>

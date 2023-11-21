@@ -52,8 +52,6 @@ export async function getServerSideProps(context: any) {
 
     let filteredMyPreviousChoicesMap: any;
     let filteredDislikedProfiles: any;
-    let likedMeCount: any;
-
     // Filter out the id's in this map
     if (petProfile?.myInterests !== undefined) {
       filteredMyPreviousChoicesMap = petProfile?.myInterests.map((interest) => {
@@ -66,10 +64,6 @@ export async function getServerSideProps(context: any) {
         if (interest.isMatch === 'False' || interest.isMatch === 'True')
           return interest.myProfileId;
       });
-
-      likedMeCount = petProfile?.interestedInMe.filter(
-        (interest) => interest.isMatch === 'Pending'
-      ).length;
     }
 
     filteredProfiles = filteredProfiles.filter((profile) => {
@@ -82,26 +76,17 @@ export async function getServerSideProps(context: any) {
 
     return {
       props: {
-        userProfile: user,
         petProfile: petProfile,
         petProfiles: filteredProfiles,
-        matches: matches,
-        likedMeCount: likedMeCount,
       },
     };
   } catch (error) {
-    const userProfile = null;
     const petProfile = null;
     const petProfiles = null;
-    const matches = null;
-    const likedMeCount = null;
     return {
       props: {
-        userProfile: userProfile,
         petProfile: petProfile,
         petProfiles: petProfiles,
-        matches: matches,
-        likedMeCount: likedMeCount,
       },
     };
   }
@@ -110,15 +95,9 @@ export async function getServerSideProps(context: any) {
 const Dashboard = ({
   petProfile,
   petProfiles,
-  userProfile,
-  matches,
-  likedMeCount,
 }: {
   petProfile: any;
   petProfiles: any;
-  userProfile: any;
-  matches: any;
-  likedMeCount: any;
 }) => {
   const { status: sesh, data: data } = useSession();
   const [profile] = useState<PetProfile>(petProfile);

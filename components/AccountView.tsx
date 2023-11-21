@@ -1,10 +1,13 @@
 import { signOut } from 'next-auth/react';
 import { useState } from 'react';
+import DeleteModalView from './DeleteModalView';
 
 const AccountView = (props: { userProfile: any }) => {
   const [newEmail, setNewEmail] = useState(props.userProfile.email);
   const [newPassword, setNewPassword] = useState('');
   const [oldPassword, setOldPassword] = useState('');
+  const [deleteModalView, setDeleteModalView] = useState(false);
+  const [del, setDeleted] = useState(false);
 
   const submitUserEdit = async (userProfile: {
     userEmail: string | undefined | null;
@@ -72,7 +75,13 @@ const AccountView = (props: { userProfile: any }) => {
 
   return (
     <div className="py-10">
-      <div className="flex items-center justify-center">
+      <div className="flex flex-col items-center justify-center">
+        <div className={`${deleteModalView ? '' : 'hidden'}`}>
+          <DeleteModalView
+            setDeleteModalView={setDeleteModalView}
+            userProfile={props.userProfile}
+          />
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-6">
             <div className="font-bold">Email</div>{' '}
@@ -112,13 +121,20 @@ const AccountView = (props: { userProfile: any }) => {
           </div>
 
           <div className="mb-6"></div>
-          <div className="flex flex-col justify-center mb-10">
+          <div className="flex flex-col justify-center mb-5">
             <button type="submit" className="font-bold">
               Save
             </button>
-            <div className="flex flex-col px-10">(Will log you out)</div>
           </div>
         </form>
+        <button
+          className="font-bold flex flex-col"
+          onClick={() => setDeleteModalView(true)}
+        >
+          <div className="flex flex-col px-10 justify-center text-red-500 font-bold">
+            Delete Account?
+          </div>
+        </button>
       </div>
     </div>
   );

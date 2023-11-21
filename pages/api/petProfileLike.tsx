@@ -33,7 +33,6 @@ export default async function handler(
         },
       });
 
-      console.log(infoExist);
 
       // if the interest between the two profile is not in the db
       // store it with the match status being pending; otherwise
@@ -61,7 +60,6 @@ export default async function handler(
         res.status(200).json('Updated Successfully');
       }
     } catch (error) {
-      console.log(error);
       res.status(500).json('Unknown Error Occurred');
     }
   } else {

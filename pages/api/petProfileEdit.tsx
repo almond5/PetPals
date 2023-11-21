@@ -49,8 +49,6 @@ export default async function handler(
         version = body.version;
       }
 
-      console.log(req.body)
-
       const user = await prisma.user.findFirst({
         where: { email: userEmail },
       });
@@ -82,7 +80,6 @@ export default async function handler(
 
       res.status(200).json('Success');
     } catch (error) {
-      console.log(error);
       res.status(500).json('Unknown Error Occurred');
     }
   } else {

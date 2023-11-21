@@ -31,8 +31,7 @@ const ItsAMatchView = (props: {
       <button
         onClick={(e) => {
           e.preventDefault();
-          props.setItsAMatchView(false);
-          router.push('/Matches')
+          router.push('/Matches');
         }}
       >
         <div>Continue</div>

@@ -218,7 +218,6 @@ const PetProfileCreation = () => {
               containerClassName="w-full outline outline-2 rounded py-2 px-3"
               countryid={countryId}
               onChange={(e: any) => {
-                console.log(e.name);
                 setStateId(e.id);
                 setStateName(e.name);
               }}

@@ -30,6 +30,42 @@ const CardsView = (props: {
     setBackView(false);
   };
 
+  const resetPreferences = async (
+    e: { preventDefault: () => void },
+  ) => {
+    e.preventDefault();
+    const resetPreferences = {
+      currProfileId: props.petProfile.id,
+    };
+
+    await submitReset(resetPreferences);    
+    window.location.reload();
+  };
+
+  const submitReset = async (
+    resetPreferences: {
+      currProfileId: string | undefined | null;
+    }
+  ) => {
+    try {
+      const response = await fetch('/api/resetPreferences', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(resetPreferences),
+      });
+
+      if (response.ok) {
+        return;
+      } else {
+        alert('Error!');
+      }
+    } catch (error) {
+      console.error('Error!', error);
+    }
+  };
+
   const handleLike = async (
     e: { preventDefault: () => void },
     petProfile: any
@@ -201,7 +237,7 @@ const CardsView = (props: {
 
               <button
                 onClick={(e) => {
-                  e.preventDefault();
+                  resetPreferences(e);
                 }}
               >
                 <div>Reset Preferences?</div>
