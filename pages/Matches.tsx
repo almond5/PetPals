@@ -157,7 +157,6 @@ const Matches = ({
             <VscSignOut style={{ fontSize: '40px' }} />
           </button>
         </div>
-        <div>{data.user?.email}</div>
         <div className="absolute flex flex-col">
           <div className="py-5">
             <button

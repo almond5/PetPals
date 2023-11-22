@@ -75,7 +75,6 @@ const Settings = ({
             <VscSignOut style={{ fontSize: '40px' }} />
           </button>
         </div>
-        <div>{data.user?.email}</div>
         <div className="absolute flex flex-col">
           <div className="py-5">
             <button
@@ -105,7 +104,7 @@ const Settings = ({
             </button>{' '}
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center py-10">
           <button
             onClick={() => {
               setAccountView(false);
