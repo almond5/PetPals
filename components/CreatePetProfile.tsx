@@ -175,7 +175,7 @@ const PetProfileCreation = () => {
             />
           </div>
           <div className="mb-6">
-            <div className="font-bold">Pet's Name</div>{' '}
+            <div className="font-bold">Pet&apos;s Name</div>{' '}
             <input
               id="name"
               type="text"
@@ -187,7 +187,7 @@ const PetProfileCreation = () => {
             />
           </div>
           <div className="mb-4">
-            <div className="font-bold">Pet's Description</div>{' '}
+            <div className="font-bold">Pet&apos;s Description</div>{' '}
             <textarea
               id="description"
               value={description}
@@ -199,7 +199,7 @@ const PetProfileCreation = () => {
             ></textarea>
           </div>
           <div className="mb-6">
-            <div className="font-bold">Pet's Species</div>{' '}
+            <div className="font-bold">Pet&apos;s Species</div>{' '}
             <input
               id="species"
               type="text"
