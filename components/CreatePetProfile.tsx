@@ -172,6 +172,7 @@ const PetProfileCreation = () => {
               onChange={handleChange}
               accept=".jpg, .png, .gif, .jpeg"
               type="file"
+              hidden
             />
           </div>
           <div className="mb-6">

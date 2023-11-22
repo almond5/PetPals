@@ -17,18 +17,13 @@ export default async function handler(
       }
 
       const user = await prisma.user.findFirst({
-        where: { email: userEmail }
+        where: { email: userEmail },
       });
 
-        // Delete the pet profile
-        const petProfile = await prisma.petProfile.delete({
-            where: { userId: user!.id },
-        });
-
-        // Delete the profile
-        const User = await prisma.user.delete({
-            where: { email: userEmail },
-        });
+      // Delete the profile
+      const User = await prisma.user.delete({
+        where: { email: userEmail },
+      });
 
       res.status(200).json('Success');
     } catch (error) {

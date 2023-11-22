@@ -198,6 +198,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
             onChange={handleChange}
             accept=".jpg, .png, .gif, .jpeg"
             type="file"
+            hidden
           />
         </div>
         <div className="mb-6">
