@@ -268,7 +268,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
           Owner Stuff
         </div>
         <div className="mb-6">
-          <div className="font-bold">Owner's Name</div>
+          <div className="font-bold">Owner&apos;s Name</div>
           <input
             onChange={(e) => setOwnerName(e.target.value)}
             type="text"
