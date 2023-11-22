@@ -1,4 +1,4 @@
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useState } from 'react';
 import styles from '/styles/Index.module.css'; // Make sure to create this CSS module
 import Link from 'next/link';
@@ -51,56 +51,35 @@ export default function SignIn() {
   if (status === 'unauthenticated') {
     return (
       <div className={styles.container}>
-        <img
-          src="/img/formContainer.png"
-          alt="Pet and Mouse"
-          className={styles.petImage2}
-        />
         <form className="rounded px-8 text-center" onSubmit={handleSubmit}>
-          <div className="mt-24 flex flex-auto">
-            <img
-              src="/img/username.png"
-              alt="Pet and Mouse"
-              className={styles.username}
-            />
+          <div className={styles.inputContainer}>
+            <div className={styles.inputHeader}>Email</div>
             <input
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               id="email"
+              placeholder="Enter your email"
+              className={styles.inputBox}
               required
-              placeholder="Meow Meow Meow Meow Meow Meow Meow"
-              className="border-none outline-none absolute mt-16 ml-6 w-[350px]"
             />
-          </div>
-          <div className="mt-4 mb-6 flex flex-auto">
-            <img
-              src="/img/password.png"
-              alt="Pet and Mouse"
-              className={styles.username}
-            />
+            <div className={styles.inputHeader}>Password</div>
             <input
               onChange={(e) => handlePassword(e)}
               type="password"
               id="password"
               required
-              placeholder="Woof Woof Woof Woof Woof Woof Woof Woof"
-              className="border-none outline-none absolute mt-16 ml-6 w-[350px]"
+              placeholder="Enter your password"
+              className={`${styles.inputBox} ${styles.lastInput}`}
             />
           </div>
-
-          <button className={`${styles.signInButton2}`}>
-            <img src="/img/buttonLogin2.png" alt="Pet and Mouse" />
+          <button type='submit' className={`${styles.button} ${styles.signUpButton2}`}>
+            <div className={styles.signUpTxt}>Login</div>
           </button>
-
-          <div className="login-page-container">
-            <Link href="/Register">
-              <button style={{ textDecoration: 'underline' }}>
-                New here? sign up
-              </button>
-            </Link>
-          </div>
+          <Link href="/Register">
+            <div className={styles.loginTxt}>New here? Sign Up</div>
+          </Link>
         </form>
       </div>
     );
-  }
+  };
 }

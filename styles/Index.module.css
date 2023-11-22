@@ -1,9 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Mali&family=Montserrat&display=swap');
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  overflow: hidden; 
+
+}
+
+.container2 {
+  margin-top: '7vh';
+}
+
+.title {
+  color: #000; 
+  text-align: center;
+  font-size: 75px;
+  font-family: 'Mali';
+  font-weight: 400;
+  line-height: normal;
+  width: 364px;
+  height: 95px;
+  flex-shrink: 0;
+}
+
+.subTitle {
+  width: '100%';
+  height: '100%';
+  text-align: 'center';
+  color: 'black';
+  font-size: 20px;
+  font-family: 'Mali';
+  font-weight: '500';
+  word-wrap: 'break-word';
+}
+
+.inputContainer {
+  /* width: 341px;
+  height: 425px; */
+  flex-shrink: 0;
+  /* left: 45;
+  top: 214;
+  position: 'absolute'; */
+  border-radius: 27px;
+  border: 1px solid #000;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  /* margin: 10px; */
+  padding: 20px;
+  margin-top: 75px;
+  margin-left: 20px;
+  margin-right: 20px;
+  /* boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' */
+  /* borderRadius: 27,  */
+  /* border: '1px black solid' */
+}
+
+.catHeadComponent {
+  /* {width: 102, 
+    height: 49.75, 
+    paddingBottom: 0.07, 
+    paddingRight: 0.50, 
+    left: 259.50, 
+    top: 178.5, 
+    position: 'absolute', 
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'flex-start', 
+    gap: 0.03, 
+    display: 'inline-flex'} */
+    /* left: 259.50;
+    top: 178.5; */
+    display: flex;
+    width: 102px;
+    height: 49.754px;
+    padding: 0px 0.5px 0.069px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.03px;
+    flex-shrink: 0;
+}
+
+.catTailComponent {
+  display: flex;
+  width: 37.88px;
+  height: 75px;
+  justify-content: center;
+  align-items: flex-end;
+  gap: -0.01px;
+  flex-shrink: 0;
+  /* {width: 37.88, 
+    height: 75, 
+    left: 370.48, 
+    top: 260.60, 
+    position: 'absolute', 
+    justifyContent: 'center', 
+    alignItems: 'flex-end', 
+    display: 'inline-flex'} */
+}
+
+.inputHeader {
+  /* {left: 81, 
+    top: 261.60, 
+    position: 'absolute', 
+    textAlign: 'center', 
+    color: 'black', 
+    fontSize: 24, 
+    fontFamily: 'Mali', 
+    fontWeight: '400', 
+    wordWrap: 'break-word'} */
+    color: #000;
+    text-align: left;
+    padding: 10px;
+    padding-left: 10px;
+    /* padding-right: 10px; */
+    font-family: Mali;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.inputBox {
+/* {width: 274, 
+  height: 42, 
+  left: 79, 
+  top: 301.60, 
+  position: 'absolute', 
+  border: '1px black solid'} */
+  width: 274px;
+  height: 42px;
+  flex-shrink: 0;
+  border: 1px solid #000;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-family: Mali;
+
+}
+
+.lastInput {
+  margin-bottom: 20px;
+}
+
+.signUpButton2 {
+  /* {
+    left: 119, top: 662, position: 'absolute', background: 'white', 
+  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', 
+  justifyContent: 'center', alignItems: 'center', display: 'inline-flex'} */
+  /* display: flex; */
+  padding: 19px 32px;
+  margin-top: 23px;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  background: #000;
+}
+
+.signUpTxt {
+  color: #FFF;
+  font-family: Mali;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%; /* 26.4px */
+  letter-spacing: 3.84px;
+  text-transform: uppercase;
+}
+
+.loginTxt {
+  /* color: #000;
+  text-align: center;
+  font-family: Mali;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal; */
+  
+  color: #000;
+  text-align: center;
+  font-family: Mali;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  /* text-decoration: underline; */
+  margin-top: 10px;
+  margin-bottom: 75px;
+
+}
+
+.linker {
+  display: flex;
+  width: 175px;
+  height: 29px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .header {
@@ -17,10 +214,14 @@
 }
 
 .petImage {
-  max-width: 50%;
+  max-width: 90%;
   height: auto;
   margin: 20px 0;
   position: center;
+  /* width: '90%'; */
+  height: '100%';
+  padding-top: 4vh;
+  padding-bottom: 6vh;
 }
 
 .petImage2 {
@@ -39,33 +240,40 @@
   position: center;
   height: auto;
   min-height: 100%;
-  min-width: 1200px;
+  min-width: 950px;
   position: fixed;
   width: 100%;
   z-index: -1;
 }
 
 .buttons {
-  position: absolute;
+  /* position: absolute;
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 20px;
-  top: 80%;
+  margin-top: 20px; */
+  /* top: 80%; */
 }
 
 .button {
-  position: absolute;
+  /* position: absolute;
   background-color: transparent;
   color: transparent;
   padding: 10px 50px;
   border: none;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: bold; */
+  cursor: pointer;
+  
 }
 
 .signInButton {
-  top: 88%;
+  display: flex;
+  padding: 25px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  /* top: 88%;
   left: 49%;
   color: clear;
   border: none;
@@ -76,11 +284,69 @@
   min-width: 100px;
   min-height: 20px;
   transform: translate(-50%, -50%);
-  padding: 0px 70px;
+  padding: 0px 70px; */
+  /* width: '100%';
+  height: '100%';
+  padding-left: 32; 
+  padding-right: 32; 
+  padding-top: 20;
+  padding-bottom: 20; */
+  /* display: flex; */
+  /* color: #000; */
+  /* text-align: center;
+  font-family: Mali;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal; */
 }
 
+.btnText2 {
+  font-family: Mali;
+  font-size: 24px;
+  font-style: normal;
+  /* font-weight: 700; */
+  line-height: 110%; /* 26.4px */
+  letter-spacing: 3.84px;
+  text-transform: uppercase;
+  /* padding-left: 3vh;
+  padding-right: 3vh;
+  padding-top:  1vh; */
+}
+
+.btnText {
+  color: #FFF;
+  font-family: Mali;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%; /* 26.4px */
+  letter-spacing: 3.84px;
+  text-transform: uppercase;
+}
+
+.tbl .button {
+  width: 100%;
+}
+
+.tbl {
+  /* width: 100%; */
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-top: '7vh';
+
+  /* background-color: red;  */
+}
+
+/* register button on the home pg */
 .registerButton {
-  top: 81.8%;
+  display: flex;
+  padding: 20px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  background: #000;
+  /* top: 81.8%;
   left: 49.5%;
   transform: translate(-50%, -50%);
   color: clear;
@@ -91,7 +357,7 @@
   font-size: 69px;
   min-width: 100px;
   min-height: 20px;
-  padding: 0px 70px;
+  padding: 0px 70px; */
 }
 
 .username {
@@ -102,15 +368,23 @@
 }
 
 .signInButton2 {
-  top: 70%;
-  color: clear;
+  /* top: 70%; */
   border: none;
   width: 200px;
   height: 10px;
   text-align: center;
   min-width: 100px;
   min-height: 20px;
-  padding: 0px 40px;
+  padding: 20px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  background: #000;
+  /* display: flex;
+padding: 20px 32px;
+justify-content: center;
+align-items: center;
+gap: 9px; */
 }
 
 .signUpButton {
