@@ -231,7 +231,7 @@ const CardsView = (props: {
               </div>
             ))
           ) : (
-            <div className="flex flex-col font-bold">
+            <div className="flex flex-col font-bold pr-8">
               <div className="mx-auto">No More Profiles To View!</div>
               <div className="flex justify-around py-4"></div>
 
