@@ -30,23 +30,19 @@ const CardsView = (props: {
     setBackView(false);
   };
 
-  const resetPreferences = async (
-    e: { preventDefault: () => void },
-  ) => {
+  const resetPreferences = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const resetPreferences = {
       currProfileId: props.petProfile.id,
     };
 
-    await submitReset(resetPreferences);    
+    await submitReset(resetPreferences);
     window.location.reload();
   };
 
-  const submitReset = async (
-    resetPreferences: {
-      currProfileId: string | undefined | null;
-    }
-  ) => {
+  const submitReset = async (resetPreferences: {
+    currProfileId: string | undefined | null;
+  }) => {
     try {
       const response = await fetch('/api/resetPreferences', {
         method: 'POST',
@@ -71,12 +67,12 @@ const CardsView = (props: {
     petProfile: any
   ) => {
     e.preventDefault();
+
     const like = {
       currProfileId: props.petProfile.id,
       currInterestedProfileId: petProfile.id,
     };
 
-    await interestApiCall(like, '/api/petProfileLike');
     setCurrInterestedProfile(petProfile);
 
     if (petProfile.myInterests.length > 0) {
@@ -91,6 +87,7 @@ const CardsView = (props: {
       }
     }
 
+    const response = await interestApiCall(like, '/api/petProfileLike');
     setBackView(false);
   };
 
@@ -111,12 +108,12 @@ const CardsView = (props: {
       });
 
       if (response.ok) {
-        return;
+        return true;
       } else {
         alert('Error!');
       }
     } catch (error) {
-      console.error('Error!', error);
+      return null;
     }
   };
 

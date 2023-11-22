@@ -1,10 +1,18 @@
-import router from "next/router";
+import router from 'next/router';
+import { useEffect } from 'react';
 
 const ItsAMatchView = (props: {
   currProfile: any;
   currInterestedProfile: any;
   setItsAMatchView: any;
 }) => {
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="flex flex-col font-bold">
       <div className="mx-auto">Its a Match!</div>
