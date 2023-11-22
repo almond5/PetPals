@@ -52,7 +52,7 @@ export default function SignIn() {
     return (
       <div className={styles.container}>
         <img
-          src="/img/FormContainer.png"
+          src="/img/formContainer.png"
           alt="Pet and Mouse"
           className={styles.petImage2}
         />
