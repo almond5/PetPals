@@ -1,6 +1,5 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import router from 'next/router';
 import { useState } from 'react';
 import styles from '/styles/Index.module.css';
 
@@ -29,6 +28,10 @@ const Register = () => {
         return null;
       }
 
+      if (response.ok) {
+        alert('Successfully created account!');
+      }
+
       return true;
     } catch (error) {
       alert('Invalid Credentials!');
@@ -55,6 +58,7 @@ const Register = () => {
     };
 
     const result = await submitUser(newUser);
+    
     if (sesh === 'authenticated' && result === true) {
       await signOut({ callbackUrl: '/' });
     } else if (result === true) {

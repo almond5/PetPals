@@ -72,7 +72,10 @@ export default function SignIn() {
               className={`${styles.inputBox} ${styles.lastInput}`}
             />
           </div>
-          <button type='submit' className={`${styles.button} ${styles.signUpButton2}`}>
+          <button
+            type="submit"
+            className={`${styles.button} ${styles.signUpButton2}`}
+          >
             <div className={styles.signUpTxt}>Login</div>
           </button>
           <Link href="/Register">
@@ -81,5 +84,5 @@ export default function SignIn() {
         </form>
       </div>
     );
-  };
+  }
 }
