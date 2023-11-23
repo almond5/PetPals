@@ -1,12 +1,14 @@
 import { FcCheckmark } from 'react-icons/fc';
 import { FcCancel } from 'react-icons/fc';
-import React from 'react';
+import React, { useState } from 'react';
 import { signOut } from 'next-auth/react';
 
 const DeleteModalView = (props: {
   setDeleteModalView: any;
   userProfile: any;
 }) => {
+  const [password, setPassword] = useState('');
+
   const handleClose = () => {
     props.setDeleteModalView(false);
   };
@@ -24,26 +26,45 @@ const DeleteModalView = (props: {
       });
 
       if (response.ok) {
-        // Handle successful petProfile creation
-        // router.push('/Cards');
+        alert('Successfully deleted! Signing you out now.');
+        return true;
       } else {
         // Handle HTTP errors if any
-        alert('Error');
+        if (response.status === 500) {
+          alert('Incorrect Password!');
+        } else if (response.status === 501) {
+          alert('User not found!');
+        } else if (response.status === 405) {
+          alert('Unknown Error Occurred!');
+        }
+        return null;
       }
     } catch (error) {
       // Handle other potential errors
-      console.error('Error', error);
+      return null;
     }
   };
 
-  const handleDelete = async () => {
+  const handlePassword = async (e: {
+    [x: string]: any;
+    preventDefault: () => void;
+  }) => {
+    e.preventDefault();
+    setPassword(e.target.value);
+  };
+
+  const handleDelete = async (e: any) => {
+    e.preventDefault();
     const deleteUser = {
       userEmail: props.userProfile.email,
+      password: password,
     };
 
-    submitDelete(deleteUser);
-    props.setDeleteModalView(false);
-    await signOut({ callbackUrl: '/' });
+    const res = await submitDelete(deleteUser);
+
+    if (res !== null) {
+      await signOut({ callbackUrl: '/' });
+    }
   };
 
   return (
@@ -56,31 +77,48 @@ const DeleteModalView = (props: {
     p-4 rounded-lg flex flex-col"
         style={{ wordWrap: 'break-word' }}
       >
-        <div className="flex flex-col">
-          <div className="text-center text-xl">
-            Are you sure you want to delete your account?
+        <form
+          onSubmit={(e) => {
+            handleDelete(e);
+          }}
+        >
+          <div className="flex flex-col">
+            <div className="text-center text-xl font-semibold">
+              Enter your password to delete your account:
+            </div>
           </div>
-        </div>
-        <div className="flex justify-center py-10">
-          <div className="pr-5">
-            <button
-              onClick={() => handleClose()}
-              className="rounded-full py-0.5 font-bold transition hover:bg-gray-300 
+          <div className="mb-2 mt-3">
+            <input
+              onChange={(e) => handlePassword(e)}
+              value={password}
+              type="password"
+              id="newPassword"
+              required
+              placeholder="Enter your password"
+              className="w-full outline outline-2 rounded py-2 px-3"
+            />
+          </div>
+          <div className="flex justify-center">
+            <div className="pr-5">
+              <button
+                onClick={() => handleClose()}
+                className="rounded-full py-0.5 font-bold transition hover:bg-gray-300 
         hover:text-gray-800 text-Lg "
-            >
-              <FcCancel style={{ fontSize: '40px' }} />
-            </button>
-          </div>
-          <div className="pl-5">
-            <button
-              onClick={() => handleDelete()}
-              className="rounded-full py-0.5 font-bold transition hover:bg-gray-300 
+              >
+                <FcCancel style={{ fontSize: '40px' }} />
+              </button>
+            </div>
+            <div className="pl-5">
+              <button
+                type="submit"
+                className="rounded-full py-0.5 font-bold transition hover:bg-gray-300 
           hover:text-gray-800 text-Lg"
-            >
-              <FcCheckmark style={{ fontSize: '40px' }} />
-            </button>
+              >
+                <FcCheckmark style={{ fontSize: '40px' }} />
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

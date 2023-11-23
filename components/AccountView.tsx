@@ -49,6 +49,7 @@ const AccountView = (props: { userProfile: any }) => {
     const success = await submitUserEdit(userProfile);
 
     if (success) {
+      alert('Successfully updated! Signing you out now.')
       await signOut({ callbackUrl: '/' });
     }
 

@@ -43,7 +43,6 @@ const PetProfileCreation = () => {
     };
 
     const imageData = await submitImage(image);
-
     const userEmail = data?.user?.email;
     const public_id = imageData.public_id;
     const format = imageData.format;
@@ -102,6 +101,7 @@ const PetProfileCreation = () => {
 
       if (response.ok) {
         // Handle successful petProfile creation
+        alert('Success!');
         router.push('/Cards');
       } else {
         // Handle HTTP errors if any
@@ -168,11 +168,13 @@ const PetProfileCreation = () => {
             </label>
 
             <input
+              name="imageInput"
               id="fileInput"
               onChange={handleChange}
               accept=".jpg, .png, .gif, .jpeg"
               type="file"
-              hidden
+              required
+              className="display-none"
             />
           </div>
           <div className="mb-6">

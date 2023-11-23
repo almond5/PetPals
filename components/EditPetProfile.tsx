@@ -138,8 +138,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
       });
 
       if (response.ok) {
-        // Handle successful petProfile creation
-        // router.push('/Cards');
+        alert('Successfully Edited!');
       } else {
         // Handle HTTP errors if any
         alert('Error Editing Profile');
@@ -192,13 +191,14 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
               }}
             />
           </label>
-
+          
           <input
+            name="imageInput"
             id="fileInput"
             onChange={handleChange}
             accept=".jpg, .png, .gif, .jpeg"
             type="file"
-            hidden
+            className='display-none'
           />
         </div>
         <div className="mb-6">
