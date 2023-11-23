@@ -419,3 +419,21 @@ gap: 9px; */
   min-height: 70px;
   padding: 0px 0px;
 }
+
+.normalTxt {
+  font-family: Mali;
+  font-weight: bold;
+}
+
+.maliTxtCentered {
+  padding-left: 8px;
+  font-family: Mali;
+  font-weight: bold;
+  text-align: left;
+}
+
+.maliTxt {
+  font-family: Mali;
+  padding-left: 8px;
+  text-align: left;
+}
