@@ -198,15 +198,6 @@ const CardsView = (props: {
                   <div className="flex justify-evenly py-10">
                     <button
                       onClick={(e) => {
-                        handleDislike(e, petProfile);
-                        removeItem(petProfile.id);
-                      }}
-                    >
-                      {' '}
-                      <img src='/img/cross.png'></img>
-                    </button>
-                    <button
-                      onClick={(e) => {
                         handleLike(e, petProfile);
                         removeItem(petProfile.id);
                       }}
@@ -214,6 +205,15 @@ const CardsView = (props: {
                       {' '}
                       <img src='/img/heart.png'></img>
                     </button>{' '}
+                    <button
+                      onClick={(e) => {
+                        handleDislike(e, petProfile);
+                        removeItem(petProfile.id);
+                      }}
+                    >
+                      {' '}
+                      <img src='/img/cross.png'></img>
+                    </button>
                     <button
                       className="font-bold"
                       onClick={(e) => {
