@@ -50,7 +50,7 @@ export default function SignIn() {
 
   if (status === 'unauthenticated') {
     return (
-      <div className={styles.container}>
+      <div className={styles.container2}>
         <form className="rounded px-8 text-center" onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
             <div className={styles.inputHeader}>Email</div>
