@@ -11,7 +11,31 @@
 }
 
 .container2 {
-  margin-top: '7vh';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background-image: url("/img/login.jpg");
+  background-repeat: no-repeat;
+  background-size: 42%;
+  background-position: bottom right;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.container3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background-image: url("/img/signup.jpeg");
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: bottom right;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .title {
@@ -214,14 +238,12 @@
 }
 
 .petImage {
-  max-width: 90%;
-  height: auto;
+  max-width: 80%;
+  max-height: 50%;
   margin: 20px 0;
   position: center;
-  /* width: '90%'; */
-  height: '100%';
-  padding-top: 4vh;
-  padding-bottom: 6vh;
+  padding-top: 2vh;
+  padding-bottom: 3vh;
 }
 
 .petImage2 {
