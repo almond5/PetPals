@@ -37,7 +37,7 @@ const Index = () => {
     );
   } else {
     return (
-      <div className={styles.container2}>
+      <div className={styles.container}>
         <div className={styles.title}>PETPALS</div>
         <img
           src="/img/homepage.PNG"
