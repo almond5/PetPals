@@ -5,9 +5,11 @@ import 'react-country-state-city/dist/react-country-state-city.css';
 import { CitySelect, StateSelect } from 'react-country-state-city';
 import { VscSignOut } from 'react-icons/vsc';
 import router from 'next/router';
+import styles from '../styles/Index.module.css';
+
 
 const PetProfileCreation = () => {
-  const [imageToDisplay, setImageToDisplay] = useState('/img/petpicture.png');
+  const [imageToDisplay, setImageToDisplay] = useState('/img/petProfile.png');
   const [imageUploaded, setImageUploaded] = useState();
   const [description, setDescription] = useState('');
   const [species, setSpecies] = useState('');
@@ -132,9 +134,7 @@ const PetProfileCreation = () => {
 
   return (
     <div>
-      {' '}
       <div className="header">
-        PetPals
         <button
           className="absolute right-10 top-8"
           onClick={() => signOut({ callbackUrl: '/' })}
@@ -178,7 +178,7 @@ const PetProfileCreation = () => {
             />
           </div>
           <div className="mb-6">
-            <div className="font-bold">Pet&apos;s Name</div>{' '}
+            <div className={styles.normalTxt}>Pet&apos;s Name</div>{' '}
             <input
               id="name"
               type="text"
@@ -190,7 +190,7 @@ const PetProfileCreation = () => {
             />
           </div>
           <div className="mb-4">
-            <div className="font-bold">Pet&apos;s Description</div>{' '}
+            <div className={styles.normalTxt}>Pet&apos;s Description</div>{' '}
             <textarea
               id="description"
               value={description}
@@ -202,7 +202,7 @@ const PetProfileCreation = () => {
             ></textarea>
           </div>
           <div className="mb-6">
-            <div className="font-bold">Pet&apos;s Species</div>{' '}
+            <div className={styles.normalTxt}>Pet&apos;s Species</div>{' '}
             <input
               id="species"
               type="text"
@@ -213,10 +213,8 @@ const PetProfileCreation = () => {
               maxLength={200}
             />
           </div>
-          <div className="font-bold">Location</div>{' '}
           <div className="mb-6">
-            {' '}
-            <div className="py-2"></div>
+            <div className={styles.normalTxt}>Location</div>{' '}
             <StateSelect
               containerClassName="w-full outline outline-2 rounded py-2 px-3"
               countryid={countryId}
@@ -240,8 +238,11 @@ const PetProfileCreation = () => {
           </div>
           <div className="mb-6"></div>
           <div className="flex mx-auto justify-center mb-10">
-            <button type="submit" className="font-bold">
-              Submit
+            <button
+              type="submit"
+              className={`${styles.button} ${styles.signUpButton2}`}
+              >
+              <div className={styles.signUpTxt}>Save</div>
             </button>
           </div>
         </form>
