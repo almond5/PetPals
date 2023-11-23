@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styles from '/styles/dashboard.module.css';
+import style from '/styles/Index.module.css';
+
 import { FcDislike, FcLike } from 'react-icons/fc';
 import { PetProfile } from '@prisma/client';
 import ItsAMatchView from './ItsAMatchView';
@@ -159,14 +161,12 @@ const CardsView = (props: {
                         >
                           <div className={styles.cardBottomContainer}>
                             <div
-                              className="flex px-2 flex-wrap text-left word-left 
-                        break-all font-bold"
+                              className={style.maliTxtCentered}
                             >
                               {petProfile.name}
                             </div>
                             <div
-                              className="flex px-2 flex-wrap text-left word-left 
-                        break-all"
+                              className={style.maliTxt}
                             >
                               {petProfile.location.cityName},{' '}
                               {petProfile.location.stateName}
@@ -175,21 +175,21 @@ const CardsView = (props: {
                         </div>
                       </div>
                       <div className={`${backView ? '' : 'hidden'}`}>
-                        <div className="flex px-2 flex-wrap text-left word-left break-all">
-                          <div className="font-bold mr-2">Name: </div>{' '}
+                        <div className={style.maliTxt}>
+                          <div className={style.normalTxt}>Name: </div>{' '}
                           {petProfile.name}
                         </div>
-                        <div className="flex px-2 flex-wrap text-left word-left break-all">
-                          <div className="font-bold mr-2">Location: </div>{' '}
+                        <div className={style.maliTxt}>
+                          <div className={style.normalTxt}>Location: </div>{' '}
                           {petProfile.location.cityName},{' '}
                           {petProfile.location.stateName}
                         </div>
-                        <div className="flex px-2 flex-wrap text-left word-left break-all">
-                          <div className="font-bold mr-2">Species: </div>{' '}
+                        <div className={style.maliTxt}>
+                          <div className={style.normalTxt}>Species: </div>{' '}
                           {petProfile.species}
                         </div>
-                        <div className="flex px-2 flex-wrap text-left word-left break-all">
-                          <div className="font-bold mr-2">Description: </div>
+                        <div className={style.maliTxt}>
+                          <div className={style.normalTxt}>Description: </div>
                           {petProfile.description}
                         </div>
                       </div>
@@ -203,7 +203,7 @@ const CardsView = (props: {
                       }}
                     >
                       {' '}
-                      <FcDislike style={{ fontSize: '40px' }} />
+                      <img src='/img/cross.png'></img>
                     </button>
                     <button
                       onClick={(e) => {
@@ -212,7 +212,7 @@ const CardsView = (props: {
                       }}
                     >
                       {' '}
-                      <FcLike style={{ fontSize: '40px' }} />
+                      <img src='/img/heart.png'></img>
                     </button>{' '}
                     <button
                       className="font-bold"
@@ -221,7 +221,7 @@ const CardsView = (props: {
                         removeItem(petProfile.id);
                       }}
                     >
-                      Skip
+                      <img src='/img/vector.png'></img>
                     </button>{' '}
                   </div>
                 </div>
@@ -231,14 +231,6 @@ const CardsView = (props: {
             <div className="flex flex-col font-bold pr-8">
               <div className="mx-auto">No More Profiles To View!</div>
               <div className="flex justify-around py-4"></div>
-
-              <button
-                onClick={(e) => {
-                  resetPreferences(e);
-                }}
-              >
-                <div>Reset Preferences?</div>
-              </button>
             </div>
           )}
         </div>
