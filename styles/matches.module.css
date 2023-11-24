@@ -112,8 +112,13 @@
 
 
 .menu {
-  position: absolute;
-  right: 40px;
+  /* position: absolute; */
+  /* right: 0px; */
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  margin-right: 20px;
+
 }
 
 .navHeader {
@@ -122,19 +127,31 @@
   right: 0;
   padding: 20px;
   margin-top: 20px;
-  margin-right: 20px;
-  z-index: 100; 
+  /* margin-right: 20px; */
+  display: flex;
+  /* z-index: 100;  */
   background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  
 }
 
 .head {
   font-family: 'Mali';
   justify-content: center;
+  display: none;
   font-size: 24px;
   font-style: normal;
   margin-top: 30px;
   padding-bottom: 30px;
-  border-bottom: #000 solid 2px;
+  /* border-bottom: #000 solid 2px; */
+}
+
+.navHead {
+  margin: 0px auto;
+  font-size: 24px;
+  font-family: 'Mali';
+  padding-left: 5%;
 }
 
 .matches {
@@ -254,9 +271,14 @@
 }
 
 .container4 {
-  padding: 4;
-  height: calc(100% - (130px));
-  /* height: 100%; */
+  /* padding: 4; */
+  /* margin-top: 7%; */
+  height: 100%;
+  /* height: calc(100% - 10%); */
+  /* height: calc(100% - 100px); */
+  /* margin-bottom: 30px; */
+  /* margin-top: 20px; */
+
   overflow-y: auto;
 }
 
@@ -272,7 +294,23 @@
   width: 100%;
   border-radius: 10px;
   border: 1px solid #000;
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  /* max-width: 546px;
+  max-height: 91px;
+  padding: 19px;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: 100%;
+  flex-shrink: 0;
+  border: 1px solid #000;
+  border-radius: 5px;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  align-items: center;  */
 }
 
 .dropdown {
@@ -287,7 +325,8 @@
   text-align: center; 
   border-bottom: 1px solid rgb(196, 196, 196); 
   line-height: 0.1em;
-  margin: 10px 0 20px;
+  margin: 40px 0 20px;
+  
   
 }
 
@@ -302,9 +341,10 @@
   justify-content: center;
   align-items: center;
   gap: 9px;
-  background: #000;
+  background-color: black;
   cursor: pointer;
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .btnText {
@@ -321,25 +361,40 @@
 .saveBtn:hover {
   background-color: transparent;
   border: 1px solid black;
+  color: white;
 
-  .btnText {
-    color: black;
-    font-weight: 700;
-  }
+}
+
+.saveBtn:hover .btnText {
+  color: black;
+  
+}
+
+.scrollEffect:after  {
+  background: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), transparent);
 }
 
 .inputHeader {
-    color: #000;
-    text-align: left;
-    padding: 10px;
-    padding-left: 7px;
-    font-family: Mali;
-    font-size: 19px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  color: #000;
+  text-align: left;
+  padding: 10px;
+  padding-left: 7px;
+  font-family: Mali;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
 }
 
+.form {
+  min-width: 0;
+  max-width: 500px;
+  width: 100%;  
+  padding-left: 15px;
+  padding-right: 15px;
+}
 
 @media (max-width: 900px)
 {
@@ -368,8 +423,10 @@
   }
   .container4 {
     margin-top: 0;
-    margin-bottom: calc(100% - 85%);
+    /* max-height: calc(100% - 50%); */
+    margin-bottom: 23%;
   }
+
   .container {
     height: 100%;
   }
@@ -381,4 +438,22 @@
     margin-top: 0;
     overflow-y: scroll;
   }
+  .menu {
+    /* position: absolute; */
+    /* right: 0px; */
+    margin-right: 0;
+  
+  }
+  .navHeader {
+    margin-top: 20px;
+  }
 }
+
+@media (max-width: 300px)
+{
+  .icons {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+

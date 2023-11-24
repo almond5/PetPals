@@ -169,42 +169,42 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
 
   return (
     <div>
-      <div className="flex items-center justify-center py-5">
-        <form onSubmit={handleSubmit}>
-          <div
-            className="mt-8 mb-8"
-            style={{
-              position: 'relative',
-              width: '250px',
-              height: '250px',
-              marginLeft: '50px',
-              marginRight: '50px',
-            }}
-          >
-            <label htmlFor="fileInput">
-              <Image
-                src={imageToDisplay}
-                alt=""
-                sizes="500px"
-                fill
-                style={{
-                  objectFit: 'cover',
-                  border: '1px solid gray',
-                  borderRadius: '7px',
-                }}
+      <div className="flex items-center justify-center min-w-0">
+        <form onSubmit={handleSubmit}  className={styles.form}>
+          <div className='flex items-center justify-center'>
+            <div
+              className="mt-8 mb-4"
+              style={{
+                position: 'relative',
+                width: '210px',
+                height: '210px',
+              }}
+            >
+              <label htmlFor="fileInput">
+                <Image
+                  src={imageToDisplay}
+                  alt=""
+                  sizes="500px"
+                  fill
+                  style={{
+                    objectFit: 'cover',
+                    border: '1px solid gray',
+                    borderRadius: '7px',
+                  }}
+                />
+              </label>
+              
+              <input
+                name="imageInput"
+                id="fileInput"
+                onChange={handleChange}
+                accept=".jpg, .png, .gif, .jpeg"
+                type="file"
+                className='display-none'
               />
-            </label>
-
-            <input
-              name="imageInput"
-              id="fileInput"
-              onChange={handleChange}
-              accept=".jpg, .png, .gif, .jpeg"
-              type="file"
-              className="display-none"
-            />
+            </div>
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <div className={styles.inputHeader}>Pet&apos;s Name</div>{' '}
             <input
               id="name"
@@ -228,7 +228,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
               maxLength={322}
             ></textarea>
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <div className={styles.inputHeader}>Pet&apos;s Species</div>
             <input
               id="species"
@@ -271,7 +271,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
           <div className={styles.ownerTitle}>
             <span>Owner</span>
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <div className={styles.inputHeader}>Owner&apos;s Name</div>
             <input
               onChange={(e) => setOwnerName(e.target.value)}
@@ -281,7 +281,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
               className={styles.input}
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <div className={styles.inputHeader}>Phone Number</div>
             <input
               onChange={(e) => setPhoneNumber(e.target.value)}

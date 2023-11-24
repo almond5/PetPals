@@ -217,7 +217,7 @@ const CardsView = (props: {
                           removeItem(petProfile.id);
                         }}
                       >
-                        <img src="/img/vector.png"></img>
+                        <img src='/img/Vector.png'></img>
                       </button>{' '}
                     </div>
                   </div>
