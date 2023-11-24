@@ -150,34 +150,73 @@ const Matches = ({
       <div className={styles.container}>
         <div className={styles.leftBar}>
           <div className={styles.barLogo}>PETPALS</div>
-          <div style={{width: 294.03, height: 0, position: 'absolute', border: '1px white solid', left: '8%'}}></div>
+          <div
+            style={{
+              width: 294.03,
+              height: 0,
+              position: 'absolute',
+              border: '1px white solid',
+              left: '8%',
+            }}
+          ></div>
 
           <div className={styles.items}>
-            <div className={styles.item} onClick={() => {router.push('/Cards');}}>
+            <div
+              className={styles.item}
+              onClick={() => {
+                router.push('/Cards');
+              }}
+            >
               <span>
-              <img src = "/img/homeL.svg" style={{width: 40, height: 44}}/></span>
+                <img src="/img/homeL.svg" style={{ width: 40, height: 44 }} />
+              </span>
               <span className={styles.barTxt}>Home</span>
             </div>
 
-            <div className={`${styles.item} ${styles.active}`} onClick={() => {router.push('/Matches');}}>
+            <div
+              className={`${styles.item} ${styles.active}`}
+              onClick={() => {
+                router.push('/Matches');
+              }}
+            >
               <span>
-              <img src = "/img/heartD.svg" style={{width: 40, height: 40.80}}/></span>
-              <span className={`${styles.barTxt} ${styles.barTxtActive}`}>Matches</span>
+                <img
+                  src="/img/heartD.svg"
+                  style={{ width: 40, height: 40.8 }}
+                />
+              </span>
+              <span className={`${styles.barTxt} ${styles.barTxtActive}`}>
+                Matches
+              </span>
             </div>
 
-            <div className={styles.item} onClick={() => {router.push('/Settings');}}>
+            <div
+              className={styles.item}
+              onClick={() => {
+                router.push('/Settings');
+              }}
+            >
               <span>
-              <img src = "/img/userL.svg" alt="U" style={{width: 40, height: 40.80}}/>
+                <img
+                  src="/img/userL.svg"
+                  alt="U"
+                  style={{ width: 40, height: 40.8 }}
+                />
               </span>
               <span className={styles.barTxt}>Profile</span>
             </div>
           </div>
-          <button className={styles.logoutBtn} onClick={() => signOut({ callbackUrl: '/' })}>
+          <button
+            className={styles.logoutBtn}
+            onClick={() => signOut({ callbackUrl: '/' })}
+          >
             <div className={styles.btnText3}>LOGOUT</div>
           </button>
         </div>
         <div className={styles.rightBar}>
-          <div className={styles.head}>Matches</div>
+          <div className={styles.head}>
+            <div className="flex justify-center">Matches</div>
+          </div>
           <div className={styles.matchesContainer}>
             {matches.map((petProfile: any) => (
               <div key={petProfile.id} className="my-3">
@@ -185,7 +224,7 @@ const Matches = ({
                   <div className={styles.match}>
                     <span>
                       <img
-                      className={styles.profileImg}
+                        className={styles.profileImg}
                         src={
                           process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
                           '/' +
@@ -196,40 +235,63 @@ const Matches = ({
                     <span className={styles.profileName}>
                       {petProfile.name}
                     </span>
-                    <span  className={styles.delete}>
+                    <span className={styles.delete}>
                       <button
                         onClick={(e) => {
                           handleRemove(e, petProfile.id);
                           removeItem(petProfile.id);
-                        }}>
+                        }}
+                      >
                         <div>
-                          <img src = "/img/delete.svg" style={{width: 20, height: 23.7}}/>
+                          <img
+                            src="/img/delete.svg"
+                            style={{ width: 20, height: 23.7 }}
+                          />
                         </div>
                       </button>
                     </span>
-
-
                   </div>
-                  
                 </div>
               </div>
             ))}
-            <div className={styles.like}>
-              Like Count: {likedMeCount} 
-            </div>
+            <div className={styles.like}>Like Count: {likedMeCount}</div>
           </div>
           <div className={styles.container3}>
             <span className={styles.icons}>
-              <span className={styles.icon} onClick={() => {router.push('/Cards');}}>
-                <img src = "/img/homeD.svg" style={{maxWidth: 40, maxHeight: 44}}/>
-
+              <span
+                className={styles.icon}
+                onClick={() => {
+                  router.push('/Cards');
+                }}
+              >
+                <img
+                  src="/img/homeD.svg"
+                  style={{ maxWidth: 40, maxHeight: 44 }}
+                />
               </span>
-              <span className={styles.icon} onClick={() => {router.push('/Matches');}}>
-                <img src = "/img/heartD.svg" style={{maxWidth: 40, maxHeight: 40.80}}/>
+              <span
+                className={styles.icon}
+                onClick={() => {
+                  router.push('/Matches');
+                }}
+              >
+                <img
+                  src="/img/heartD.svg"
+                  style={{ maxWidth: 40, maxHeight: 40.8 }}
+                />
               </span>
 
-              <span className={styles.icon} onClick={() => {router.push('/Settings');}}>
-                <img src = "/img/userD.svg" alt="U" style={{maxWidth: 40, maxHeight: 40.80}}/>
+              <span
+                className={styles.icon}
+                onClick={() => {
+                  router.push('/Settings');
+                }}
+              >
+                <img
+                  src="/img/userD.svg"
+                  alt="U"
+                  style={{ maxWidth: 40, maxHeight: 40.8 }}
+                />
               </span>
             </span>
           </div>
@@ -266,10 +328,8 @@ const Matches = ({
             <div style={{width: 1.67, height: 12.09, left: 12.03, top: 7.42, position: 'absolute', background: 'black'}}></div>
             <div style={{width: 1.62, height: 11.93, left: 6.83, top: 7.50, position: 'absolute', background: 'black'}}></div>
           </div> */}
-          
         </div>
       </div>
-      
     );
   }
 };

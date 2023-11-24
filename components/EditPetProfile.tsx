@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { CitySelect, StateSelect } from 'react-country-state-city';
 import styles from '../styles/matches.module.css';
 
-
 const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
   const [imageToDisplay, setImageToDisplay] = useState(
     process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
@@ -170,7 +169,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
 
   return (
     <div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center py-5">
         <form onSubmit={handleSubmit}>
           <div
             className="mt-8 mb-8"
@@ -195,14 +194,14 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
                 }}
               />
             </label>
-            
+
             <input
               name="imageInput"
               id="fileInput"
               onChange={handleChange}
               accept=".jpg, .png, .gif, .jpeg"
               type="file"
-              className='display-none'
+              className="display-none"
             />
           </div>
           <div className="mb-6">
@@ -270,9 +269,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
           </div>
           {/* <div className={"flex mx-auto justify-center font-bold mb-6"}> */}
           <div className={styles.ownerTitle}>
-            <span>
-              Owner
-            </span>
+            <span>Owner</span>
           </div>
           <div className="mb-6">
             <div className={styles.inputHeader}>Owner&apos;s Name</div>
@@ -303,8 +300,8 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
             </button>
           </div>
         </form>
-    </div>
-  {/* 
+      </div>
+      {/* 
     // <div className={styles.container4}>
       // <form onSubmit={handleSubmit}>
       //   <div

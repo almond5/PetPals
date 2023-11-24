@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import styles from '/styles/dashboard.module.css';
 import style from '/styles/Index.module.css';
-import styleMatch from "../styles/matches.module.css";
-
-
-import { FcDislike, FcLike } from 'react-icons/fc';
+import styleMatch from '../styles/matches.module.css';
 import { PetProfile } from '@prisma/client';
 import ItsAMatchView from './ItsAMatchView';
 
@@ -131,7 +128,7 @@ const CardsView = (props: {
 
   return (
     <div>
-      <div className = {styleMatch.card}>
+      <div className={styleMatch.card}>
         <div className={styleMatch.cardContainer}>
           <div className={`${itsAMatchView ? '' : 'hidden'}`}>
             <ItsAMatchView
@@ -163,14 +160,10 @@ const CardsView = (props: {
                             className={styles.card}
                           >
                             <div className={styles.cardBottomContainer}>
-                              <div
-                                className={style.maliTxtCentered}
-                              >
+                              <div className={style.maliTxtCentered}>
                                 {petProfile.name}
                               </div>
-                              <div
-                                className={style.maliTxt}
-                              >
+                              <div className={style.maliTxt}>
                                 {petProfile.location.cityName},{' '}
                                 {petProfile.location.stateName}
                               </div>
@@ -206,7 +199,7 @@ const CardsView = (props: {
                         }}
                       >
                         {' '}
-                        <img src='/img/heart.png'></img>
+                        <img src="/img/heart.png"></img>
                       </button>{' '}
                       <button
                         onClick={(e) => {
@@ -215,7 +208,7 @@ const CardsView = (props: {
                         }}
                       >
                         {' '}
-                        <img src='/img/cross.png'></img>
+                        <img src="/img/cross.png"></img>
                       </button>
                       <button
                         className="font-bold"
@@ -224,23 +217,30 @@ const CardsView = (props: {
                           removeItem(petProfile.id);
                         }}
                       >
-                        <img src='/img/vector.png'></img>
+                        <img src="/img/vector.png"></img>
                       </button>{' '}
                     </div>
                   </div>
                 </div>
               ))
-          ) : (
-            <div className="flex flex-col font-bold pr-8">
-              <div className="mx-auto">No More Profiles To View!</div>
-              <div className="flex justify-around py-4"></div>
-            </div>
-          )}
+            ) : (
+              <div className="flex flex-col font-bold pr-8">
+                <div className="mx-auto">No More Profiles To View!</div>
+                <div className="flex justify-around py-4"></div>
+
+                <button
+                  onClick={(e) => {
+                    resetPreferences(e);
+                  }}
+                >
+                  <div>Reset Preferences?</div>
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
-      </div>
-        
   );
 };
 
