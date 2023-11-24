@@ -74,7 +74,7 @@ const Register = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container3}>
       <form className="rounded px-8 text-center" onSubmit={handleSubmit}>
         <div className={styles.inputContainer}>
           <div className={styles.inputHeader}>Name</div>

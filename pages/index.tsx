@@ -10,7 +10,7 @@ const Index = () => {
       <div className={styles.container}>
         <div className={styles.title}>PETPALS</div>
         <img
-          src="/img/home_img.png"
+          src="/img/homepage.PNG"
           alt="Pet and Mouse"
           className={styles.petImage}
         />
@@ -40,7 +40,7 @@ const Index = () => {
       <div className={styles.container}>
         <div className={styles.title}>PETPALS</div>
         <img
-          src="/img/home_img.png"
+          src="/img/homepage.PNG"
           alt="Pet and Mouse"
           className={styles.petImage}
         />

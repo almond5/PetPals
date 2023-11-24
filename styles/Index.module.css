@@ -7,11 +7,34 @@
   height: 100vh;
   flex-direction: column;
   overflow: hidden; 
-
 }
 
 .container2 {
-  margin-top: '7vh';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background-image: url("/img/login.jpg");
+  background-repeat: no-repeat;
+  background-size: 42%;
+  background-position: bottom right;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.container3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background-image: url("/img/signup.jpeg");
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: bottom right;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .title {
@@ -38,23 +61,14 @@
 }
 
 .inputContainer {
-  /* width: 341px;
-  height: 425px; */
   flex-shrink: 0;
-  /* left: 45;
-  top: 214;
-  position: 'absolute'; */
   border-radius: 27px;
   border: 1px solid #000;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  /* margin: 10px; */
   padding: 20px;
   margin-top: 75px;
   margin-left: 20px;
   margin-right: 20px;
-  /* boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' */
-  /* borderRadius: 27,  */
-  /* border: '1px black solid' */
 }
 
 .catHeadComponent {
@@ -214,14 +228,12 @@
 }
 
 .petImage {
-  max-width: 90%;
-  height: auto;
+  max-width: 80%;
+  max-height: 50%;
   margin: 20px 0;
   position: center;
-  /* width: '90%'; */
-  height: '100%';
-  padding-top: 4vh;
-  padding-bottom: 6vh;
+  padding-top: 2vh;
+  padding-bottom: 3vh;
 }
 
 .petImage2 {
@@ -256,15 +268,7 @@
 }
 
 .button {
-  /* position: absolute;
-  background-color: transparent;
-  color: transparent;
-  padding: 10px 50px;
-  border: none;
   cursor: pointer;
-  font-weight: bold; */
-  /* cursor: pointer; */
-  
 }
 
 .signInButton {
@@ -273,32 +277,6 @@
   justify-content: center;
   align-items: center;
   gap: 9px;
-  /* top: 88%;
-  left: 49%;
-  color: clear;
-  border: none;
-  width: 320px;
-  height: 55px;
-  line-height: 50px;
-  text-align: center;
-  min-width: 100px;
-  min-height: 20px;
-  transform: translate(-50%, -50%);
-  padding: 0px 70px; */
-  /* width: '100%';
-  height: '100%';
-  padding-left: 32; 
-  padding-right: 32; 
-  padding-top: 20;
-  padding-bottom: 20; */
-  /* display: flex; */
-  /* color: #000; */
-  /* text-align: center;
-  font-family: Mali;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal; */
 }
 
 .btnText2 {
@@ -396,4 +374,22 @@ gap: 9px; */
   min-width: 100px;
   min-height: 70px;
   padding: 0px 0px;
+}
+
+.normalTxt {
+  font-family: Mali;
+  font-weight: bold;
+}
+
+.maliTxtCentered {
+  padding-left: 8px;
+  font-family: Mali;
+  font-weight: bold;
+  text-align: left;
+}
+
+.maliTxt {
+  font-family: Mali;
+  padding-left: 8px;
+  text-align: left;
 }

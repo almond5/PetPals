@@ -5,6 +5,7 @@ import prisma from '@/lib/prismadb';
 import Settings from '@/pages/Settings';
 import router from 'next/router';
 import { VscSignOut } from 'react-icons/vsc';
+import styles from '../styles/matches.module.css';
 
 export async function getServerSideProps(context: any) {
   try {
@@ -133,7 +134,6 @@ const Matches = ({
   const removeItem = (index: any) => {
     setMatches(matches.filter((i: any) => index !== i.id));
   };
-
   if (sesh === 'loading') {
     return <div>Loading...</div>;
   } else if (sesh === 'unauthenticated') {
@@ -147,96 +147,187 @@ const Matches = ({
     );
   } else if (sesh === 'authenticated' && petProfile !== null) {
     return (
-      <div>
-        <div className="header">
-          PetPals
-          <button
-            className="absolute right-10 top-8"
-            onClick={() => signOut({ callbackUrl: '/' })}
-          >
-            <VscSignOut style={{ fontSize: '40px' }} />
-          </button>
-        </div>
-        <div className="absolute flex flex-col">
-          <div className="py-5">
-            <button
-              onClick={() => {
-                router.push('/Settings');
-              }}
-            >
-              Settings
-            </button>{' '}
-          </div>
-          <div className="py-5">
-            <button
-              onClick={() => {
-                router.push('/Matches');
-              }}
-            >
-              Matches
-            </button>{' '}
-          </div>
-          <div className="py-5">
-            <button
+      <div className={styles.container}>
+        <div className={styles.leftBar}>
+          <div className={styles.barLogo}>PETPALS</div>
+          <div
+            style={{
+              width: 294.03,
+              height: 0,
+              position: 'absolute',
+              border: '1px white solid',
+              left: '8%',
+            }}
+          ></div>
+
+          <div className={styles.items}>
+            <div
+              className={styles.item}
               onClick={() => {
                 router.push('/Cards');
               }}
             >
-              Cards
-            </button>{' '}
+              <span>
+                <img src="/img/homeL.svg" style={{ width: 40, height: 44 }} />
+              </span>
+              <span className={styles.barTxt}>Home</span>
+            </div>
+
+            <div
+              className={`${styles.item} ${styles.active}`}
+              onClick={() => {
+                router.push('/Matches');
+              }}
+            >
+              <span>
+                <img
+                  src="/img/heartD.svg"
+                  style={{ width: 40, height: 40.8 }}
+                />
+              </span>
+              <span className={`${styles.barTxt} ${styles.barTxtActive}`}>
+                Matches
+              </span>
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => {
+                router.push('/Settings');
+              }}
+            >
+              <span>
+                <img
+                  src="/img/userL.svg"
+                  alt="U"
+                  style={{ width: 40, height: 40.8 }}
+                />
+              </span>
+              <span className={styles.barTxt}>Profile</span>
+            </div>
           </div>
+          <button
+            className={styles.logoutBtn}
+            onClick={() => signOut({ callbackUrl: '/' })}
+          >
+            <div className={styles.btnText3}>LOGOUT</div>
+          </button>
         </div>
-        <div className="py-10">
-          <div
-            className="flex justify-center font-normal text-black text-[24px] 
-      text-center rounded-xl"
-          >
-            Matches <FcLike style={{ fontSize: '40px' }} />
+        <div className={styles.rightBar}>
+          <div className={styles.head}>
+            <div className="flex justify-center">Matches</div>
           </div>
-          <div
-            className="flex justify-center font-normal text-black text-[24px] 
-      text-center rounded-xl"
-          >
-            Like Count: {likedMeCount}
-          </div>
-          <div className="py-4" style={{ maxHeight: '400px' }}>
+          <div className={styles.matchesContainer}>
             {matches.map((petProfile: any) => (
               <div key={petProfile.id} className="my-3">
-                <div className="flex justify-center items-center">
-                  <div
-                    className="w-[340px] h-[90px] border-2 border-solid border-black 
-              relative rounded-xl overflow-auto"
-                  >
-                    <img
-                      className="left-[18px] absolute w-[50px] h-[50px] top-[19px]
-                   bg-[#d9d9d9] rounded-[25px]"
-                      src={
-                        process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
-                        '/' +
-                        petProfile.image.publicId
-                      }
-                    />
-                    <div
-                      className="left-[88px] absolute top-[24px] font-normal text-black 
-                text-[24px] flex px-2 pr-20 flex-wrap text-left word-left break-all"
-                    >
+                <div className={styles.matches}>
+                  <div className={styles.match}>
+                    <span>
+                      <img
+                        className={styles.profileImg}
+                        src={
+                          process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
+                          '/' +
+                          petProfile.image.publicId
+                        }
+                      />
+                    </span>
+                    <span className={styles.profileName}>
                       {petProfile.name}
-                    </div>
-                    <button
-                      onClick={(e) => {
-                        handleRemove(e, petProfile.id);
-                        removeItem(petProfile.id);
-                      }}
-                    >
-                      <div className="absolute align-right right-[18px] top-[24px]">
-                        <FcFullTrash style={{ fontSize: '40px' }} />
-                      </div>
-                    </button>
+                    </span>
+                    <span className={styles.delete}>
+                      <button
+                        onClick={(e) => {
+                          handleRemove(e, petProfile.id);
+                          removeItem(petProfile.id);
+                        }}
+                      >
+                        <div>
+                          <img
+                            src="/img/delete.svg"
+                            style={{ width: 20, height: 23.7 }}
+                          />
+                        </div>
+                      </button>
+                    </span>
                   </div>
                 </div>
               </div>
             ))}
+            <div className={styles.like}>Like Count: {likedMeCount}</div>
           </div>
+          <div className={styles.container3}>
+            <span className={styles.icons}>
+              <span
+                className={styles.icon}
+                onClick={() => {
+                  router.push('/Cards');
+                }}
+              >
+                <img
+                  src="/img/homeD.svg"
+                  style={{ maxWidth: 40, maxHeight: 44 }}
+                />
+              </span>
+              <span
+                className={styles.icon}
+                onClick={() => {
+                  router.push('/Matches');
+                }}
+              >
+                <img
+                  src="/img/heartD.svg"
+                  style={{ maxWidth: 40, maxHeight: 40.8 }}
+                />
+              </span>
+
+              <span
+                className={styles.icon}
+                onClick={() => {
+                  router.push('/Settings');
+                }}
+              >
+                <img
+                  src="/img/userD.svg"
+                  alt="U"
+                  style={{ maxWidth: 40, maxHeight: 40.8 }}
+                />
+              </span>
+            </span>
+          </div>
+          {/* <div style={{width: 546, height: 91, left: 542, top: 87, position: 'absolute', border: '1px black solid'}} />
+          <div style={{width: 546, height: 91, left: 542, top: 197, position: 'absolute', border: '1px black solid'}} />
+          <div style={{width: 50, height: 50, left: 564, top: 107, position: 'absolute', background: '#D9D9D9', borderRadius: 9999}} />
+          <div style={{width: 50, height: 50, left: 561, top: 217, position: 'absolute', background: '#D9D9D9', borderRadius: 9999}} />
+          <div style={{left: 631, top: 117, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 24, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>Pet 1</div>
+          <div style={{left: 631, top: 227, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 24, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>Pet 2</div>
+          <div style={{width: 50, height: 50, left: 561, top: 328, position: 'absolute', background: '#D9D9D9', borderRadius: 9999}} />
+          <div style={{left: 631, top: 338, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 24, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>Pet 2</div>
+          <div style={{width: 546, height: 91, left: 542, top: 307, position: 'absolute', border: '1px black solid'}} />
+          <div style={{width: 546, height: 91, left: 542, top: 418, position: 'absolute', border: '1px black solid'}} />
+          <div style={{width: 195, height: 25, left: 717, top: 529, position: 'absolute', textAlign: 'center', color: '#8A8A8A', fontSize: 24, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>32 people like u</div>
+          <div style={{width: 50, height: 50, left: 561, top: 439, position: 'absolute', background: '#D9D9D9', borderRadius: 9999}} />
+          <div style={{left: 631, top: 449, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 24, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>Pet 2</div>
+          <div style={{width: 20, height: 23.70, left: 1043, top: 121, position: 'absolute'}}>
+            <div style={{width: 19.95, height: 23.59, left: 0.03, top: 0.06, position: 'absolute', background: 'black'}}></div>
+            <div style={{width: 1.67, height: 12.09, left: 12.03, top: 7.42, position: 'absolute', background: 'black'}}></div>
+            <div style={{width: 1.62, height: 11.93, left: 6.83, top: 7.50, position: 'absolute', background: 'black'}}></div>
+          </div>
+          <div style={{width: 20, height: 23.70, left: 1043, top: 229, position: 'absolute'}}>
+            <div style={{width: 19.95, height: 23.59, left: 0.03, top: 0.06, position: 'absolute', background: 'black'}}></div>
+            <div style={{width: 1.67, height: 12.09, left: 12.03, top: 7.42, position: 'absolute', background: 'black'}}></div>
+            <div style={{width: 1.62, height: 11.93, left: 6.83, top: 7.50, position: 'absolute', background: 'black'}}></div>
+          </div>
+          <div style={{width: 20, height: 23.70, left: 1043, top: 341, position: 'absolute'}}>
+            <div style={{width: 19.95, height: 23.59, left: 0.03, top: 0.06, position: 'absolute', background: 'black'}}></div>
+            <div style={{width: 1.67, height: 12.09, left: 12.03, top: 7.42, position: 'absolute', background: 'black'}}></div>
+            <div style={{width: 1.62, height: 11.93, left: 6.83, top: 7.50, position: 'absolute', background: 'black'}}></div>
+          </div>
+          <div style={{width: 20, height: 23.70, left: 1043, top: 452, position: 'absolute'}}>
+            <div style={{width: 19.95, height: 23.59, left: 0.03, top: 0.06, position: 'absolute', background: 'black'}}></div>
+            <div style={{width: 1.67, height: 12.09, left: 12.03, top: 7.42, position: 'absolute', background: 'black'}}></div>
+            <div style={{width: 1.62, height: 11.93, left: 6.83, top: 7.50, position: 'absolute', background: 'black'}}></div>
+          </div> */}
         </div>
       </div>
     );

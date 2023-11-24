@@ -1,5 +1,5 @@
 .swipe {
-  position: absolute;
+  position: relative;
   outline: 4px solid;
   padding: 10px 20px;
   border-radius: 4px;
@@ -7,8 +7,7 @@
 
 .cardContainer {
   width: 90vw;
-  position: absolute;
-  padding-left: 35px;
+  position: relative;
   max-width: 400px;
   height: 400px;
   transition: opacity 0.5s ease-in-out;
@@ -43,4 +42,10 @@
   background-color: #fff;
   width: 100%;
   overflow: auto;
+}
+
+@media (max-width: 900px) {
+  .swipe {
+    position: relative;
+  }
 }

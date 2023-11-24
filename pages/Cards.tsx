@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import router from 'next/router';
 import prisma from '@/lib/prismadb';
 import CardsView from '@/components/CardsView';
-import { PetProfile, User } from '@prisma/client';
-import { VscSignOut } from 'react-icons/vsc';
+import styles from '../styles/matches.module.css';
+import { PetProfile } from '@prisma/client';
 
 export async function getServerSideProps(context: any) {
   try {
@@ -114,50 +114,81 @@ const Dashboard = ({
     router.push('/Settings');
   } else if (sesh === 'authenticated' && profile !== null) {
     return (
-      <div>
-        <div className="header">
-          PetPals
-          <button
-            className="absolute right-10 top-8"
-            onClick={() => signOut({ callbackUrl: '/' })}
-          >
-            <VscSignOut style={{ fontSize: '40px' }} />
-          </button>
-        </div>
-        <div className="absolute flex flex-col">
-          <div className="py-5">
-            <button
-              onClick={() => {
-                router.push('/Settings');
-              }}
-            >
-              Settings
-            </button>{' '}
-          </div>
-          <div className="py-5">
-            <button
-              onClick={() => {
-                router.push('/Matches');
-              }}
-            >
-              Matches
-            </button>{' '}
-          </div>
-          <div className="py-5">
-            <button
+      <div className={styles.container}>
+        <div className={styles.leftBar}>
+          <div className={styles.barLogo}>PETPALS</div>
+          <div
+            style={{
+              width: 294.03,
+              height: 0,
+              position: 'absolute',
+              border: '1px white solid',
+              left: '8%',
+            }}
+          ></div>
+
+          <div className={styles.items}>
+            <div
+              className={`${styles.item} ${styles.active}`}
               onClick={() => {
                 router.push('/Cards');
               }}
             >
-              Cards
-            </button>{' '}
+              <span>
+                <img src="/img/homeD.svg" style={{ width: 40, height: 44 }} />
+              </span>
+              <span className={`${styles.barTxt} ${styles.barTxtActive}`}>
+                Home
+              </span>
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => {
+                router.push('/Matches');
+              }}
+            >
+              <span>
+                <img src="/img/heartL.svg" style={{ width: 40, height: 44 }} />
+              </span>
+              <span className={styles.barTxt}>Matches</span>
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => {
+                router.push('/Settings');
+              }}
+            >
+              <span>
+                <img
+                  src="/img/userL.svg"
+                  alt="U"
+                  style={{ width: 40, height: 40.8 }}
+                />
+              </span>
+              <span className={styles.barTxt}>Profile</span>
+            </div>
+          </div>
+          <button
+            className={styles.logoutBtn}
+            onClick={() => signOut({ callbackUrl: '/' })}
+          >
+            <div className={styles.btnText3}>LOGOUT</div>
+          </button>
+        </div>
+        <div className={styles.rightBar}>
+          <div className={styles.head}>
+            <div className="flex justify-center">Home</div>
+          </div>
+          <div className="flex justify-center">
+            <CardsView
+              petProfile={petProfile}
+              petProfiles={profiles}
+              setProfiles={setProfiles}
+            />
           </div>
         </div>
-        <CardsView
-          petProfile={petProfile}
-          petProfiles={profiles}
-          setProfiles={setProfiles}
-        />
       </div>
     );
   }
