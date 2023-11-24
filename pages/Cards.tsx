@@ -1,10 +1,11 @@
-import { getSession, signOut, useSession } from 'next-auth/react';
-import React, { useState } from 'react';
-import router from 'next/router';
-import prisma from '@/lib/prismadb';
-import CardsView from '@/components/CardsView';
-import { PetProfile, User } from '@prisma/client';
-import { VscSignOut } from 'react-icons/vsc';
+import { getSession, signOut, useSession } from "next-auth/react";
+import React, { useState } from "react";
+import router from "next/router";
+import prisma from "@/lib/prismadb";
+import CardsView from "@/components/CardsView";
+import styles from "../styles/matches.module.css";
+import { PetProfile, User } from "@prisma/client";
+import { VscSignOut } from "react-icons/vsc";
 
 export async function getServerSideProps(context: any) {
   try {
@@ -40,12 +41,12 @@ export async function getServerSideProps(context: any) {
       (profile) =>
         profile.interestedInMe.some(
           (interest) =>
-            interest.isMatch === 'True' &&
+            interest.isMatch === "True" &&
             interest.myProfileId === petProfile?.id
         ) ||
         profile.myInterests.some(
           (interest) =>
-            interest.isMatch === 'True' &&
+            interest.isMatch === "True" &&
             interest.interestedProfileId === petProfile?.id
         )
     );
@@ -61,7 +62,7 @@ export async function getServerSideProps(context: any) {
 
     if (petProfile?.interestedInMe !== undefined) {
       filteredDislikedProfiles = petProfile?.interestedInMe.map((interest) => {
-        if (interest.isMatch === 'False' || interest.isMatch === 'True')
+        if (interest.isMatch === "False" || interest.isMatch === "True")
           return interest.myProfileId;
       });
     }
@@ -103,55 +104,121 @@ const Dashboard = ({
   const [profile] = useState<PetProfile>(petProfile);
   const [profiles, setProfiles] = useState<PetProfile>(petProfiles);
 
-  if (sesh === 'loading') {
+  if (sesh === "loading") {
     return <div>Loading...</div>;
-  } else if (sesh === 'unauthenticated') {
-    router.push('/');
+  } else if (sesh === "unauthenticated") {
+    router.push("/");
   } else if (
-    sesh === 'authenticated' &&
+    sesh === "authenticated" &&
     (profile === null || profile === undefined)
   ) {
-    router.push('/Settings');
-  } else if (sesh === 'authenticated' && profile !== null) {
+    router.push("/Settings");
+  } else if (sesh === "authenticated" && profile !== null) {
     return (
       <div>
-        <div className="header">
-          PetPals
-          <button
-            className="absolute right-10 top-8"
-            onClick={() => signOut({ callbackUrl: '/' })}
-          >
-            <VscSignOut style={{ fontSize: '40px' }} />
-          </button>
-        </div>
-        <div className="absolute flex flex-col">
-          <div className="py-5">
-            <button
-              onClick={() => {
-                router.push('/Settings');
+          <div className={styles.leftBar}>
+            <div className={styles.barLogo}>PETPALS</div>
+            <div
+              style={{
+                width: 294.03,
+                height: 0,
+                position: "absolute",
+                border: "1px white solid",
+                left: "8%",
               }}
-            >
-              Settings
-            </button>{' '}
-          </div>
-          <div className="py-5">
+            ></div>
+
+            <div className={styles.items}>
+              <div
+                className={`${styles.item} ${styles.active}`}
+                onClick={() => {
+                  router.push("/Cards");
+                }}
+              >
+                <span>
+                  <img src="/img/homeL.svg" style={{ width: 40, height: 44 }} />
+                </span>
+                <span className={`${styles.barTxt} ${styles.barTxtActive}`}>Home</span>
+              </div>
+              <div
+                className={styles.item}
+                onClick={() => {
+                  router.push("/Matches");
+                }}
+              >
+                <span>
+                  <img
+                    src="/img/heartL.svg"
+                    style={{ width: 40, height: 40.8 }}
+                  />
+                </span>
+                <span className={styles.barTxt}>Matches</span>
+              </div>
+              <div
+                className={styles.item}
+                onClick={() => {
+                  router.push("/Settings");
+                }}
+              >
+                <span>
+                  <img
+                    src="/img/userD.svg"
+                    alt="U"
+                    style={{ width: 40, height: 40.8 }}
+                  />
+                </span>
+                <span className={styles.barTxt}>
+                  Profile
+                </span>
+              </div>
+            </div>
             <button
-              onClick={() => {
-                router.push('/Matches');
-              }}
+              className={styles.logoutBtn}
+              onClick={() => signOut({ callbackUrl: "/" })}
             >
-              Matches
-            </button>{' '}
+              <div className={styles.btnText3}>LOGOUT</div>
+            </button>
           </div>
-          <div className="py-5">
-            <button
-              onClick={() => {
-                router.push('/Cards');
-              }}
-            >
-              Cards
-            </button>{' '}
-          </div>
+            <div className={styles.head}>Profile Settings</div>
+
+            <div className={styles.container3}>
+              <span className={styles.icons}>
+                <span
+                  className={styles.icon}
+                  onClick={() => {
+                    router.push("/Cards");
+                  }}
+                >
+                  <img
+                    src="/img/homeD.svg"
+                    style={{ maxWidth: 40, maxHeight: 44 }}
+                  />
+                </span>
+                <span
+                  className={styles.icon}
+                  onClick={() => {
+                    router.push("/Matches");
+                  }}
+                >
+                  <img
+                    src="/img/heartD.svg"
+                    style={{ maxWidth: 40, maxHeight: 40.8 }}
+                  />
+                </span>
+
+                <span
+                  className={styles.icon}
+                  onClick={() => {
+                    router.push("/Settings");
+                  }}
+                >
+                  <img
+                    src="/img/userD.svg"
+                    alt="U"
+                    style={{ maxWidth: 40, maxHeight: 40.8 }}
+                  />
+                </span>
+              </span>
         </div>
         <CardsView
           petProfile={petProfile}
