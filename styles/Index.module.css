@@ -61,23 +61,14 @@
 }
 
 .inputContainer {
-  /* width: 341px;
-  height: 425px; */
   flex-shrink: 0;
-  /* left: 45;
-  top: 214;
-  position: 'absolute'; */
   border-radius: 27px;
   border: 1px solid #000;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  /* margin: 10px; */
   padding: 20px;
   margin-top: 75px;
   margin-left: 20px;
   margin-right: 20px;
-  /* boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' */
-  /* borderRadius: 27,  */
-  /* border: '1px black solid' */
 }
 
 .catHeadComponent {

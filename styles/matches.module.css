@@ -96,7 +96,9 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 25px;
+  padding: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
   margin-left: 30px;
   margin-right: 30px;
   border-radius: 10px;
@@ -265,8 +267,77 @@
   border: 1px solid black;
 }
 
-.insideContainer {
+.input {
+  flex-shrink: 0;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #000;
+  padding: 20px;
+}
 
+.dropdown {
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+.ownerTitle {
+  width: 100%; 
+  font-family: Mali;
+  font-weight: 700;
+  text-align: center; 
+  border-bottom: 1px solid rgb(196, 196, 196); 
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  
+}
+
+.ownerTitle span {
+  background:#fff; 
+  padding:0 10px; 
+}
+
+.saveBtn {
+  display: flex;
+  padding: 10px 22px;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  background: #000;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btnText {
+  color: #FFF;
+  font-family: Mali;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%; /* 26.4px */
+  letter-spacing: 3.84px;
+  text-transform: uppercase;
+}
+
+.saveBtn:hover {
+  background-color: transparent;
+  border: 1px solid black;
+
+  .btnText {
+    color: black;
+    font-weight: 700;
+  }
+}
+
+.inputHeader {
+    color: #000;
+    text-align: left;
+    padding: 10px;
+    padding-left: 7px;
+    font-family: Mali;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 

@@ -190,7 +190,8 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
                 fill
                 style={{
                   objectFit: 'cover',
-                  border: '3px solid #000000',
+                  border: '1px solid gray',
+                  borderRadius: '7px',
                 }}
               />
             </label>
@@ -205,47 +206,46 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
             />
           </div>
           <div className="mb-6">
-            <div className="font-bold">Pet&apos;s Name</div>{' '}
+            <div className={styles.inputHeader}>Pet&apos;s Name</div>{' '}
             <input
               id="name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full outline outline-2 rounded py-2 px-3"
+              className={styles.input}
               maxLength={200}
             />
           </div>
           <div className="mb-4">
-            <div className="font-bold">Pet&apos;s Description</div>
+            <div className={styles.inputHeader}>Pet&apos;s Description</div>
             <textarea
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
               rows={7}
-              className="w-full outline outline-2 rounded py-2 px-3 "
+              className={styles.input}
               maxLength={322}
             ></textarea>
           </div>
           <div className="mb-6">
-            <div className="font-bold">Pet&apos;s Species</div>
+            <div className={styles.inputHeader}>Pet&apos;s Species</div>
             <input
               id="species"
               type="text"
               value={species}
               onChange={(e) => setSpecies(e.target.value)}
               required
-              className="w-full outline outline-2 rounded py-2 px-3"
+              className={styles.input}
               maxLength={200}
             />
           </div>
-          <div className="font-bold">Location</div>{' '}
+          <div className={styles.inputHeader}>Location</div>{' '}
           <div className="mb-6">
             {' '}
-            <div className="py-2"></div>
             <StateSelect
-              containerClassName="w-full outline outline-2 rounded py-2 px-3"
+              containerClassName={`${styles.input} ${styles.dropdown}`}
               countryid={countryId}
               defaultValue={defaultState}
               onChange={(e: any) => {
@@ -256,7 +256,7 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
             />
             <div className="py-2"></div>
             <CitySelect
-              containerClassName="w-full outline outline-2 rounded py-2 px-3"
+              containerClassName={`${styles.input} ${styles.dropdown}`}
               countryid={countryId}
               stateid={stateId}
               cityid={cityId}
@@ -268,21 +268,24 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
               placeHolder={cityName}
             />
           </div>
-          <div className="flex mx-auto justify-center font-bold mb-6">
-            Owner Stuff
+          {/* <div className={"flex mx-auto justify-center font-bold mb-6"}> */}
+          <div className={styles.ownerTitle}>
+            <span>
+              Owner
+            </span>
           </div>
           <div className="mb-6">
-            <div className="font-bold">Owner&apos;s Name</div>
+            <div className={styles.inputHeader}>Owner&apos;s Name</div>
             <input
               onChange={(e) => setOwnerName(e.target.value)}
               type="text"
               value={ownerName}
               id="ownerName"
-              className="w-full outline outline-2 rounded py-2 px-3"
+              className={styles.input}
             />
           </div>
           <div className="mb-6">
-            <div className="font-bold">Phone Number</div>
+            <div className={styles.inputHeader}>Phone Number</div>
             <input
               onChange={(e) => setPhoneNumber(e.target.value)}
               type="text"
@@ -290,13 +293,13 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
               value={phoneNumber}
               id="phone_number"
               placeholder="888-888-8888"
-              className="w-full outline outline-2 rounded py-2 px-3"
+              className={styles.input}
             />
           </div>
           <div className="mb-6"></div>
           <div className="flex mx-auto justify-center mb-10">
-            <button type="submit" className="font-bold">
-              Save
+            <button type="submit" className={styles.saveBtn}>
+              <div className={styles.btnText}>Save</div>
             </button>
           </div>
         </form>
