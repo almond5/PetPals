@@ -231,6 +231,13 @@ const CardsView = (props: {
             <div className="flex flex-col font-bold pr-8">
               <div className="mx-auto">No More Profiles To View!</div>
               <div className="flex justify-around py-4"></div>
+              <button
+                onClick={(e) => {
+                  resetPreferences(e);
+                }}
+              >
+                <div>Reset Preferences?</div>
+              </button>
             </div>
           )}
         </div>
