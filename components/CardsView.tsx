@@ -213,11 +213,12 @@ const CardsView = (props: {
                       <button
                         className="font-bold"
                         onClick={(e) => {
+                          e.preventDefault();
                           setBackView(false);
                           removeItem(petProfile.id);
                         }}
                       >
-                        <img src="/img/vector.png"></img>
+                        <img src="/img/Vector.png"></img>
                       </button>{' '}
                     </div>
                   </div>
