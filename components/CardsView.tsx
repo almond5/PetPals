@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from '/styles/dashboard.module.css';
 import style from '/styles/Index.module.css';
+import styleMatch from "../styles/matches.module.css";
+
 
 import { FcDislike, FcLike } from 'react-icons/fc';
 import { PetProfile } from '@prisma/client';
@@ -128,121 +130,117 @@ const CardsView = (props: {
   };
 
   return (
-    <div className="py-10 flex justify-center">
-      <div className={styles.cardContainer}>
-        <div className={`${itsAMatchView ? '' : 'hidden'}`}>
-          <ItsAMatchView
-            currProfile={props.petProfile}
-            currInterestedProfile={currInterestedProfile}
-            setItsAMatchView={setItsAMatchView}
-          />
-        </div>
-        <div className={`${itsAMatchView ? 'hidden' : ''}`}>
-          {props.petProfiles.length > 0 ? (
-            props.petProfiles.map((petProfile: any) => (
-              <div key={petProfile.id}>
-                <div className={styles.swipe}>
-                  <div className="py-1"></div>
-                  <button onClick={() => toggleBack()}>
-                    <div className={styles.card}>
-                      <div className={`${backView ? 'hidden' : ''}`}>
-                        <div
-                          style={{
-                            backgroundImage:
-                              'url(' +
-                              process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
-                              '/' +
-                              petProfile.image.publicId +
-                              ')',
-                            position: 'absolute',
-                            backgroundSize: 'cover',
-                          }}
-                          className={styles.card}
-                        >
-                          <div className={styles.cardBottomContainer}>
-                            <div
-                              className={style.maliTxtCentered}
-                            >
-                              {petProfile.name}
-                            </div>
-                            <div
-                              className={style.maliTxt}
-                            >
-                              {petProfile.location.cityName},{' '}
-                              {petProfile.location.stateName}
+    <div>
+      <div className = {styleMatch.card}>
+        <div className={styleMatch.cardContainer}>
+          <div className={`${itsAMatchView ? '' : 'hidden'}`}>
+            <ItsAMatchView
+              currProfile={props.petProfile}
+              currInterestedProfile={currInterestedProfile}
+              setItsAMatchView={setItsAMatchView}
+            />
+          </div>
+          <div className={`${itsAMatchView ? 'hidden' : ''}`}>
+            {props.petProfiles.length > 0 ? (
+              props.petProfiles.map((petProfile: any) => (
+                <div key={petProfile.id}>
+                  <div className={styles.swipe}>
+                    <div className="py-1"></div>
+                    <button onClick={() => toggleBack()}>
+                      <div className={styles.card}>
+                        <div className={`${backView ? 'hidden' : ''}`}>
+                          <div
+                            style={{
+                              backgroundImage:
+                                'url(' +
+                                process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
+                                '/' +
+                                petProfile.image.publicId +
+                                ')',
+                              position: 'absolute',
+                              backgroundSize: 'cover',
+                            }}
+                            className={styles.card}
+                          >
+                            <div className={styles.cardBottomContainer}>
+                              <div
+                                className={style.maliTxtCentered}
+                              >
+                                {petProfile.name}
+                              </div>
+                              <div
+                                className={style.maliTxt}
+                              >
+                                {petProfile.location.cityName},{' '}
+                                {petProfile.location.stateName}
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <div className={`${backView ? '' : 'hidden'}`}>
+                          <div className={style.maliTxt}>
+                            <div className={style.normalTxt}>Name: </div>{' '}
+                            {petProfile.name}
+                          </div>
+                          <div className={style.maliTxt}>
+                            <div className={style.normalTxt}>Location: </div>{' '}
+                            {petProfile.location.cityName},{' '}
+                            {petProfile.location.stateName}
+                          </div>
+                          <div className={style.maliTxt}>
+                            <div className={style.normalTxt}>Species: </div>{' '}
+                            {petProfile.species}
+                          </div>
+                          <div className={style.maliTxt}>
+                            <div className={style.normalTxt}>Description: </div>
+                            {petProfile.description}
+                          </div>
+                        </div>
                       </div>
-                      <div className={`${backView ? '' : 'hidden'}`}>
-                        <div className={style.maliTxt}>
-                          <div className={style.normalTxt}>Name: </div>{' '}
-                          {petProfile.name}
-                        </div>
-                        <div className={style.maliTxt}>
-                          <div className={style.normalTxt}>Location: </div>{' '}
-                          {petProfile.location.cityName},{' '}
-                          {petProfile.location.stateName}
-                        </div>
-                        <div className={style.maliTxt}>
-                          <div className={style.normalTxt}>Species: </div>{' '}
-                          {petProfile.species}
-                        </div>
-                        <div className={style.maliTxt}>
-                          <div className={style.normalTxt}>Description: </div>
-                          {petProfile.description}
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                  <div className="flex justify-evenly py-10">
-                    <button
-                      onClick={(e) => {
-                        handleLike(e, petProfile);
-                        removeItem(petProfile.id);
-                      }}
-                    >
-                      {' '}
-                      <img src='/img/heart.png'></img>
-                    </button>{' '}
-                    <button
-                      onClick={(e) => {
-                        handleDislike(e, petProfile);
-                        removeItem(petProfile.id);
-                      }}
-                    >
-                      {' '}
-                      <img src='/img/cross.png'></img>
                     </button>
-                    <button
-                      className="font-bold"
-                      onClick={(e) => {
-                        setBackView(false);
-                        removeItem(petProfile.id);
-                      }}
-                    >
-                      <img src='/img/vector.png'></img>
-                    </button>{' '}
+                    <div className="flex justify-evenly py-10">
+                      <button
+                        onClick={(e) => {
+                          handleLike(e, petProfile);
+                          removeItem(petProfile.id);
+                        }}
+                      >
+                        {' '}
+                        <img src='/img/heart.png'></img>
+                      </button>{' '}
+                      <button
+                        onClick={(e) => {
+                          handleDislike(e, petProfile);
+                          removeItem(petProfile.id);
+                        }}
+                      >
+                        {' '}
+                        <img src='/img/cross.png'></img>
+                      </button>
+                      <button
+                        className="font-bold"
+                        onClick={(e) => {
+                          setBackView(false);
+                          removeItem(petProfile.id);
+                        }}
+                      >
+                        <img src='/img/vector.png'></img>
+                      </button>{' '}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
+              ))
           ) : (
             <div className="flex flex-col font-bold pr-8">
               <div className="mx-auto">No More Profiles To View!</div>
               <div className="flex justify-around py-4"></div>
-              <button
-                onClick={(e) => {
-                  resetPreferences(e);
-                }}
-              >
-                <div>Reset Preferences?</div>
-              </button>
             </div>
           )}
         </div>
       </div>
     </div>
+      </div>
+        
   );
 };
 
