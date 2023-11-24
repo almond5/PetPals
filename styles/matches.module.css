@@ -214,13 +214,16 @@
   display: none;
   justify-content: center;
   align-items: center;
+  /* z-index: 1; */
 }
 
 .matchesContainer {
   padding: 4;
-  height: calc(100% - (121px + 36px + 40px + 25px));
+  height: calc(100% - (83px));
+  /* height: 100%; */
   margin-top: 80px;
   overflow-y: auto;
+  /* margin-bottom: calc(100% - 375px) */
 }
 
 .like {
@@ -248,6 +251,25 @@
 
 }
 
+.container4 {
+  padding: 4;
+  height: calc(100% - (130px));
+  /* height: 100%; */
+  overflow-y: auto;
+}
+
+.editImg {
+  width: '20px';
+  height: '20px';
+  position: 'relative';
+  border: 1px solid black;
+}
+
+.insideContainer {
+
+}
+
+
 @media (max-width: 900px)
 {
   .leftBar
@@ -271,7 +293,18 @@
   }
   .matchesContainer {
     margin-top: 0;
-
+    margin-bottom: calc(100% - 80%);
+  }
+  .container4 {
+    margin-top: 0;
+    margin-bottom: calc(100% - 85%);
+  }
+  .container {
+    height: 100%;
+  }
+  .cardContainer {
+    margin-top: 0;
+    overflow-y: scroll;
   }
   .cardContainer {
     margin-top: 0;

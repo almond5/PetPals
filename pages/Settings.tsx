@@ -6,6 +6,7 @@ import CreatePetProfile from '@/components/CreatePetProfile';
 import AccountView from '../components/AccountView';
 import prisma from '@/lib/prismadb';
 import { VscSignOut } from 'react-icons/vsc';
+import styles from '../styles/matches.module.css';
 
 export async function getServerSideProps(context: any) {
   try {
@@ -65,70 +66,149 @@ const Settings = ({
     petProfile !== undefined // start of edit problem
   ) {
     return (
-      <div>
-        <div className="header">
-          PetPals
-          <button
-            className="absolute right-10 top-8"
-            onClick={() => signOut({ callbackUrl: '/' })}
-          >
-            <VscSignOut style={{ fontSize: '40px' }} />
+      // <div>
+      //   <div className="header">
+      //     PetPals
+      //     <button
+      //       className="absolute right-10 top-8"
+      //       onClick={() => signOut({ callbackUrl: '/' })}
+      //     >
+      //       <VscSignOut style={{ fontSize: '40px' }} />
+      //     </button>
+      //   </div>
+      //   <div className="absolute flex flex-col">
+      //     <div className="py-5">
+      //       <button
+      //         onClick={() => {
+      //           router.push('/Settings');
+      //         }}
+      //       >
+      //         Settings
+      //       </button>{' '}
+      //     </div>
+      //     <div className="py-5">
+      //       <button
+      //         onClick={() => {
+      //           router.push('/Matches');
+      //         }}
+      //       >
+      //         Matches
+      //       </button>{' '}
+      //     </div>
+      //     <div className="py-5">
+      //       <button
+      //         onClick={() => {
+      //           router.push('/Cards');
+      //         }}
+      //       >
+      //         Cards
+      //       </button>{' '}
+      //     </div>
+      //   </div>
+      //   <div className="flex flex-col items-center justify-center py-10">
+      //     <button
+      //       onClick={() => {
+      //         setAccountView(false);
+      //         setProfileView(true);
+      //       }}
+      //     >
+      //       <div>Edit Profile</div>
+      //     </button>
+      //     <button
+      //       onClick={() => {
+      //         setProfileView(false);
+      //         setAccountView(true);
+      //       }}
+      //     >
+      //       <div>Account Settings</div>
+      //     </button>
+      //     <div className={`${profileView ? '' : 'hidden'}`}>
+      //       <EditPetProfile
+      //         petProfile={petProfile}
+      //         userProfile={userProfile}
+      //       ></EditPetProfile>
+      //     </div>
+      //     <div className={`${accountView ? '' : 'hidden'}`}>
+      //       <AccountView userProfile={userProfile}></AccountView>
+      //     </div>
+      //   </div>
+      // </div>
+      <div className={styles.container}>
+        <div className={styles.leftBar}>
+          <div className={styles.barLogo}>PETPALS</div>
+          <div style={{width: 294.03, height: 0, position: 'absolute', border: '1px white solid', left: '8%'}}></div>
+
+          <div className={styles.items}>
+            <div className={styles.item} onClick={() => {router.push('/Cards');}}>
+              <span>
+              <img src = "/img/homeL.svg" style={{width: 40, height: 44}}/></span>
+              <span className={styles.barTxt}>Home</span>
+            </div>
+
+            <div className={styles.item} onClick={() => {router.push('/Matches');}}>
+              <span>
+                <img src = "/img/heartL.svg" style={{width: 40, height: 40.80}}/></span>
+              <span className={styles.barTxt}>Matches</span>
+            </div>
+            <div className={`${styles.item} ${styles.active}`} onClick={() => {router.push('/Settings');}}>
+              <span>
+              <img src = "/img/userD.svg" alt="U" style={{width: 40, height: 40.80}}/>
+              </span>
+              <span className={`${styles.barTxt} ${styles.barTxtActive}`}>Profile</span>
+            </div>
+          </div>
+          <button className={styles.logoutBtn} onClick={() => signOut({ callbackUrl: '/' })}>
+            <div className={styles.btnText3}>LOGOUT</div>
           </button>
         </div>
-        <div className="absolute flex flex-col">
-          <div className="py-5">
+        <div className={styles.rightBar}>
+          <div className={styles.head}>Profile Settings</div>
+          <div className="flex flex-col items-center justify-center py-10">
             <button
               onClick={() => {
-                router.push('/Settings');
+                setAccountView(false);
+                setProfileView(true);
               }}
             >
-              Settings
-            </button>{' '}
-          </div>
-          <div className="py-5">
+              <div>Edit Profile</div>
+            </button>
             <button
               onClick={() => {
-                router.push('/Matches');
+                setProfileView(false);
+                setAccountView(true);
               }}
             >
-              Matches
-            </button>{' '}
+              <div>Account Settings</div>
+            </button>
+            <div className={`${profileView ? '' : 'hidden'}`}>
+              <EditPetProfile
+                petProfile={petProfile}
+                userProfile={userProfile}
+              ></EditPetProfile>
+            </div>
+            <div className={`${accountView ? '' : 'hidden'}`}>
+              <AccountView userProfile={userProfile}></AccountView>
+            </div>
           </div>
-          <div className="py-5">
-            <button
-              onClick={() => {
-                router.push('/Cards');
-              }}
-            >
-              Cards
-            </button>{' '}
-          </div>
-        </div>
-        <div className="flex flex-col items-center justify-center py-10">
-          <button
-            onClick={() => {
-              setAccountView(false);
-              setProfileView(true);
-            }}
-          >
-            <div>Edit Profile</div>
-          </button>
-          <button
-            onClick={() => {
-              setProfileView(false);
-              setAccountView(true);
-            }}
-          >
-            <div>Account Settings</div>
-          </button>
-          <div className={`${profileView ? '' : 'hidden'}`}>
+          <div className={styles.container4}>
             <EditPetProfile
-              petProfile={petProfile}
-              userProfile={userProfile}
-            ></EditPetProfile>
+                petProfile={petProfile}
+                userProfile={userProfile}
+              ></EditPetProfile>
           </div>
-          <div className={`${accountView ? '' : 'hidden'}`}>
-            <AccountView userProfile={userProfile}></AccountView>
+
+          <div className={styles.container3}>
+            <span className={styles.icons}>
+              <span className={styles.icon} onClick={() => {router.push('/Cards');}}>
+                <img src = "/img/homeD.svg" style={{maxWidth: 40, maxHeight: 44}}/>
+              </span>
+              <span className={styles.icon} onClick={() => {router.push('/Matches');}}>
+                <img src = "/img/heartD.svg" style={{maxWidth: 40, maxHeight: 40.80}}/>
+              </span>
+              <span className={styles.icon} onClick={() => {router.push('/Settings');}}>
+                <img src = "/img/userD.svg" alt="U" style={{maxWidth: 40, maxHeight: 40.80}}/>
+              </span>
+            </span>
           </div>
         </div>
       </div>
