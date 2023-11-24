@@ -8,7 +8,6 @@
 .cardContainer {
   width: 90vw;
   position: absolute;
-  padding-left: 35px;
   max-width: 400px;
   height: 400px;
   transition: opacity 0.5s ease-in-out;
@@ -44,3 +43,8 @@
   width: 100%;
   overflow: auto;
 }
+
+@media (max-width: 900px)
+{.swipe {
+  position: relative;
+}}
