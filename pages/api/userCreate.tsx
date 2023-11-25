@@ -37,7 +37,6 @@ export default async function handler(
           password: password,
           phoneNumber: phoneNumber,
           name: name,
-          description: '',
         },
       });
       res.status(200).json('Success');
