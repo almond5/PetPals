@@ -4,6 +4,7 @@ import router from 'next/router';
 import prisma from '@/lib/prismadb';
 import CardsView from '@/components/CardsView';
 import styles from '../styles/matches.module.css';
+import style from '../styles/dashboard.module.css';
 import { PetProfile } from '@prisma/client';
 
 export async function getServerSideProps(context: any) {
@@ -180,7 +181,7 @@ const Dashboard = ({
         <div className={styles.rightBar}>
 
           <div className={styles.container3}>
-            <span className={styles.icons}>
+            <span className={style.icons}>
               <span className={styles.icon} onClick={() => {router.push('/Cards');}}>
                 <img src = "/img/homeD.svg" style={{maxWidth: 40, maxHeight: 44}}/>
               </span>
