@@ -84,3 +84,9 @@
     position: absolute;
   } */
 }
+
+@media (max-width: 900px) {
+  .swipe {
+    margin-top: 0px;
+  }
+}
