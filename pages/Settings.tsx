@@ -169,7 +169,12 @@ const Settings = ({
             <div className={styles.navHeader}>
               <span className={styles.navHead}>Edit Profile</span>
               <span className={styles.menu}>
-              <img src = "/img/crossD.svg" style={{width: 20, height: 22.39}}/></span>
+                <img 
+                  src = "/img/crossD.svg" 
+                  style={{width: 20, height: 22.39}}
+                  onClick={displayReadView}
+                />
+              </span>
               {/* TODO - hide view and make read only */}
             </div>
             <EditPetProfile
@@ -183,7 +188,12 @@ const Settings = ({
             <div className={styles.navHeader}>
               <span className={styles.navHead}>Account Settings</span>
               <span className={styles.menu}>
-              <img src = "/img/crossD.svg" style={{width: 20, height: 22.39}}/></span>
+              <img 
+                src = "/img/crossD.svg" 
+                style={{width: 20, height: 22.39}}
+                onClick={displayReadView}
+              />
+              </span>
               {/* TODO - hide view and make read only */}
             </div>
             <AccountView
