@@ -18,8 +18,8 @@ const ReadPetProfile = (props: {
             className="mt-8 mb-8"
             style={{
               position: 'relative',
-              width: '250px',
-              height: '250px',
+              width: '210px',
+              height: '210px',
               marginLeft: '50px',
               marginRight: '50px',
             }}
