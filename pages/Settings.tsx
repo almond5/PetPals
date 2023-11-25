@@ -2,11 +2,12 @@ import { getSession, signOut, useSession } from 'next-auth/react';
 import router from 'next/router';
 import { useState } from 'react';
 import EditPetProfile from '@/components/EditPetProfile';
+import ReadPetProfile from '@/components/ReadPetProflie';
 import CreatePetProfile from '@/components/CreatePetProfile';
 import AccountView from '../components/AccountView';
 import prisma from '@/lib/prismadb';
+import { VscSignOut } from 'react-icons/vsc';
 import styles from '../styles/matches.module.css';
-import Gear from '@/components/Gear';
 
 export async function getServerSideProps(context: any) {
   try {
@@ -47,15 +48,29 @@ const Settings = ({
   petProfile: any;
   userProfile: any;
 }) => {
-  const [profileView, setProfileView] = useState(true);
+  const [readView, setReadView] = useState(true);
+  const [editView, setEditView] = useState(false);
   const [accountView, setAccountView] = useState(false);
 
   const { status: sesh, data: data } = useSession();
-  const [gearView, setGearView] = useState(false);
 
-  const toggleGearView = () => {
-    setGearView(!gearView);
-  };
+  function displayReadView() {
+    setReadView(true);
+    setEditView(false);
+    setAccountView(false);
+  }
+
+  function displayEditView() {
+    setReadView(false);
+    setEditView(true);
+    setAccountView(false);
+  }
+
+  function displayAccountView() {
+    setReadView(false);
+    setEditView(false);
+    setAccountView(true);
+  }
 
   // check user has a petProfile and make it so it uses editProfile API
   if (sesh === 'loading') {
@@ -137,35 +152,63 @@ const Settings = ({
           </button>
         </div>
         <div className={styles.rightBar}>
-          <div className={styles.head}>
-            <div className={`${profileView ? '' : 'hidden'}`}>
-              <div className="flex justify-center pr-5">Profile Settings</div>
+          <div className={`${readView ? '' : 'hidden'} ${styles.container4}`}>
+            <div className={styles.navHeader}>
+              <span className={styles.navHead} style={{ paddingLeft: '0%' }}>
+                My Profile
+              </span>
             </div>
-            <div className={`${accountView ? '' : 'hidden'}`}>
-              <div className="flex justify-center pr-5">Acount Settings</div>
-            </div>
-            <div className="absolute right-5 top-8">
-              <Gear
-                setAccountView={setAccountView}
-                setProfileView={setProfileView}
-              ></Gear>
-            </div>
+            <ReadPetProfile
+              petProfile={petProfile}
+              userProfile={userProfile}
+              setEditView={displayEditView}
+              setAccountView={displayAccountView}
+            ></ReadPetProfile>
           </div>
-          <div className="flex flex-col items-center justify-center pr-5">
-            <div className={`${accountView ? '' : 'hidden'}`}>
-              <AccountView userProfile={userProfile}></AccountView>
+
+          <div className={`${editView ? '' : 'hidden'} ${styles.container4}`}>
+            <div className={styles.navHeader}>
+              <span className={styles.navHead}>Edit Profile</span>
+              <span className={styles.menu}>
+                <button onClick={() => displayReadView()}>
+                  <img
+                    src="/img/crossD.svg"
+                    style={{ width: 20, height: 22.39 }}
+                  />
+                </button>
+              </span>
+              {/* TODO - hide view and make read only */}
             </div>
-          </div>
-          <div className={`${profileView ? styles.container4 : 'hidden'}`}>
             <EditPetProfile
               petProfile={petProfile}
               userProfile={userProfile}
+              setReadView={displayReadView}
             ></EditPetProfile>
+          </div>
+
+          <div
+            className={`${accountView ? '' : 'hidden'} ${styles.container4}`}
+          >
+            <div className={styles.navHeader}>
+              <span className={styles.navHead}>Account Settings</span>
+              <span className={styles.menu}>
+                <button onClick={() => displayReadView()}>
+                  <img
+                    src="/img/crossD.svg"
+                    style={{ width: 20, height: 22.39 }}
+                  />
+                </button>
+              </span>
+            </div>
+            <AccountView
+              userProfile={userProfile}
+              setReadView={displayReadView}
+            ></AccountView>
           </div>
 
           <div className={styles.container3}>
             <span className={styles.icons}>
-              <span
+              <button
                 className={styles.icon}
                 onClick={() => {
                   router.push('/Cards');
@@ -175,7 +218,7 @@ const Settings = ({
                   src="/img/homeD.svg"
                   style={{ maxWidth: 40, maxHeight: 44 }}
                 />
-              </span>
+              </button>
               <span
                 className={styles.icon}
                 onClick={() => {
@@ -187,7 +230,7 @@ const Settings = ({
                   style={{ maxWidth: 40, maxHeight: 40.8 }}
                 />
               </span>
-              <span
+              <button
                 className={styles.icon}
                 onClick={() => {
                   router.push('/Settings');
@@ -198,7 +241,7 @@ const Settings = ({
                   alt="U"
                   style={{ maxWidth: 40, maxHeight: 40.8 }}
                 />
-              </span>
+              </button>
             </span>
           </div>
         </div>
