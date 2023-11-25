@@ -126,11 +126,11 @@ const ReadPetProfile = (props: {
                 <div className={styles.normalTxt}>Phone Number: </div>{' '}
                 <div className={styles.bigTxt}>{props.userProfile.phoneNumber}</div>
               </div>
-              <div className={styles.maliTxt}>
+              {/* <div className={styles.maliTxt}>
                 <div className={styles.normalTxt}>Location: </div>{' '}
                 <div className={styles.bigTxt}>{props.petProfile.location.cityName},{' '}
                 {props.petProfile.location.stateName}</div>
-              </div>
+              </div> */}
               
 {/*               
               <p className={styles.displayInfo}>
