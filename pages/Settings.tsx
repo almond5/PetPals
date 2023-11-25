@@ -153,6 +153,9 @@ const Settings = ({
         </div>
         <div className={styles.rightBar}>
           <div className={`${readView ? '' : 'hidden'} ${styles.container4}`}>
+          <div className={styles.navHeader}>
+            <span className={styles.navHead} style={{paddingLeft: '0%'}}>My Profile</span>
+            </div>
             <ReadPetProfile
               petProfile={petProfile}
               userProfile={userProfile}
@@ -161,6 +164,12 @@ const Settings = ({
           </div>
 
           <div className={`${editView ? '' : 'hidden'} ${styles.container4}`}>
+            <div className={styles.navHeader}>
+              <span className={styles.navHead}>Edit Profile</span>
+              <span className={styles.menu}>
+              <img src = "/img/crossD.svg" style={{width: 20, height: 22.39}}/></span>
+              {/* TODO - hide view and make read only */}
+            </div>
             <EditPetProfile
               petProfile={petProfile}
               userProfile={userProfile}

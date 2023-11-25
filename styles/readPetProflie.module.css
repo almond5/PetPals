@@ -8,7 +8,7 @@
   
   .displayPetName {
     color: #000;
-    font-size: 30px;
+    font-size: 32px;
     /* width: 171px;
     height: 40px; */
     flex-shrink: 0;
@@ -16,6 +16,8 @@
   }
   
   .displayEdit {
+    padding-top: 10px;
+    padding-bottom: 10px;
     color: #8E8E8E;
     /* text-align: center; */
     /* font-family: Mali; */
@@ -23,6 +25,10 @@
     /* font-style: normal; */
     font-weight: 400;
     /* line-height: normal; */
+  }
+
+  .displayEdit:hover {
+    color: #5a5a5a;
   }
   
   .displayDescriptionBox {
@@ -32,6 +38,7 @@
     width: 546px;
     /* height: 363px; */
     padding-bottom: 2%;
+
     flex-shrink: 0;
     /* background-color: rgba(217, 217, 217, 0.20); */
     margin-top: 1.5%;
@@ -56,7 +63,7 @@
   }
   
   .displayDivider {
-    width: 60%; 
+    width: 45%;
     font-family: Mali;
     font-weight: 700;
     text-align: center; 
@@ -68,3 +75,27 @@
   .displayDivider span {
     background-color: #FFF;
   }
+
+  
+.maliTxt {
+  font-family: Mali;
+  padding-left: 8px;
+  text-align: left;
+  font-size: 23px;
+}
+
+.normalTxt {
+  font-family: Mali;
+  /* font-weight: bold; */
+  font-size: 15px;
+  color: gray;
+  /* margin-top: 20px; */
+}
+
+.bigTxt {
+  /* font-family: Mali; */
+  /* font-weight: bold; */
+  /* font-size: 15px; */
+  /* color: gray; */
+  margin-bottom: 20px;
+}

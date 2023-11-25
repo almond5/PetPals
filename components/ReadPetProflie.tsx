@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import styles from '../styles/readPetProflie.module.css';
+// import style from '/styles/Index.module.css';
+
 
 const ReadPetProfile = (props: {
   petProfile: any;
@@ -44,7 +46,6 @@ const ReadPetProfile = (props: {
 
         <div className={styles.displayFont}>
           <div className={styles.displayPetName}>{props.petProfile.name}</div>
-          {/* <div>{petName}</div> */}
           <button
             className={styles.displayEdit}
             onClick={(e) => {
@@ -61,7 +62,25 @@ const ReadPetProfile = (props: {
           <div className={styles.displayDescriptionBox}>
             <div className="flex items-center justify-center w-100">
               <div className={styles.displayDescriptionBoxText}>
-                <p className={styles.displayInfo}>
+            
+                
+                
+                <div className={styles.maliTxt}>
+                  <div className={styles.normalTxt}>Description: </div>
+                  <div className={styles.bigTxt}>{props.petProfile.description}</div>
+                </div>
+                <div className={styles.maliTxt}>
+                  <div className={styles.normalTxt}>Species: </div>{' '}
+                  <div className={styles.bigTxt}>{props.petProfile.petSpecies}</div>
+                </div>
+                <div className={styles.maliTxt}>
+                  <div className={styles.normalTxt}>Location: </div>{' '}
+                  <div className={styles.bigTxt}>{props.petProfile.location.cityName},{' '}
+                  {props.petProfile.location.stateName}</div>
+
+                </div>
+
+                {/* <p className={styles.displayInfo}>
                   Description: {props.petProfile.description}
                 </p>
                 <p className={styles.displayInfo}>
@@ -70,7 +89,7 @@ const ReadPetProfile = (props: {
                 <p className={styles.displayInfo}>
                   Location: {props.petProfile.location.cityName},{' '}
                   {props.petProfile.location.stateName}
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
@@ -84,24 +103,42 @@ const ReadPetProfile = (props: {
         <div style={{width: 348, height: 363, left: 644, top: 382, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 30, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>Description</div> */}
       </div>
 
-      <div className="flex items-center justify-center">
-        {/* <div style={{maxWidth: '100px'}}> */}
-        {/* </div> */}
-        <div className={styles.displayDivider}>
-          <span>Owner</span>
+      {/* <div className='flex items-center justify-center'> */}
+        <div className="flex items-center justify-center">
+          {/* <div style={{maxWidth: '100px'}}> */}
+          {/* </div> */}
+          <div className={styles.displayDivider}>
+            <span className='px-4'>Owner</span>
+          </div>
         </div>
-      </div>
+      {/* </div> */}
 
       <div className="flex items-center justify-center">
         <div className={styles.displayDescriptionBox}>
           <div className="flex items-center justify-center">
             <div className={styles.displayDescriptionBoxText}>
+
+              <div className={styles.maliTxt}>
+                <div className={styles.normalTxt}>Name: </div>
+                <div className={styles.bigTxt}>{props.userProfile.name}</div>
+              </div>
+              <div className={styles.maliTxt}>
+                <div className={styles.normalTxt}>Phone Number: </div>{' '}
+                <div className={styles.bigTxt}>{props.userProfile.phoneNumber}</div>
+              </div>
+              <div className={styles.maliTxt}>
+                <div className={styles.normalTxt}>Location: </div>{' '}
+                <div className={styles.bigTxt}>{props.petProfile.location.cityName},{' '}
+                {props.petProfile.location.stateName}</div>
+              </div>
+              
+{/*               
               <p className={styles.displayInfo}>
                 Name: {props.userProfile.name}
               </p>
               <p className={styles.displayInfo}>
                 Phone Number: {props.userProfile.phoneNumber}
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
