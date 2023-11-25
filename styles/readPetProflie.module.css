@@ -1,0 +1,70 @@
+.displayFont {
+    text-align: center;
+    font-family: Mali;
+    font-style: normal;
+    line-height: normal;
+    
+  }
+  
+  .displayPetName {
+    color: #000;
+    font-size: 30px;
+    /* width: 171px;
+    height: 40px; */
+    flex-shrink: 0;
+    font-weight: 400;
+  }
+  
+  .displayEdit {
+    color: #8E8E8E;
+    /* text-align: center; */
+    /* font-family: Mali; */
+    font-size: 20px;
+    /* font-style: normal; */
+    font-weight: 400;
+    /* line-height: normal; */
+  }
+  
+  .displayDescriptionBox {
+    /* display: flex;
+    align-items: center;
+    justify-self: center; */
+    width: 546px;
+    /* height: 363px; */
+    padding-bottom: 2%;
+    flex-shrink: 0;
+    /* background-color: rgba(217, 217, 217, 0.20); */
+    margin-top: 1.5%;
+    padding-top: 1%;
+  }
+  
+  .displayDescriptionBoxText {
+    font-family: Mali;
+    font-style: normal;
+    line-height: normal;
+    /* background-color: red; */
+    width: 70%;
+    /* width: 50px; */
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* margin: 50%; */
+  }
+  
+  .displayInfo {
+    /* display: flex; */
+    padding: 1%;
+  }
+  
+  .displayDivider {
+    width: 60%; 
+    font-family: Mali;
+    font-weight: 700;
+    text-align: center; 
+    border-bottom: 1px solid rgb(196, 196, 196); 
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+  }
+  
+  .displayDivider span {
+    background-color: #FFF;
+  }
