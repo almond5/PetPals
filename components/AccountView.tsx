@@ -4,7 +4,7 @@ import DeleteModalView from './DeleteModalView';
 import styles from '../styles/matches.module.css';
 
 
-const AccountView = (props: { userProfile: any }) => {
+const AccountView = (props: { userProfile: any; setReadView: any }) => {
   const [newEmail, setNewEmail] = useState(props.userProfile.email);
   const [newPassword, setNewPassword] = useState('');
   const [oldPassword, setOldPassword] = useState('');
@@ -35,6 +35,10 @@ const AccountView = (props: { userProfile: any }) => {
       return null;
     }
   };
+
+  function showReadView() {
+    props.setReadView();
+  }
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();

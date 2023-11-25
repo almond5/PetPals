@@ -7,6 +7,7 @@ const ReadPetProfile = (props: {
   petProfile: any;
   userProfile: any;
   setEditView: any;
+  setAccountView: any;
 }) => {
   return (
     <div>
@@ -55,7 +56,6 @@ const ReadPetProfile = (props: {
           >
             edit
           </button>
-          {/* <button onClick={setEditView}>edit</button> */}
         </div>
 
         <div className="flex items-center justify-center">
@@ -63,8 +63,6 @@ const ReadPetProfile = (props: {
             <div className="flex items-center justify-center w-100">
               <div className={styles.displayDescriptionBoxText}>
             
-                
-                
                 <div className={styles.maliTxt}>
                   <div className={styles.normalTxt}>Description: </div>
                   <div className={styles.bigTxt}>{props.petProfile.description}</div>
@@ -77,41 +75,19 @@ const ReadPetProfile = (props: {
                   <div className={styles.normalTxt}>Location: </div>{' '}
                   <div className={styles.bigTxt}>{props.petProfile.location.cityName},{' '}
                   {props.petProfile.location.stateName}</div>
-
                 </div>
 
-                {/* <p className={styles.displayInfo}>
-                  Description: {props.petProfile.description}
-                </p>
-                <p className={styles.displayInfo}>
-                  Species: {props.petProfile.petSpecies}
-                </p>
-                <p className={styles.displayInfo}>
-                  Location: {props.petProfile.location.cityName},{' '}
-                  {props.petProfile.location.stateName}
-                </p> */}
               </div>
             </div>
           </div>
         </div>
 
-        {/* <div className={styles.displayFont}>
-        </div> */}
-
-        {/* <div style={{width: 171, height: 40, left: 727, top: 275, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 32, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>NAME</div>
-        <div style={{left: 793, top: 314, position: 'absolute', textAlign: 'center', color: '#8E8E8E', fontSize: 20, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>edit</div>
-        <div style={{width: 348, height: 363, left: 644, top: 382, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 30, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>Description</div> */}
       </div>
-
-      {/* <div className='flex items-center justify-center'> */}
         <div className="flex items-center justify-center">
-          {/* <div style={{maxWidth: '100px'}}> */}
-          {/* </div> */}
           <div className={styles.displayDivider}>
             <span className='px-4'>Owner</span>
           </div>
         </div>
-      {/* </div> */}
 
       <div className="flex items-center justify-center">
         <div className={styles.displayDescriptionBox}>
@@ -126,23 +102,20 @@ const ReadPetProfile = (props: {
                 <div className={styles.normalTxt}>Phone Number: </div>{' '}
                 <div className={styles.bigTxt}>{props.userProfile.phoneNumber}</div>
               </div>
-              {/* <div className={styles.maliTxt}>
-                <div className={styles.normalTxt}>Location: </div>{' '}
-                <div className={styles.bigTxt}>{props.petProfile.location.cityName},{' '}
-                {props.petProfile.location.stateName}</div>
-              </div> */}
-              
-{/*               
-              <p className={styles.displayInfo}>
-                Name: {props.userProfile.name}
-              </p>
-              <p className={styles.displayInfo}>
-                Phone Number: {props.userProfile.phoneNumber}
-              </p> */}
             </div>
           </div>
         </div>
       </div>
+
+      <div className="flex items-center justify-center">
+        <button className={styles.accountSettingButton} onClick={(e) => {
+            e.preventDefault();
+            props.setAccountView();
+          }}>
+          <div className={`${styles.accountSettingText} ${styles.displayFont}`}>ACCOUNT SETTINGS</div>
+        </button>
+      </div>
+
     </div>
     // </div>
   );
