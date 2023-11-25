@@ -8,15 +8,6 @@ const EditPetProfile = (props: {
   petProfile: any; 
   userProfile: any; 
   setReadView: any; 
-
-  setPetImage:any;
-  setPetName:any;
-  setPetDescription:any;
-  setPetSpecies:any;
-  setOwnerName:any;
-  setOwnerPhoneNumber:any;
-  setCityName:any;
-  setStateName:any;
 }) => {
   const [imageToDisplay, setImageToDisplay] = useState(
     process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
@@ -43,10 +34,6 @@ const EditPetProfile = (props: {
   const defaultCity = { id: cityId, name: cityName };
 
   const { status: sesh, data: data } = useSession();
-
-  // function showReadView() {
-  //   props.setReadView();
-  // }
 
   const handleChange = (e: any) => {
     if (
@@ -106,18 +93,7 @@ const EditPetProfile = (props: {
 
     await submitProfileEdit(petProfile);
     await submitOwnerEdit(ownerProfile);
-    props.setReadView();
-    // props.setEditedProfile(petProfile);
-
-    props.setPetImage(public_id);
-    props.setPetName(name);
-    props.setPetDescription(description);
-    props.setPetSpecies(species);
-    props.setOwnerName(ownerName);
-    props.setOwnerPhoneNumber(phoneNumber);
-    props.setCityName(cityName);
-    props.setStateName(stateName);
-    // window.location.reload();
+    window.location.reload();
   };
 
   const submitOwnerEdit = async (ownerProfile: {
