@@ -153,15 +153,15 @@ const Settings = ({
         </div>
         <div className={styles.rightBar}>
           <div className={`${readView ? '' : 'hidden'} ${styles.container4}`}>
-          <div className={styles.navHeader}>
-            <span className={styles.navHead} style={{paddingLeft: '0%'}}>My Profile</span>
+            <div className={styles.navHeader}>
+              <span className={styles.navHead} style={{paddingLeft: '0%'}}>My Profile</span>
             </div>
             <ReadPetProfile
               petProfile={petProfile}
               userProfile={userProfile}
               setEditView={displayEditView}
             ></ReadPetProfile>
-          </div>
+            </div>
 
           <div className={`${editView ? '' : 'hidden'} ${styles.container4}`}>
             <div className={styles.navHeader}>

@@ -260,6 +260,7 @@ const CardsView = (props: {
           {props.petProfiles.length > 0 ? (
             props.petProfiles.map((petProfile: any) => (
               <div key={petProfile.id}>
+                <div className={styles.relative}>
                 <div className={styles.swipe}>
                   {/* <div className="py-1"></div> */}
                   <button onClick={() => toggleBack()}>
@@ -344,11 +345,12 @@ const CardsView = (props: {
                     </button>{' '}
                   </div>
                 </div>
+                </div>
               </div>
             // </div>
             ))
           ) : (
-            <div className="flex flex-col font-bold pr-8">
+            <div className={`${"flex flex-col font-bold"} ${styles.container4Cards}`} style={{paddingTop: '50%'}}>
               <div className="mx-auto" style={{fontFamily: 'Mali', fontSize: '24px', fontWeight: '200'}}>No More Profiles To View!</div>
               <div className="flex"></div>
 

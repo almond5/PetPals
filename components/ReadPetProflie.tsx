@@ -9,7 +9,7 @@ const ReadPetProfile = (props: {
   setEditView: any;
 }) => {
   return (
-    <div>
+    <div style={{marginBottom: '100px'}}>
       <div>
         <div className="flex items-center justify-center">
           <div

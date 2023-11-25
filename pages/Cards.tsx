@@ -208,7 +208,7 @@ const Dashboard = ({
           </div> */}
           
           <div className={styles.container4}>
-            <div className={styles.head}>
+            <div className={`${styles.head} ${styles.flag}`}>
               <span className={styles.navHead}>Home</span>
             </div>
             <CardsView

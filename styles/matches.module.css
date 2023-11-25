@@ -483,6 +483,9 @@
   .navHeader {
     margin-top: 15px;
   }
+  .flag {
+    display: none;
+  }
 }
 
 @media (max-width: 300px)
