@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Mali&family=Montserrat&display=swap');
 
 .container {
@@ -7,7 +6,7 @@
   align-items: center;
   height: 100vh;
   flex-direction: column;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .button {
@@ -34,7 +33,7 @@
 
 .logoutBtn {
   bottom: 4%;
-  background-color: #FFF;
+  background-color: #fff;
   padding: 20px 32px;
   width: 294px;
   height: 66px;
@@ -64,7 +63,7 @@
 }
 
 .barLogo {
-  color: #FFF;
+  color: #fff;
   font-family: Mali;
   font-size: 64px;
   font-weight: 400;
@@ -74,7 +73,6 @@
   padding: 5px;
   padding-top: 20px;
   padding-bottom: 20px;
-
 }
 
 .barTxt {
@@ -98,7 +96,6 @@
 .items {
   position: relative;
   margin-top: 10px;
-
 }
 
 .item {
@@ -112,13 +109,11 @@
   margin-right: 30px;
   border-radius: 10px;
   cursor: pointer;
-
 }
 
 .item:not(.active):hover {
   background-color: #656565;
 }
-
 
 .menu {
   /* position: absolute; */
@@ -127,7 +122,6 @@
   justify-content: flex-end;
   cursor: pointer;
   margin-right: 20px;
-
 }
 
 .navHeader {
@@ -143,7 +137,6 @@
   background-color: white;
   justify-content: space-between;
   align-items: center;
-  
 }
 
 .head {
@@ -195,7 +188,7 @@
   height: 50px;
   align-items: center;
   border-radius: 50%;
-  border: .5px solid gray;
+  border: 0.5px solid gray;
 }
 
 .profileName {
@@ -208,7 +201,6 @@
   margin-left: 20px;
   text-transform: capitalize;
   overflow: hidden;
-
 }
 
 .delete {
@@ -232,8 +224,6 @@
   max-width: 546px;
   z-index: 1;
 }
-
-
 
 .icon {
   position: relative;
@@ -280,12 +270,11 @@
 }
 
 .cardContainer {
-    padding: 4;
-    height: calc(100% - (121px + 36px + 40px + 25px));
-    position: relative;
-    /* margin-top: 150px; */
-    align-items: center;
-    
+  padding: 4;
+  height: calc(100% - (121px + 36px + 40px + 25px));
+  position: relative;
+  /* margin-top: 150px; */
+  align-items: center;
 }
 
 .container4 {
@@ -348,20 +337,18 @@
 }
 
 .ownerTitle {
-  width: 100%; 
+  width: 100%;
   font-family: Mali;
   font-weight: 700;
-  text-align: center; 
-  border-bottom: 1px solid rgb(196, 196, 196); 
+  text-align: center;
+  border-bottom: 1px solid rgb(196, 196, 196);
   line-height: 0.1em;
   margin: 40px 0 20px;
-  
-  
 }
 
 .ownerTitle span {
-  background:#fff; 
-  padding:0 10px; 
+  background: #fff;
+  padding: 0 10px;
 }
 
 .saveBtn {
@@ -377,7 +364,7 @@
 }
 
 .btnText {
-  color: #FFF;
+  color: #fff;
   font-family: Mali;
   font-size: 18px;
   font-style: normal;
@@ -391,15 +378,13 @@
   background-color: transparent;
   border: 1px solid black;
   color: white;
-
 }
 
 .saveBtn:hover .btnText {
   color: black;
-  
 }
 
-.scrollEffect:after  {
+.scrollEffect:after {
   background: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent);
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), transparent);
 }
@@ -414,21 +399,18 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
 }
 
 .form {
   min-width: 0;
   max-width: 500px;
-  width: 100%;  
+  width: 100%;
   padding-left: 15px;
   padding-right: 15px;
 }
 
-@media (max-width: 900px)
-{
-  .leftBar
-  {
+@media (max-width: 900px) {
+  .leftBar {
     display: none;
   }
   .rightBar {
@@ -478,23 +460,20 @@
     /* position: absolute; */
     /* right: 0px; */
     margin-right: 0;
-  
   }
   .navHeader {
     margin-top: 15px;
   }
 }
 
-@media (max-width: 300px)
-{
+@media (max-width: 300px) {
   .icons {
     padding-left: 40px;
     padding-right: 40px;
   }
   /* .flag {
 height: 600px;  } */
-.container4Cards {
-  height: 600px;
+  .container4Cards {
+    height: 600px;
+  }
 }
-}
-

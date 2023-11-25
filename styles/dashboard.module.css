@@ -6,11 +6,7 @@
   padding-left: 25px;
   padding-top: 25px;
   border-radius: 10px;
-  
   overflow: auto;
-  /* margin-left: 40px;
-  margin-right: 40px; */
-  /* background-color: rgb(211, 211, 211); */
 }
 
 .cardContainer {
@@ -19,7 +15,6 @@
   max-width: 400px;
   height: 400px;
   transition: opacity 0.5s ease-in-out;
-
 }
 
 .hidden {
@@ -52,9 +47,8 @@
   width: 100%;
   overflow: auto;
   padding: 10px;
-  padding-bottom: 2.5rem;
-  /* padding-top: 1.5rem; */
-  
+  padding-bottom: 1rem;
+  padding-top: 0rem;
 }
 
 .iconBtn {
@@ -78,7 +72,7 @@
 
 @media (min-height: 500px) {
   .swipe {
-    margin-top: 50px;
+    margin-top: 20px;
   }
   /* .swipe {
     position: absolute;

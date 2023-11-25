@@ -128,7 +128,6 @@ const AccountView = (props: { userProfile: any; setReadView: any }) => {
           </div>
 
           <div className="mb-6"></div>
-          {/* <div className="flex flex-col justify-center mb-5"> */}
           <div className="flex mx-auto justify-center">
             <button type="submit" className={styles.saveBtn}>
               <div className={styles.btnText}>Save</div>

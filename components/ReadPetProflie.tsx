@@ -42,7 +42,6 @@ const ReadPetProfile = (props: {
               }}
             />
           </div>
-          {/* <div style={{width: 171, height: 40, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 32, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>{petName}</div> */}
         </div>
 
         <div className={styles.displayFont}>
@@ -69,7 +68,7 @@ const ReadPetProfile = (props: {
                 </div>
                 <div className={styles.maliTxt}>
                   <div className={styles.normalTxt}>Species: </div>{' '}
-                  <div className={styles.bigTxt}>{props.petProfile.petSpecies}</div>
+                  <div className={styles.bigTxt}>{props.petProfile.species}</div>
                 </div>
                 <div className={styles.maliTxt}>
                   <div className={styles.normalTxt}>Location: </div>{' '}

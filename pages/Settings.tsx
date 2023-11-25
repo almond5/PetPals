@@ -152,10 +152,11 @@ const Settings = ({
           </button>
         </div>
         <div className={styles.rightBar}>
-
           <div className={`${readView ? '' : 'hidden'} ${styles.container4}`}>
             <div className={styles.navHeader}>
-             <span className={styles.navHead} style={{paddingLeft: '0%'}}>My Profile</span>
+              <span className={styles.navHead} style={{ paddingLeft: '0%' }}>
+                My Profile
+              </span>
             </div>
             <ReadPetProfile
               petProfile={petProfile}
@@ -169,11 +170,12 @@ const Settings = ({
             <div className={styles.navHeader}>
               <span className={styles.navHead}>Edit Profile</span>
               <span className={styles.menu}>
-                <img 
-                  src = "/img/crossD.svg" 
-                  style={{width: 20, height: 22.39}}
-                  onClick={displayReadView}
-                />
+                <button onClick={() => displayReadView()}>
+                  <img
+                    src="/img/crossD.svg"
+                    style={{ width: 20, height: 22.39 }}
+                  />
+                </button>
               </span>
               {/* TODO - hide view and make read only */}
             </div>
@@ -184,17 +186,19 @@ const Settings = ({
             ></EditPetProfile>
           </div>
 
-          <div className={`${accountView ? '' : 'hidden'} ${styles.container4}`}>
+          <div
+            className={`${accountView ? '' : 'hidden'} ${styles.container4}`}
+          >
             <div className={styles.navHeader}>
               <span className={styles.navHead}>Account Settings</span>
               <span className={styles.menu}>
-              <img 
-                src = "/img/crossD.svg" 
-                style={{width: 20, height: 22.39}}
-                onClick={displayReadView}
-              />
+                <button onClick={() => displayReadView()}>
+                  <img
+                    src="/img/crossD.svg"
+                    style={{ width: 20, height: 22.39 }}
+                  />
+                </button>
               </span>
-              {/* TODO - hide view and make read only */}
             </div>
             <AccountView
               userProfile={userProfile}
@@ -204,7 +208,7 @@ const Settings = ({
 
           <div className={styles.container3}>
             <span className={styles.icons}>
-              <span
+              <button
                 className={styles.icon}
                 onClick={() => {
                   router.push('/Cards');
@@ -214,7 +218,7 @@ const Settings = ({
                   src="/img/homeD.svg"
                   style={{ maxWidth: 40, maxHeight: 44 }}
                 />
-              </span>
+              </button>
               <span
                 className={styles.icon}
                 onClick={() => {
@@ -226,7 +230,7 @@ const Settings = ({
                   style={{ maxWidth: 40, maxHeight: 40.8 }}
                 />
               </span>
-              <span
+              <button
                 className={styles.icon}
                 onClick={() => {
                   router.push('/Settings');
@@ -237,7 +241,7 @@ const Settings = ({
                   alt="U"
                   style={{ maxWidth: 40, maxHeight: 40.8 }}
                 />
-              </span>
+              </button>
             </span>
           </div>
         </div>
