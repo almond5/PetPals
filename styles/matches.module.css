@@ -230,6 +230,7 @@
   bottom: 0px;
   width: 100%;
   max-width: 546px;
+  z-index: 1;
 }
 
 
