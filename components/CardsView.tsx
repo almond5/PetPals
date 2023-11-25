@@ -127,20 +127,21 @@ const CardsView = (props: {
   };
 
   return (
-    <div>
-      <div className={styleMatch.card}>
-        <div className={styleMatch.cardContainer}>
-          <div className={`${itsAMatchView ? '' : 'hidden'}`}>
-            <ItsAMatchView
-              currProfile={props.petProfile}
-              currInterestedProfile={currInterestedProfile}
-              setItsAMatchView={setItsAMatchView}
-            />
-          </div>
-          <div className={`${itsAMatchView ? 'hidden' : ''}`}>
-            {props.petProfiles.length > 0 ? (
-              props.petProfiles.map((petProfile: any) => (
-                <div key={petProfile.id}>
+  // <div className="flex justify-center items-center relative">
+  <div className="flex flex-col items-center justify-center mb-16">
+    <div className={styleMatch.form}>
+        <div className={`${itsAMatchView ? '' : 'hidden'}`}>
+          <ItsAMatchView
+            currProfile={props.petProfile}
+            currInterestedProfile={currInterestedProfile}
+            setItsAMatchView={setItsAMatchView}
+          />
+        </div>
+        <div className={`${itsAMatchView ? 'hidden' : ''}`}>
+          {props.petProfiles.length > 0 ? (
+            props.petProfiles.map((petProfile: any) => (
+              <div key={petProfile.id}>
+                <div className={styleMatch.card}>
                   <div className={styles.swipe}>
                     <div className="py-1"></div>
                     <button onClick={() => toggleBack()}>
@@ -191,53 +192,57 @@ const CardsView = (props: {
                         </div>
                       </div>
                     </button>
-                    <div className="flex justify-evenly py-10">
+                    <div className="flex justify-between py-10 px-2">
                       <button
+                        className={styles.iconBtn}
                         onClick={(e) => {
                           handleLike(e, petProfile);
                           removeItem(petProfile.id);
                         }}
                       >
                         {' '}
-                        <img src="/img/heart.png"></img>
+                        <img src="/img/tick.svg" style={{width: 40}}></img>
                       </button>{' '}
                       <button
+                        className={styles.iconBtn}
+
                         onClick={(e) => {
                           handleDislike(e, petProfile);
                           removeItem(petProfile.id);
                         }}
                       >
                         {' '}
-                        <img src="/img/cross.png"></img>
+                        <img src="/img/crossD.svg" style={{width: 38}}></img>
                       </button>
                       <button
-                        className="font-bold"
+                        className={styles.iconBtn}
                         onClick={(e) => {
                           setBackView(false);
                           removeItem(petProfile.id);
                         }}
                       >
-                        <img src='/img/Vector.png'></img>
+                        <img src='/img/Vector.svg' style={{width: 40}}></img>
                       </button>{' '}
                     </div>
                   </div>
-                </div>
-              ))
-            ) : (
-              <div className="flex flex-col font-bold pr-8">
-                <div className="mx-auto">No More Profiles To View!</div>
-                <div className="flex justify-around py-4"></div>
-
-                <button
-                  onClick={(e) => {
-                    resetPreferences(e);
-                  }}
-                >
-                  <div>Reset Preferences?</div>
-                </button>
               </div>
-            )}
-          </div>
+              </div>
+            ))
+          ) : (
+            <div className="flex flex-col font-bold pr-8">
+              <div className="mx-auto" style={{fontFamily: 'Mali', fontSize: '24px', fontWeight: '200'}}>No More Profiles To View!</div>
+              <div className="flex"></div>
+
+              <button
+                onClick={(e) => {
+                  resetPreferences(e);
+                }}
+                className={style.signInButton}
+              >
+                <div style={{fontFamily: 'Mali', fontSize: '24px', textDecoration: 'underline'}}>Reset Preferences?</div>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -54,6 +54,15 @@
   margin-left: 350px;
 }
 
+.rightBarForCards {
+  width: calc(100% - 350px);
+  height: 100%;
+  margin-left: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .barLogo {
   color: #FFF;
   font-family: Mali;
@@ -126,6 +135,7 @@
   left: 0;
   right: 0;
   padding: 20px;
+  padding-top: 30px;
   margin-top: 20px;
   /* margin-right: 20px; */
   display: flex;
@@ -142,7 +152,8 @@
   display: none;
   font-size: 24px;
   font-style: normal;
-  margin-top: 30px;
+  padding-top: 30px;
+  margin-top: 15px;
   padding-bottom: 30px;
   /* border-bottom: #000 solid 2px; */
 }
@@ -221,6 +232,8 @@
   max-width: 546px;
 }
 
+
+
 .icon {
   position: relative;
   display: flex;
@@ -233,7 +246,8 @@
   display: none;
   justify-content: center;
   align-items: center;
-  /* z-index: 1; */
+  /* position: fixed; */
+  z-index: 1;
 }
 
 .matchesContainer {
@@ -256,17 +270,20 @@
 }
 
 .card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  position: relative;
+  display: flex;
+  justify-content: safe center;
+  align-items: safe center;
+  margin-top: auto;
+  width: 100%;
 }
 
 .cardContainer {
     padding: 4;
     height: calc(100% - (121px + 36px + 40px + 25px));
     position: relative;
-    margin-top: 150px;
+    /* margin-top: 150px; */
+    align-items: center;
     
 }
 
@@ -278,8 +295,19 @@
   /* height: calc(100% - 100px); */
   /* margin-bottom: 30px; */
   /* margin-top: 20px; */
-
   overflow-y: auto;
+}
+
+.container4Cards {
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  justify-content: safe center;
+  align-items: safe center;
+  margin-top: auto;
+  width: 100%;
+  padding-top: 5%;
 }
 
 .editImg {
@@ -408,6 +436,13 @@
     height: 100%;
   }
 
+  .rightBarForCards {
+    width: 100%;
+    margin-left: 0px;
+    height: 100%;
+    display: contents;
+  }
+
   .container3 {
     display: flex;
   }
@@ -421,18 +456,18 @@
     margin-top: 0;
     margin-bottom: calc(100% - 80%);
   }
-  .container4 {
+  /* .container4 {
     margin-top: 0;
-    /* max-height: calc(100% - 50%); */
-    margin-bottom: 23%;
+    margin-bottom: 150px;
   }
+
+  .container4Cards {
+    margin-top: 0;
+    margin-bottom: 150px;
+  } */
 
   .container {
     height: 100%;
-  }
-  .cardContainer {
-    margin-top: 0;
-    overflow-y: scroll;
   }
   .cardContainer {
     margin-top: 0;
@@ -445,7 +480,7 @@
   
   }
   .navHeader {
-    margin-top: 20px;
+    margin-top: 15px;
   }
 }
 
@@ -455,5 +490,10 @@
     padding-left: 40px;
     padding-right: 40px;
   }
+  /* .flag {
+height: 600px;  } */
+.container4Cards {
+  height: 600px;
+}
 }
 
