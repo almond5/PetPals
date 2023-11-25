@@ -1,25 +1,25 @@
-import { signOut, useSession } from 'next-auth/react';
-import { useState } from 'react';
-import Image from 'next/image';
-import 'react-country-state-city/dist/react-country-state-city.css';
-import { CitySelect, StateSelect } from 'react-country-state-city';
-import { VscSignOut } from 'react-icons/vsc';
-import router from 'next/router';
-import styles from '../styles/Index.module.css';
-
+import { signOut, useSession } from "next-auth/react";
+import { useState } from "react";
+import Image from "next/image";
+import "react-country-state-city/dist/react-country-state-city.css";
+import { CitySelect, StateSelect } from "react-country-state-city";
+import { VscSignOut } from "react-icons/vsc";
+import router from "next/router";
+import styles from "../styles/Index.module.css";
+import style from "../styles/matches.module.css";
 
 const PetProfileCreation = () => {
-  const [imageToDisplay, setImageToDisplay] = useState('/img/petProfile.png');
+  const [imageToDisplay, setImageToDisplay] = useState("/img/petProfile.png");
   const [imageUploaded, setImageUploaded] = useState();
-  const [description, setDescription] = useState('');
-  const [species, setSpecies] = useState('');
-  const [name, setName] = useState('');
+  const [description, setDescription] = useState("");
+  const [species, setSpecies] = useState("");
+  const [name, setName] = useState("");
 
   const [countryId, setCountryid] = useState(233);
   const [stateId, setStateId] = useState(0);
   const [cityId, setCityId] = useState(0);
-  const [stateName, setStateName] = useState('');
-  const [cityName, setCityName] = useState('');
+  const [stateName, setStateName] = useState("");
+  const [cityName, setCityName] = useState("");
 
   const { status: sesh, data: data } = useSession();
 
@@ -67,15 +67,15 @@ const PetProfileCreation = () => {
 
     await submitProfile(petProfile);
 
-    setDescription('');
-    setSpecies('');
-    setName('');
-    setImageToDisplay('/img/petpicture.png');
+    setDescription("");
+    setSpecies("");
+    setName("");
+    setImageToDisplay("/img/petpicture.png");
     setCountryid(233);
     setStateId(0);
     setCityId(0);
-    setCityName('');
-    setStateName('');
+    setCityName("");
+    setStateName("");
   };
 
   const submitProfile = async (petProfile: {
@@ -93,65 +93,66 @@ const PetProfileCreation = () => {
     version: string | undefined | null;
   }) => {
     try {
-      const response = await fetch('/api/petProfileCreate', {
-        method: 'POST',
+      const response = await fetch("/api/petProfileCreate", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(petProfile),
       });
 
       if (response.ok) {
         // Handle successful petProfile creation
-        alert('Success!');
-        router.push('/Cards');
+        alert("Success!");
+        router.push("/Cards");
       } else {
         // Handle HTTP errors if any
-        alert('Error creating petProfile');
+        alert("Error creating petProfile");
       }
     } catch (error) {
       // Handle other potential errors
-      console.error('Error creating petProfile', error);
+      console.error("Error creating petProfile", error);
     }
   };
 
   const submitImage = async (image: { imageUploaded: any }) => {
     try {
       const formData = new FormData();
-      formData.append('file', imageUploaded!);
-      formData.append('upload_preset', 'ifs1rfae');
+      formData.append("file", imageUploaded!);
+      formData.append("upload_preset", "ifs1rfae");
 
       const data = await fetch(process.env.NEXT_PUBLIC_CLOUD_URL!, {
-        method: 'POST',
+        method: "POST",
         body: formData,
       }).then((r) => r.json());
 
       return data;
     } catch (error) {
-      console.error('Error Uploading Image', error);
+      console.error("Error Uploading Image", error);
     }
   };
 
   return (
     <div>
-      <div className="header">
-        <button
-          className="absolute right-10 top-8"
-          onClick={() => signOut({ callbackUrl: '/' })}
+      <div className={style.navHeader}>
+        <span className={style.navHead}>Pet Profile</span>
+        <span
+          className={style.menu}
+          onClick={() => signOut({ callbackUrl: "/" })}
         >
-          <VscSignOut style={{ fontSize: '40px' }} />
-        </button>
+          <img src="/img/logout.svg" style={{ width: 20 }} />
+        </span>
       </div>
       <div className="py-5 min-h-screen flex items-center justify-center">
         <form onSubmit={handleSubmit}>
           <div
             className="mt-8 mb-8"
             style={{
-              position: 'relative',
-              width: '250px',
-              height: '250px',
-              marginLeft: '50px', // Adjust the value as needed
-              marginRight: '50px', // Adjust the value as needed
+              position: "relative",
+              width: "250px",
+              height: "250px",
+              marginLeft: "50px", // Adjust the value as needed
+              marginRight: "50px", // Adjust the value as needed
             }}
           >
             <label htmlFor="fileInput">
@@ -161,8 +162,8 @@ const PetProfileCreation = () => {
                 sizes="500px"
                 fill
                 style={{
-                  objectFit: 'cover',
-                  border: '3px solid #000000',
+                  objectFit: "cover",
+                  border: "3px solid #000000",
                 }}
               />
             </label>
@@ -178,7 +179,7 @@ const PetProfileCreation = () => {
             />
           </div>
           <div className="mb-6">
-            <div className={styles.normalTxt}>Pet&apos;s Name</div>{' '}
+            <div className={styles.normalTxt}>Pet&apos;s Name</div>{" "}
             <input
               id="name"
               type="text"
@@ -190,7 +191,7 @@ const PetProfileCreation = () => {
             />
           </div>
           <div className="mb-4">
-            <div className={styles.normalTxt}>Pet&apos;s Description</div>{' '}
+            <div className={styles.normalTxt}>Pet&apos;s Description</div>{" "}
             <textarea
               id="description"
               value={description}
@@ -202,7 +203,7 @@ const PetProfileCreation = () => {
             ></textarea>
           </div>
           <div className="mb-6">
-            <div className={styles.normalTxt}>Pet&apos;s Species</div>{' '}
+            <div className={styles.normalTxt}>Pet&apos;s Species</div>{" "}
             <input
               id="species"
               type="text"
@@ -214,7 +215,7 @@ const PetProfileCreation = () => {
             />
           </div>
           <div className="mb-6">
-            <div className={styles.normalTxt}>Location</div>{' '}
+            <div className={styles.normalTxt}>Location</div>{" "}
             <StateSelect
               containerClassName="w-full outline outline-2 rounded py-2 px-3"
               countryid={countryId}
@@ -241,7 +242,7 @@ const PetProfileCreation = () => {
             <button
               type="submit"
               className={`${styles.button} ${styles.signUpButton2}`}
-              >
+            >
               <div className={styles.signUpTxt}>Save</div>
             </button>
           </div>
