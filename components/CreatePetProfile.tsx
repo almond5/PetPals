@@ -163,7 +163,8 @@ const PetProfileCreation = () => {
                 fill
                 style={{
                   objectFit: "cover",
-                  border: "3px solid #000000",
+                  border: "1px solid grey",
+                  borderRadius: '7px',
                 }}
               />
             </label>
@@ -179,45 +180,45 @@ const PetProfileCreation = () => {
             />
           </div>
           <div className="mb-6">
-            <div className={styles.normalTxt}>Pet&apos;s Name</div>{" "}
+            <div className={styles.inputHeader}>Pet&apos;s Name</div>{" "}
             <input
               id="name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full outline outline-2 rounded py-2 px-3"
+              className="w-full outline outline-1 rounded py-1 px-1"
               maxLength={200}
             />
           </div>
           <div className="mb-4">
-            <div className={styles.normalTxt}>Pet&apos;s Description</div>{" "}
+            <div className={styles.inputHeader}>Pet&apos;s Description</div>{" "}
             <textarea
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
               rows={7}
-              className="w-full outline outline-2 rounded py-2 px-3"
+              className="w-full outline outline-1 rounded py-2 px-3"
               maxLength={322}
             ></textarea>
           </div>
           <div className="mb-6">
-            <div className={styles.normalTxt}>Pet&apos;s Species</div>{" "}
+            <div className={styles.inputHeader}>Pet&apos;s Species</div>{" "}
             <input
               id="species"
               type="text"
               value={species}
               onChange={(e) => setSpecies(e.target.value)}
               required
-              className="w-full outline outline-2 rounded py-2 px-3"
+              className="w-full outline outline-1 rounded py-2 px-3"
               maxLength={200}
             />
           </div>
           <div className="mb-6">
-            <div className={styles.normalTxt}>Location</div>{" "}
+            <div className={styles.inputHeader}>Location</div>{" "}
             <StateSelect
-              containerClassName="w-full outline outline-2 rounded py-2 px-3"
+              containerClassName="w-full outline outline-1 rounded py-2 px-3"
               countryid={countryId}
               onChange={(e: any) => {
                 setStateId(e.id);
@@ -227,7 +228,7 @@ const PetProfileCreation = () => {
             />
             <div className="py-2"></div>
             <CitySelect
-              containerClassName="w-full outline outline-2 rounded py-2 px-3"
+              containerClassName="w-full outline outline-1 rounded py-2 px-3"
               countryid={countryId}
               stateid={stateId}
               onChange={(e: any) => {
@@ -243,7 +244,7 @@ const PetProfileCreation = () => {
               type="submit"
               className={`${styles.button} ${styles.signUpButton2}`}
             >
-              <div className={styles.signUpTxt}>Save</div>
+              <div className={styles.btnText}>Save</div>
             </button>
           </div>
         </form>
