@@ -56,14 +56,7 @@ const Settings = ({
   const [accountView, setAccountView] = useState(false);
   const [editedProfile, setEditedProfile] = useState(petProfile);
 
-  const [petImage, setPetImage] = useState(petProfile.image.publicId);
-  const [petName, setPetName] = useState(petProfile.name);
-  const [petDescription, setPetDescription] = useState(petProfile.description);
-  const [petSpecies, setPetSpecies] = useState(petProfile.species);
-  const [ownerName, setOwnerName] = useState(userProfile.name);
-  const [ownerPhoneNumber, setOwnerPhoneNumber] = useState(userProfile.phoneNumber);
-  const [cityName, setCityName] = useState(petProfile.location.cityName);
-  const [stateName, setStateName] = useState(petProfile.location.StateName);
+  
 
   // const info = getServerSideProps();
 
@@ -100,6 +93,14 @@ const Settings = ({
     petProfile !== null &&
     petProfile !== undefined // start of edit problem
   ) {
+    const [petImage, setPetImage] = useState(petProfile.image.publicId);
+    const [petName, setPetName] = useState(petProfile.name);
+    const [petDescription, setPetDescription] = useState(petProfile.description);
+    const [petSpecies, setPetSpecies] = useState(petProfile.species);
+    const [ownerName, setOwnerName] = useState(userProfile.name);
+    const [ownerPhoneNumber, setOwnerPhoneNumber] = useState(userProfile.phoneNumber);
+    const [cityName, setCityName] = useState(petProfile.location.cityName);
+    const [stateName, setStateName] = useState(petProfile.location.StateName);
     return (
       <div className={styles.container}>
         <div className={styles.leftBar}>
