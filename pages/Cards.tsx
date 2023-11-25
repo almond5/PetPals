@@ -192,7 +192,7 @@ const Dashboard = ({
               </span>
             </span>
           </div>
-          
+{/*           
           <div className={styles.container4}>
             <div className={styles.head}>
               <div className="flex justify-center">Home</div>
@@ -205,6 +205,18 @@ const Dashboard = ({
               />
             </div>
 
+          </div> */}
+          
+          <div className={styles.container4}>
+            <div className={styles.head}>
+              <span className={styles.navHead}>Home</span>
+            </div>
+            <CardsView
+              petProfile={petProfile}
+              petProfiles={profiles}
+              setProfiles={setProfiles}
+            />
+          </div>
               {/* <div className={styles.container4Cards}> */}
               {/* <div className={styles.head}>My Profile</div> */}
               
@@ -216,9 +228,6 @@ const Dashboard = ({
                 />
               </div> */}
             {/* </div> */}
-          </div>
-          
-          
         </div>
       </div>
     );
