@@ -99,3 +99,39 @@
   /* color: gray; */
   margin-bottom: 20px;
 }
+
+.registerButton {
+  display: flex;
+  padding: 20px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  background: #000;
+}
+
+.registerButton:hover {
+  background-color: transparent;
+  border: 2px solid black;
+}
+
+.registerButton:hover .btnText {
+  color: black;
+}
+
+
+.btnText {
+  color: #FFF;
+  font-family: Mali;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%;
+  letter-spacing: 3.84px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .flag {
+    margin-bottom: 100px;
+  }
+}

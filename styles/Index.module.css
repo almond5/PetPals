@@ -338,6 +338,15 @@
   padding: 0px 70px; */
 }
 
+.registerButton:hover {
+  background-color: transparent;
+  border: 2px solid black;
+}
+
+.registerButton:hover .btnText {
+  color: black;
+}
+
 .username {
   width: 400px;
   height: 100px;
@@ -390,6 +399,12 @@ gap: 9px; */
 }
 
 .maliTxt {
+  font-family: Mali;
+  padding-left: 8px;
+  text-align: left;
+}
+
+.location {
   font-family: Mali;
   padding-left: 8px;
   text-align: left;
