@@ -18,18 +18,18 @@ const Index = () => {
         <div className="mt-8">
           <table className={styles.tbl}>
             <tr>
-              <button className={`${styles.button} ${styles.registerButton}`}>
-                <Link href="/Register">
+              <Link href="/Register">
+                <button className={`${styles.button} ${styles.registerButton}`}>
                   <div className={styles.btnText}>Sign Up</div>
-                </Link>
-              </button>
+                </button>
+              </Link>
             </tr>
             <tr>
-              <button className={`${styles.button} ${styles.signInButton}`}>
-                <Link href="/Cards">
+              <Link href="/Cards">
+                <button className={`${styles.button} ${styles.signInButton}`}>
                   <div className={styles.btnText2}>Login</div>
-                </Link>
-              </button>
+                </button>
+              </Link>
             </tr>
           </table>
         </div>
