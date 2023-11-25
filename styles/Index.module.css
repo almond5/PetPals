@@ -258,14 +258,14 @@
   z-index: -1;
 }
 
-.buttons {
+/* .buttons { */
   /* position: absolute;
   display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 20px; */
   /* top: 80%; */
-}
+/* } */
 
 .button {
   cursor: pointer;

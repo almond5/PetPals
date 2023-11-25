@@ -4,7 +4,20 @@ import Image from 'next/image';
 import { CitySelect, StateSelect } from 'react-country-state-city';
 import styles from '../styles/matches.module.css';
 
-const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
+const EditPetProfile = (props: { 
+  petProfile: any; 
+  userProfile: any; 
+  setReadView: any; 
+
+  setPetImage:any;
+  setPetName:any;
+  setPetDescription:any;
+  setPetSpecies:any;
+  setOwnerName:any;
+  setOwnerPhoneNumber:any;
+  setCityName:any;
+  setStateName:any;
+}) => {
   const [imageToDisplay, setImageToDisplay] = useState(
     process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
       '/' +
@@ -30,6 +43,10 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
   const defaultCity = { id: cityId, name: cityName };
 
   const { status: sesh, data: data } = useSession();
+
+  // function showReadView() {
+  //   props.setReadView();
+  // }
 
   const handleChange = (e: any) => {
     if (
@@ -89,6 +106,18 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
 
     await submitProfileEdit(petProfile);
     await submitOwnerEdit(ownerProfile);
+    props.setReadView();
+    // props.setEditedProfile(petProfile);
+
+    props.setPetImage(public_id);
+    props.setPetName(name);
+    props.setPetDescription(description);
+    props.setPetSpecies(species);
+    props.setOwnerName(ownerName);
+    props.setOwnerPhoneNumber(phoneNumber);
+    props.setCityName(cityName);
+    props.setStateName(stateName);
+    // window.location.reload();
   };
 
   const submitOwnerEdit = async (ownerProfile: {
@@ -139,7 +168,8 @@ const EditPetProfile = (props: { petProfile: any; userProfile: any }) => {
       });
 
       if (response.ok) {
-        alert('Successfully Edited!');
+        // alert('Successfully Edited!');
+        console.log('Successfully Edited!');
       } else {
         // Handle HTTP errors if any
         alert('Error Editing Profile');

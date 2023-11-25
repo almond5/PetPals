@@ -2,6 +2,7 @@ import { getSession, signOut, useSession } from 'next-auth/react';
 import router from 'next/router';
 import { useState } from 'react';
 import EditPetProfile from '@/components/EditPetProfile';
+import ReadPetProfile from '@/components/ReadPetProflie';
 import CreatePetProfile from '@/components/CreatePetProfile';
 import AccountView from '../components/AccountView';
 import prisma from '@/lib/prismadb';
@@ -47,10 +48,44 @@ const Settings = ({
   petProfile: any;
   userProfile: any;
 }) => {
-  const [profileView, setProfileView] = useState(false);
+  // const [profileView, setProfileView] = useState(false);
+  // const [accountView, setAccountView] = useState(false);
+
+  const [readView, setReadView] = useState(true);
+  const [editView, setEditView] = useState(false);
   const [accountView, setAccountView] = useState(false);
+  const [editedProfile, setEditedProfile] = useState(petProfile);
+
+  const [petImage, setPetImage] = useState(petProfile.image.publicId);
+  const [petName, setPetName] = useState(petProfile.name);
+  const [petDescription, setPetDescription] = useState(petProfile.description);
+  const [petSpecies, setPetSpecies] = useState(petProfile.species);
+  const [ownerName, setOwnerName] = useState(userProfile.name);
+  const [ownerPhoneNumber, setOwnerPhoneNumber] = useState(userProfile.phoneNumber);
+  const [cityName, setCityName] = useState(petProfile.location.cityName);
+  const [stateName, setStateName] = useState(petProfile.location.StateName);
+
+  // const info = getServerSideProps();
 
   const { status: sesh, data: data } = useSession();
+
+  function displayReadView() {
+    setReadView(true);
+    setEditView(false);
+    setAccountView(false);
+  }
+
+  function displayEditView() {
+    setReadView(false);
+    setEditView(true);
+    setAccountView(false);
+  }
+
+  function displayAccountView() {
+    setReadView(false);
+    setEditView(false);
+    setAccountView(true);
+  }
 
   // check user has a petProfile and make it so it uses editProfile API
   if (sesh === 'loading') {
@@ -95,7 +130,7 @@ const Settings = ({
           </button>
         </div>
         <div className={styles.rightBar}>
-            {(!accountView && !profileView) && (
+            {/* {(!accountView && !profileView) && (
               <div>
                 <div className={styles.head}>My Profile</div>
 
@@ -120,10 +155,10 @@ const Settings = ({
                   </div>          
                 </div>
               </div>
-            )}
+            )} */}
 
 
-            <div className={`${profileView ? '' : 'hidden'} ${styles.container4}`}>
+            {/* <div className={`${profileView ? '' : 'hidden'} ${styles.container4}`}>
               <div className={styles.navHeader}>
                 <span className={styles.navHead}>Edit Profile</span>
                 <span className={styles.menu}>
@@ -141,7 +176,59 @@ const Settings = ({
                 <img src = "/img/crossD.svg" style={{width: 20, height: 22.39}}/></span>
               </div>
               <AccountView userProfile={userProfile}></AccountView>
-            </div>
+            </div> */}
+
+{/* const [petImage, setPetImage] = useState(petProfile.image);
+  const [petName, setPetName] = useState(petProfile.name);
+  const [petDescription, setPetDescription] = useState(petProfile.description);
+  const [petSpecies, setPetSpecies] = useState(petProfile.species);
+  const [ownerName, setOwnerName] = useState(userProfile.name);
+  const [ownerPhoneNumber, setOwnerPhoneNumber] = useState(userProfile.phoneNumber);
+  const [cityName, setCityName] = useState(petProfile.location.cityName);
+  const [stateName, setStateName] = useState(petProfile.location.StateName); */}
+
+          <div className={`${readView ? '' : 'hidden'} ${styles.container4}`}>
+            <ReadPetProfile
+              petImage={petImage}
+              petName={petName}
+              petDescription={petDescription}
+              petSpecies={petSpecies}
+              ownerName={ownerName}
+              ownerPhoneNumber={ownerPhoneNumber}
+              cityName={cityName}
+              stateName={stateName}
+              setEditView={displayEditView}
+            ></ReadPetProfile>
+          </div>
+
+          <div className={`${editView ? '' : 'hidden'} ${styles.container4}`}>
+            <EditPetProfile
+              petProfile={petProfile}
+              userProfile={userProfile}
+              setReadView={displayReadView}
+
+              setPetImage={setPetImage}
+              setPetName={setPetName}
+              setPetDescription={setPetDescription}
+              setPetSpecies={setPetSpecies}
+              setOwnerName={setOwnerName}
+              setOwnerPhoneNumber={setOwnerPhoneNumber}
+              setCityName={setCityName}
+              setStateName={setStateName}
+              ></EditPetProfile>
+
+              {/* {info = getServerSideProps();} */}
+          </div>
+
+          {/* const [petImage, setPetImage] = useState(petProfile.image);
+  const [petName, setPetName] = useState(petProfile.name);
+  const [petDescription, setPetDescription] = useState(petProfile.description);
+  const [petSpecies, setPetSpecies] = useState(petProfile.species);
+  const [ownerName, setOwnerName] = useState(userProfile.name);
+  const [ownerPhoneNumber, setOwnerPhoneNumber] = useState(userProfile.phoneNumber);
+  const [cityName, setCityName] = useState(petProfile.location.cityName);
+  const [stateName, setStateName] = useState(petProfile.location.StateName); */}
+
 
           <div className={styles.container3}>
             <span className={styles.icons}>
