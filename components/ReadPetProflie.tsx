@@ -1,3 +1,4 @@
+import { getSession, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import styles from '../styles/readPetProflie.module.css';
 // import style from '/styles/Index.module.css';
@@ -112,6 +113,23 @@ const ReadPetProfile = (props: {
             props.setAccountView();
           }}>
           <div className={`${styles.accountSettingText} ${styles.displayFont}`}>ACCOUNT SETTINGS</div>
+        </button>
+        {/* <button className={styles.accountSettingButton}
+            onClick={() => signOut({ callbackUrl: '/' })}
+
+          >
+          <div className={`${styles.accountSettingText} ${styles.displayFont}`}>logout</div>
+        </button> */}
+      </div>
+      <div className={`${"flex items-center justify-center"} ${styles.mobileOnly}`}>
+        <button
+          className="flex flex-col p-2 mb-4 px-4 justify-center font-bold"
+          onClick={() => signOut({ callbackUrl: '/' })}
+          style={{fontFamily: 'Mali', letterSpacing: '2px'}}
+          >
+          <div className="flex flex-col px-10 justify-center text">
+            Logout
+          </div>
         </button>
       </div>
 

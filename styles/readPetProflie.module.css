@@ -130,3 +130,13 @@
 .accountSettingButton:hover .accountSettingText {
   color: #000;
 }
+
+.mobileOnly {
+  display: none;
+}
+@media (max-width: 900px) {
+  .mobileOnly {
+    display: flex;
+    margin-bottom: 100px;
+  }
+}
