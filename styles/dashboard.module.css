@@ -2,7 +2,15 @@
   position: relative;
   outline: 4px solid;
   padding: 10px 20px;
-  border-radius: 4px;
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 25px;
+  border-radius: 10px;
+  
+  overflow: auto;
+  margin-left: 40px;
+  margin-right: 40px;
+  /* background-color: rgb(211, 211, 211); */
 }
 
 .cardContainer {
@@ -42,10 +50,33 @@
   background-color: #fff;
   width: 100%;
   overflow: auto;
+  padding: 10px;
+  padding-bottom: 2.5rem;
+  /* padding-top: 1.5rem; */
+  
+}
+
+.iconBtn {
+  border: 1px solid black;
+  border-radius: 50%;
+  padding: 15px;
+}
+
+.iconBtn:hover {
+  border: 2px solid black;
+}
+
+.relativeT {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* overflow: auto; */
+  /* margin-top: 170px; */
 }
 
 @media (max-width: 900px) {
-  .swipe {
-    position: relative;
-  }
+  /* .swipe {
+    position: absolute;
+  } */
 }
