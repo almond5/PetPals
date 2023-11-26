@@ -152,3 +152,22 @@
     width: 80%;
   }
 }
+
+@media (max-width: 400px) {
+  .displayDescriptionBoxText {
+    margin-left: 20vh;
+    margin-right: 20vh;
+    /* width: 100vh; */
+  }
+
+}
+
+
+@media (max-width: 300px) {
+  .displayDescriptionBoxText {
+    margin-left: 25vh;
+    margin-right: 25vh;
+    /* width: 100vh; */
+  }
+
+}

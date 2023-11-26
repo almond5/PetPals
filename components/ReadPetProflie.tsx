@@ -9,7 +9,7 @@ const ReadPetProfile = (props: {
   setAccountView: any;
 }) => {
   return (
-    <div className={styles.flag}>
+    <div>
       <div>
         <div className="flex items-center justify-center">
           <div
@@ -18,8 +18,6 @@ const ReadPetProfile = (props: {
               position: 'relative',
               width: '210px',
               height: '210px',
-              marginLeft: '50px',
-              marginRight: '50px',
             }}
           >
             <Image

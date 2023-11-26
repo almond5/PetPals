@@ -233,7 +233,7 @@ const CardsView = (props: {
             ))
           ) : (
             <div className={`${"flex flex-col font-bold"} ${styles.container4Cards}`} style={{paddingTop: '50%'}}>
-              <div className="mx-auto" style={{fontFamily: 'Mali', fontSize: '24px', fontWeight: '200'}}>No More Profiles To View!</div>
+              <div className="mx-auto text-center" style={{fontFamily: 'Mali', fontSize: '24px', fontWeight: '200'}}>No More Profiles To View!</div>
               <div className="flex"></div>
 
               <button
