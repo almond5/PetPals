@@ -260,6 +260,7 @@ const CardsView = (props: {
           {props.petProfiles.length > 0 ? (
             props.petProfiles.map((petProfile: any) => (
               <div key={petProfile.id}>
+                <div className={styles.relative}>
                 <div className={styles.swipe}>
                   {/* <div className="py-1"></div> */}
                   <button onClick={() => toggleBack()}>
@@ -278,35 +279,36 @@ const CardsView = (props: {
                             backgroundSize: 'cover',
                           }}
                             className={styles.card}
+                            
                         >
                           <div className={styles.cardBottomContainer}>
                             <div className={style.maliTxtCentered}>
                               {petProfile.name}
                             </div>
-                            <div className={style.maliTxt}>
+                            <div className={style.location}>
                               {petProfile.location.cityName},{' '}
                               {petProfile.location.stateName}
                             </div>
                           </div>
                           </div>
                         </div>
-                        <div className={`${backView ? '' : 'hidden'}`}>
-                          <div className={style.maliTxt}>
-                            <div className={style.normalTxt}>Name: </div>{' '}
-                            {petProfile.name}
+                        <div className={`${backView ? '' : 'hidden'}`} style={{padding: '10px'}}>
+                          <div className={styles.maliTxt2}>
+                            <div className={styles.normalTxt2}>Name: </div>{' '}
+                            <div className={styles.bigTxt2}>{petProfile.name}</div>
                           </div>
-                          <div className={style.maliTxt}>
-                            <div className={style.normalTxt}>Location: </div>{' '}
-                            {petProfile.location.cityName},{' '}
-                            {petProfile.location.stateName}
+                          <div className={styles.maliTxt2}>
+                            <div className={styles.normalTxt2}>Location: </div>{' '}
+                            <div className={styles.bigTxt2}>{petProfile.location.cityName},{' '}
+                            {petProfile.location.stateName}</div>
                           </div>
-                          <div className={style.maliTxt}>
-                            <div className={style.normalTxt}>Species: </div>{' '}
-                            {petProfile.species}
+                          <div className={styles.maliTxt2}>
+                            <div className={styles.normalTxt2}>Species: </div>{' '}
+                            <div className={styles.bigTxt2}>{petProfile.species}</div>
                           </div>
-                          <div className={style.maliTxt}>
-                            <div className={style.normalTxt}>Description: </div>
-                            {petProfile.description}
+                          <div className={styles.maliTxt2}>
+                            <div className={styles.normalTxt2}>Description: </div>
+                            <div className={styles.bigTxt2}>{petProfile.description}</div>
                           </div>
                         </div>
                       </div>
@@ -344,11 +346,12 @@ const CardsView = (props: {
                     </button>{' '}
                   </div>
                 </div>
+                </div>
               </div>
             // </div>
             ))
           ) : (
-            <div className="flex flex-col font-bold pr-8">
+            <div className={`${"flex flex-col font-bold"} ${styles.container4Cards}`} style={{paddingTop: '50%'}}>
               <div className="mx-auto" style={{fontFamily: 'Mali', fontSize: '24px', fontWeight: '200'}}>No More Profiles To View!</div>
               <div className="flex"></div>
 

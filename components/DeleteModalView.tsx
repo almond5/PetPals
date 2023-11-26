@@ -2,6 +2,7 @@ import { FcCheckmark } from 'react-icons/fc';
 import { FcCancel } from 'react-icons/fc';
 import React, { useState } from 'react';
 import { signOut } from 'next-auth/react';
+import styles from '../styles/matches.module.css';
 
 const DeleteModalView = (props: {
   setDeleteModalView: any;
@@ -73,8 +74,8 @@ const DeleteModalView = (props: {
   bg-opacity-50 z-50"
     >
       <div
-        className="w-[16rem] outline bg-stone-50 h-[12rem]
-    p-4 rounded-lg flex flex-col"
+        className="outline bg-stone-50  w-[24rem]
+        rounded-md flex flex-col"
         style={{ wordWrap: 'break-word' }}
       >
         <form
@@ -82,12 +83,16 @@ const DeleteModalView = (props: {
             handleDelete(e);
           }}
         >
-          <div className="flex flex-col">
-            <div className="text-center text-xl font-semibold">
-              Enter your password to delete your account:
+          <div style={{backgroundColor: 'black', width: '100%', height: '60px'}}>
+            <div style={{color: 'white', padding: '20px', fontFamily: 'Montserrat'}}>Delete User?</div>
+          </div>
+          <div className="flex flex-col pt-6 px-7">
+            <div className="text-center text-xl" style={{fontFamily: 'Mali', fontWeight: '600px'}}>
+                Please verify your identity
             </div>
           </div>
-          <div className="mb-2 mt-3">
+          <div className="mb-2 mt-3 px-7">
+            <div style={{fontSize: '15px', fontFamily: 'Mali'}}>Enter Password:</div>
             <input
               onChange={(e) => handlePassword(e)}
               value={password}
@@ -95,26 +100,27 @@ const DeleteModalView = (props: {
               id="password"
               required
               placeholder="Enter your password"
-              className="w-full outline outline-2 rounded py-2 px-3"
+              className="w-full outline outline-1 rounded py-2 px-3"
+              style={{fontFamily: 'Mali'}}
             />
           </div>
-          <div className="flex justify-center">
-            <div className="pr-5">
-              <button
-                onClick={() => handleClose()}
-                className="rounded-full py-0.5 font-bold transition hover:bg-gray-300 
-        hover:text-gray-800 text-Lg "
+          <div className="flex justify-evenly pt-3 px-9 pb-4">
+            <div>
+            <button
+                type="submit"
+                className={styles.saveBtn}
+                style={{marginBottom: 0}}
               >
-                <FcCancel style={{ fontSize: '40px' }} />
+                <div className={styles.btnText} style={{textTransform: 'capitalize', letterSpacing: '2px'}}>Delete</div>
               </button>
             </div>
-            <div className="pl-5">
+            <div>
               <button
-                type="submit"
-                className="rounded-full py-0.5 font-bold transition hover:bg-gray-300 
-          hover:text-gray-800 text-Lg"
+                onClick={() => handleClose()}
+                className="flex flex-col p-2 mb-4 px-4 justify-center font-bold"
+                style={{fontFamily: 'Mali', border: '1px solid black', borderRadius: '5px', letterSpacing: '2px'}}
               >
-                <FcCheckmark style={{ fontSize: '40px' }} />
+                Cancel
               </button>
             </div>
           </div>

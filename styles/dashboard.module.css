@@ -6,6 +6,7 @@
   padding-left: 25px;
   padding-top: 25px;
   border-radius: 10px;
+  margin-top: 60px;
   overflow: auto;
 }
 
@@ -62,19 +63,52 @@
 }
 
 .relativeT {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* overflow: auto; */
+  overflow: auto;
   /* margin-top: 170px; */
+}
+
+.icons {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: white;
+  bottom: 0px;
+  width: 100%;
+  max-width: 546px;
+  z-index: 1;
+}
+
+.container3 {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  /* position: fixed; */
+  z-index: 1;
 }
 
 @media (min-height: 500px) {
   .swipe {
-    margin-top: 20px;
+    margin-top: 2rem;    
+    overflow: auto;
   }
+
   /* .swipe {
     position: absolute;
   } */
+}
+
+@media (max-width: 600px) {
+  .swipe {
+    margin-top: 20px;
+    outline: 2px solid rgb(255, 255, 255);
+    padding-bottom: 150px;
+  }
+  .icons {
+    border-color:rgb(189, 183, 183);
+    border-top-width: 1px;
+  }
 }

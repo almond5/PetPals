@@ -359,6 +359,8 @@
   cursor: pointer;
   border-radius: 5px;
   margin-bottom: 20px;
+  border: 1px solid black;
+
 }
 
 .btnText {
@@ -407,8 +409,13 @@
   padding-right: 15px;
 }
 
-@media (max-width: 900px) {
-  .leftBar {
+
+
+
+@media (max-width: 900px)
+{
+  .leftBar
+  {
     display: none;
   }
   .rightBar {
@@ -461,6 +468,9 @@
   }
   .navHeader {
     margin-top: 15px;
+  }
+  .flag {
+    display: none;
   }
 }
 

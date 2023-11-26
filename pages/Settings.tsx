@@ -164,7 +164,7 @@ const Settings = ({
               setEditView={displayEditView}
               setAccountView={displayAccountView}
             ></ReadPetProfile>
-          </div>
+            </div>
 
           <div className={`${editView ? '' : 'hidden'} ${styles.container4}`}>
             <div className={styles.navHeader}>
