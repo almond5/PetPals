@@ -27,7 +27,14 @@ export default async function handler(
         where: { email: userEmail },
       });
 
-      if (findIfExist?.password === oldPassword) {
+      if (newPassword === '' && oldPassword === '') {
+        await prisma.user.update({
+          where: { email: userEmail },
+          data: {
+            email: newEmail,
+          },
+        });
+      } else if (findIfExist?.password === oldPassword) {
         await prisma.user.update({
           where: { email: userEmail },
           data: {
@@ -35,6 +42,10 @@ export default async function handler(
             password: newPassword,
           },
         });
+      }
+      else {
+        res.status(400).json('Invalid Password(s)');
+        return;
       }
 
       res.status(200).json('Success');
