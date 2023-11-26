@@ -92,7 +92,7 @@ const DeleteModalView = (props: {
               onChange={(e) => handlePassword(e)}
               value={password}
               type="password"
-              id="newPassword"
+              id="password"
               required
               placeholder="Enter your password"
               className="w-full outline outline-2 rounded py-2 px-3"

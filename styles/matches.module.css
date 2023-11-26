@@ -1,11 +1,10 @@
-
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   flex-direction: column;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .button {
@@ -32,7 +31,7 @@
 
 .logoutBtn {
   bottom: 4%;
-  background-color: #FFF;
+  background-color: #fff;
   padding: 20px 32px;
   width: 294px;
   height: 66px;
@@ -52,8 +51,17 @@
   margin-left: 350px;
 }
 
+.rightBarForCards {
+  width: calc(100% - 350px);
+  height: 100%;
+  margin-left: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .barLogo {
-  color: #FFF;
+  color: #fff;
   font-family: Mali;
   font-size: 64px;
   font-weight: 400;
@@ -63,7 +71,6 @@
   padding: 5px;
   padding-top: 20px;
   padding-bottom: 20px;
-
 }
 
 .barTxt {
@@ -87,7 +94,6 @@
 .items {
   position: relative;
   margin-top: 10px;
-
 }
 
 .item {
@@ -101,17 +107,19 @@
   margin-right: 30px;
   border-radius: 10px;
   cursor: pointer;
-
 }
 
 .item:not(.active):hover {
   background-color: #656565;
 }
 
-
 .menu {
-  position: absolute;
-  right: 40px;
+  /* position: absolute; */
+  /* right: 0px; */
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  margin-right: 20px;
 }
 
 .navHeader {
@@ -119,20 +127,33 @@
   left: 0;
   right: 0;
   padding: 20px;
+  padding-top: 30px;
   margin-top: 20px;
-  margin-right: 20px;
-  z-index: 100; 
+  /* margin-right: 20px; */
+  display: flex;
+  /* z-index: 100;  */
   background-color: white;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .head {
   font-family: 'Mali';
   justify-content: center;
+  display: none;
   font-size: 24px;
   font-style: normal;
-  margin-top: 30px;
+  padding-top: 30px;
+  margin-top: 15px;
   padding-bottom: 30px;
-  border-bottom: #000 solid 2px;
+  /* border-bottom: #000 solid 2px; */
+}
+
+.navHead {
+  margin: 0px auto;
+  font-size: 24px;
+  font-family: 'Mali';
+  padding-left: 5%;
 }
 
 .matches {
@@ -165,7 +186,7 @@
   height: 50px;
   align-items: center;
   border-radius: 50%;
-  border: .5px solid gray;
+  border: 0.5px solid gray;
 }
 
 .profileName {
@@ -178,7 +199,6 @@
   margin-left: 20px;
   text-transform: capitalize;
   overflow: hidden;
-
 }
 
 .delete {
@@ -200,6 +220,7 @@
   bottom: 0px;
   width: 100%;
   max-width: 546px;
+  z-index: 1;
 }
 
 .icon {
@@ -214,7 +235,8 @@
   display: none;
   justify-content: center;
   align-items: center;
-  /* z-index: 1; */
+  /* position: fixed; */
+  z-index: 1;
 }
 
 .matchesContainer {
@@ -237,25 +259,43 @@
 }
 
 .card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  position: relative;
+  display: flex;
+  justify-content: safe center;
+  align-items: safe center;
+  margin-top: auto;
+  width: 100%;
 }
 
 .cardContainer {
-    padding: 4;
-    height: calc(100% - (121px + 36px + 40px + 25px));
-    position: relative;
-    margin-top: 150px;
-    
+  padding: 4;
+  height: calc(100% - (121px + 36px + 40px + 25px));
+  position: relative;
+  /* margin-top: 150px; */
+  align-items: center;
 }
 
 .container4 {
-  padding: 4;
-  height: calc(100% - (130px));
-  /* height: 100%; */
+  /* padding: 4; */
+  /* margin-top: 7%; */
+  height: 100%;
+  /* height: calc(100% - 10%); */
+  /* height: calc(100% - 100px); */
+  /* margin-bottom: 30px; */
+  /* margin-top: 20px; */
   overflow-y: auto;
+}
+
+.container4Cards {
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  justify-content: safe center;
+  align-items: safe center;
+  margin-top: auto;
+  width: 100%;
+  padding-top: 5%;
 }
 
 .editImg {
@@ -270,7 +310,23 @@
   width: 100%;
   border-radius: 10px;
   border: 1px solid #000;
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  /* max-width: 546px;
+  max-height: 91px;
+  padding: 19px;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: 100%;
+  flex-shrink: 0;
+  border: 1px solid #000;
+  border-radius: 5px;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  align-items: center;  */
 }
 
 .dropdown {
@@ -279,19 +335,18 @@
 }
 
 .ownerTitle {
-  width: 100%; 
+  width: 100%;
   font-family: Mali;
   font-weight: 700;
-  text-align: center; 
-  border-bottom: 1px solid rgb(196, 196, 196); 
+  text-align: center;
+  border-bottom: 1px solid rgb(196, 196, 196);
   line-height: 0.1em;
-  margin: 10px 0 20px;
-  
+  margin: 40px 0 20px;
 }
 
 .ownerTitle span {
-  background:#fff; 
-  padding:0 10px; 
+  background: #fff;
+  padding: 0 10px;
 }
 
 .saveBtn {
@@ -300,13 +355,14 @@
   justify-content: center;
   align-items: center;
   gap: 9px;
-  background: #000;
+  background-color: black;
   cursor: pointer;
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .btnText {
-  color: #FFF;
+  color: #fff;
   font-family: Mali;
   font-size: 18px;
   font-style: normal;
@@ -319,36 +375,53 @@
 .saveBtn:hover {
   background-color: transparent;
   border: 1px solid black;
+  color: white;
+}
 
-  .btnText {
-    color: black;
-    font-weight: 700;
-  }
+.saveBtn:hover .btnText {
+  color: black;
+}
+
+.scrollEffect:after {
+  background: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), transparent);
 }
 
 .inputHeader {
-    color: #000;
-    text-align: left;
-    padding: 10px;
-    padding-left: 7px;
-    font-family: Mali;
-    font-size: 19px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  color: #000;
+  text-align: left;
+  padding: 10px;
+  padding-left: 7px;
+  font-family: Mali;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
+.form {
+  min-width: 0;
+  max-width: 500px;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
 
-@media (max-width: 900px)
-{
-  .leftBar
-  {
+@media (max-width: 900px) {
+  .leftBar {
     display: none;
   }
   .rightBar {
     width: 100%;
     margin-left: 0px;
     height: 100%;
+  }
+
+  .rightBarForCards {
+    width: 100%;
+    margin-left: 0px;
+    height: 100%;
+    display: contents;
   }
 
   .container3 {
@@ -364,10 +437,16 @@
     margin-top: 0;
     margin-bottom: calc(100% - 80%);
   }
-  .container4 {
+  /* .container4 {
     margin-top: 0;
-    margin-bottom: calc(100% - 85%);
+    margin-bottom: 150px;
   }
+
+  .container4Cards {
+    margin-top: 0;
+    margin-bottom: 150px;
+  } */
+
   .container {
     height: 100%;
   }
@@ -375,8 +454,24 @@
     margin-top: 0;
     overflow-y: scroll;
   }
-  .cardContainer {
-    margin-top: 0;
-    overflow-y: scroll;
+  .menu {
+    /* position: absolute; */
+    /* right: 0px; */
+    margin-right: 0;
+  }
+  .navHeader {
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 300px) {
+  .icons {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  /* .flag {
+height: 600px;  } */
+  .container4Cards {
+    height: 600px;
   }
 }
