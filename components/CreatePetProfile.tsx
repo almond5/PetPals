@@ -3,7 +3,6 @@ import { useState } from "react";
 import Image from "next/image";
 import "react-country-state-city/dist/react-country-state-city.css";
 import { CitySelect, StateSelect } from "react-country-state-city";
-import { VscSignOut } from "react-icons/vsc";
 import router from "next/router";
 import styles from "../styles/Index.module.css";
 import style from "../styles/matches.module.css";
