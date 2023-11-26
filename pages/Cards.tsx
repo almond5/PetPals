@@ -179,7 +179,6 @@ const Dashboard = ({
           </button>
         </div>
         <div className={styles.rightBar}>
-
           <div className={styles.container3}>
             <span className={style.icons}>
               <span className={styles.icon} onClick={() => {router.push('/Cards');}}>
@@ -193,7 +192,7 @@ const Dashboard = ({
               </span>
             </span>
           </div>
-{/*           
+          {/*           
           <div className={styles.container4}>
             <div className={styles.head}>
               <div className="flex justify-center">Home</div>
@@ -207,7 +206,7 @@ const Dashboard = ({
             </div>
 
           </div> */}
-          
+
           <div className={styles.container4}>
             <div className={`${styles.head} ${styles.flag}`}>
               <span className={styles.navHead}>Home</span>
@@ -218,17 +217,6 @@ const Dashboard = ({
               setProfiles={setProfiles}
             />
           </div>
-              {/* <div className={styles.container4Cards}> */}
-              {/* <div className={styles.head}>My Profile</div> */}
-              
-              {/* <div className="flex justify-center items-center">
-                <CardsView
-                  petProfile={petProfile}
-                  petProfiles={profiles}
-                  setProfiles={setProfiles}
-                />
-              </div> */}
-            {/* </div> */}
         </div>
       </div>
     );

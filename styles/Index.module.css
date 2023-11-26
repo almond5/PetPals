@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Mali&family=Montserrat&display=swap');
 
 .container {
   display: flex;
@@ -184,6 +183,16 @@
   line-height: 110%; /* 26.4px */
   letter-spacing: 3.84px;
   text-transform: uppercase;
+}
+
+.signUpButton2:hover {
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #000; 
+}
+.signUpButton2:hover .signUpTxt {
+  color: #000;
+
 }
 
 .loginTxt {

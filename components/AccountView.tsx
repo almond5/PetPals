@@ -4,7 +4,7 @@ import DeleteModalView from './DeleteModalView';
 import styles from '../styles/matches.module.css';
 
 
-const AccountView = (props: { userProfile: any }) => {
+const AccountView = (props: { userProfile: any; setReadView: any }) => {
   const [newEmail, setNewEmail] = useState(props.userProfile.email);
   const [newPassword, setNewPassword] = useState('');
   const [oldPassword, setOldPassword] = useState('');
@@ -35,6 +35,10 @@ const AccountView = (props: { userProfile: any }) => {
       return null;
     }
   };
+
+  function showReadView() {
+    props.setReadView();
+  }
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -124,7 +128,6 @@ const AccountView = (props: { userProfile: any }) => {
           </div>
 
           <div className="mb-6"></div>
-          {/* <div className="flex flex-col justify-center mb-5"> */}
           <div className="flex mx-auto justify-center">
             <button type="submit" className={styles.saveBtn}>
               <div className={styles.btnText}>Save</div>

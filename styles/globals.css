@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Mali&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mali&family=Montserrat&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,6 +19,7 @@ body {
   text-align: center;
   font-size: 16px;
   padding: 36px;
+  padding-bottom: 60px;
   border: 1px solid;
   text-transform: uppercase;
   font-weight: 700;
