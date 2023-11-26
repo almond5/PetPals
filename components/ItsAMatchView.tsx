@@ -1,5 +1,7 @@
 import router from 'next/router';
 import { useEffect } from 'react';
+import styles from '/styles/dashboard.module.css';
+
 
 const ItsAMatchView = (props: {
   currProfile: any;
@@ -14,43 +16,50 @@ const ItsAMatchView = (props: {
   }, []);
 
   return (
-    <div className="flex flex-col font-bold">
-      <div className="mx-auto">Its a Match!</div>
-      <div className="flex justify-around py-4">
+    <div className={`$"flex flex-col font-bold" ${styles.container4Cards}`} style={{paddingTop: '50%'}}>
+      <div className="flex justify-center items-center py-4" style={{width: '55vh', marginLeft: '2rem'}}>
         <img
-          className="left-[18px] w-[150px] h-[150px] top-[19px] rounded-[100px] 
-          outline outline-3 outline-black"
+          className="w-[150px] h-[150px] rounded-[100px] 
+          outline outline-1 outline-black"
           src={
             process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
             '/' +
             props.currProfile.image.publicId
           }
+          style={{width: '20vh', height: '20vh', marginRight: '2vh'}}
         />
         <img
-          className="left-[18px] w-[150px] h-[150px] top-[19px] rounded-[100px] outline outline-3 outline-black"
+          className="w-[150px] h-[150px] rounded-[100px] outline outline-1 outline-black"
           src={
             process.env.NEXT_PUBLIC_CLOUD_DOWNLOAD_URL +
             '/' +
             props.currInterestedProfile.image.publicId
           }
+          style={{width: '20vh', height: '20vh', marginLeft: '2vh'}}
         />
       </div>
+      <div className="mx-auto text-center font-bold pb-4" style={{fontFamily: 'Mali', fontSize: '24px'}}>Its a Match!</div>
 
       <button
+        className={styles.btn}
         onClick={(e) => {
           e.preventDefault();
           router.push('/Matches');
         }}
+        style={{fontFamily: 'Mali', marginLeft: '2rem'}}
       >
-        <div>Continue</div>
+        <div className={`${styles.btnTxt}`}>Continue</div>
       </button>
       <button
+        className="flex flex-col p-2 mb-4 px-4 justify-center font-bold"
+        style={{fontFamily: 'Mali'}}
+
         onClick={(e) => {
           e.preventDefault();
           props.setItsAMatchView(false);
         }}
       >
-        <div>Keep Swiping</div>
+        <div className={styles.btnNoBack}>Keep Swiping</div>
       </button>
     </div>
   );
