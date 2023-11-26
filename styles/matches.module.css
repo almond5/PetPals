@@ -484,3 +484,9 @@ height: 600px;  } */
     height: 600px;
   }
 }
+
+@media (max-width: 400px) {
+  .mobileOnlyDelete {
+    width: auto;
+  }
+}

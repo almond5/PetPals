@@ -74,8 +74,7 @@ const DeleteModalView = (props: {
   bg-opacity-50 z-50"
     >
       <div
-        className="outline bg-stone-50  w-[24rem]
-        rounded-md flex flex-col"
+        className={`${"outline bg-stone-50  w-[24rem] rounded-md flex flex-col"} ${styles.mobileOnlyDelete}`}
         style={{ wordWrap: 'break-word' }}
       >
         <form
