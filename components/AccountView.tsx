@@ -135,7 +135,7 @@ const AccountView = (props: { userProfile: any; setReadView: any }) => {
           </div>
         </form>
         <button
-          className="font-bold flex flex-col"
+          className={`$"font-bold flex flex-col mb-4" ${styles.mobileOnly}`}
           onClick={() => setDeleteModalView(true)}
           style={{fontFamily: 'Mali'}}
         >

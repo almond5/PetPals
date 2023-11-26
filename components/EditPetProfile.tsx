@@ -299,8 +299,8 @@ const EditPetProfile = (props: {
             />
           </div>
           <div className="mb-6"></div>
-          <div className="flex mx-auto justify-center">
-            <button type="submit" className={styles.saveBtn}>
+          <div className="flex mx-auto justify-center mb-6">
+            <button type="submit" className={`${styles.saveBtn} ${styles.mobileOnly}`}>
               <div className={styles.btnText}>Save</div>
             </button>
           </div>

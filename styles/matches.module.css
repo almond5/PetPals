@@ -383,6 +383,10 @@
 
 @media (max-width: 900px)
 {
+  .mobileOnly {
+    display: flex;
+    margin-bottom: 100px;
+  }
   .leftBar
   {
     display: none;
@@ -413,9 +417,6 @@
     margin-top: 0;
     margin-bottom: calc(100% - 80%);
   }
-  .container4 {
-    margin-bottom: 150px;
-  }
 
   .container {
     height: 100%;
@@ -440,7 +441,7 @@
     padding-left: 40px;
     padding-right: 40px;
   }
-  
+
   .container4Cards {
     height: 600px;
   }

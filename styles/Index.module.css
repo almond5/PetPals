@@ -149,7 +149,10 @@
 }
 .signUpButton2:hover .signUpTxt {
   color: #000;
+}
 
+.signUpButton2:hover .btnText {
+  color: #000;
 }
 
 .loginTxt {  
