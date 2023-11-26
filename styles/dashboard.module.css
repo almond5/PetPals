@@ -90,6 +90,26 @@
   z-index: 1;
 }
 
+.maliTxt2 {
+  font-family: Mali;
+  padding-left: 8px;
+  text-align: left;
+  font-size: 23px;
+}
+
+.normalTxt2 {
+  font-family: Mali;
+  /* font-weight: bold; */
+  font-size: 15px;
+  color: gray;
+  /* margin-top: 20px; */
+}
+
+.bigTxt2 {
+
+  margin-bottom: 10px;
+}
+
 @media (min-height: 500px) {
   .swipe {
     margin-top: 2rem;    
