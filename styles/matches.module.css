@@ -409,8 +409,13 @@
   padding-right: 15px;
 }
 
-@media (max-width: 900px) {
-  .leftBar {
+
+
+
+@media (max-width: 900px)
+{
+  .leftBar
+  {
     display: none;
   }
   .rightBar {
@@ -463,6 +468,9 @@
   }
   .navHeader {
     margin-top: 15px;
+  }
+  .flag {
+    display: none;
   }
 }
 

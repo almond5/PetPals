@@ -1,8 +1,6 @@
 import { getSession, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import styles from '../styles/readPetProflie.module.css';
-// import style from '/styles/Index.module.css';
-
 
 const ReadPetProfile = (props: {
   petProfile: any;
@@ -11,7 +9,7 @@ const ReadPetProfile = (props: {
   setAccountView: any;
 }) => {
   return (
-    <div>
+    <div className={styles.flag}>
       <div>
         <div className="flex items-center justify-center">
           <div
@@ -76,19 +74,16 @@ const ReadPetProfile = (props: {
                   <div className={styles.bigTxt}>{props.petProfile.location.cityName},{' '}
                   {props.petProfile.location.stateName}</div>
                 </div>
-
               </div>
             </div>
           </div>
-        </div>
-
+        </div>        
       </div>
         <div className="flex items-center justify-center">
           <div className={styles.displayDivider}>
             <span className='px-4'>Owner</span>
           </div>
         </div>
-
       <div className="flex items-center justify-center">
         <div className={styles.displayDescriptionBox}>
           <div className="flex items-center justify-center">
@@ -134,7 +129,6 @@ const ReadPetProfile = (props: {
       </div>
 
     </div>
-    // </div>
   );
 };
 
