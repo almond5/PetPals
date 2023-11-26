@@ -64,7 +64,6 @@
 
 .relativeT {
   overflow: auto;
-  /* margin-top: 170px; */
 }
 
 .icons {
@@ -86,7 +85,6 @@
   display: none;
   justify-content: center;
   align-items: center;
-  /* position: fixed; */
   z-index: 1;
 }
 
@@ -99,14 +97,11 @@
 
 .normalTxt2 {
   font-family: Mali;
-  /* font-weight: bold; */
   font-size: 15px;
   color: gray;
-  /* margin-top: 20px; */
 }
 
 .bigTxt2 {
-
   margin-bottom: 10px;
 }
 
@@ -114,9 +109,7 @@
 .btn {
   background-color: #000;
   width: 377px;
-  /* padding: 20px 32px; */
   padding: 10px 22px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,14 +119,12 @@
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
-
 }
 
 .btnNoBack {
   color: #000;
   width: 377px;
   padding: 10px 22px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,7 +135,6 @@
   margin-bottom: 30px;
   margin-left: 10px;
   margin-right: 10px;
-
 }
 
 .btnTxt {
@@ -169,10 +159,6 @@
     margin-top: 2rem;    
     overflow: auto;
   }
-
-  /* .swipe {
-    position: absolute;
-  } */
 }
 
 @media (max-width: 600px) {

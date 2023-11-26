@@ -295,39 +295,6 @@ const Matches = ({
               </span>
             </span>
           </div>
-          {/* <div style={{width: 546, height: 91, left: 542, top: 87, position: 'absolute', border: '1px black solid'}} />
-          <div style={{width: 546, height: 91, left: 542, top: 197, position: 'absolute', border: '1px black solid'}} />
-          <div style={{width: 50, height: 50, left: 564, top: 107, position: 'absolute', background: '#D9D9D9', borderRadius: 9999}} />
-          <div style={{width: 50, height: 50, left: 561, top: 217, position: 'absolute', background: '#D9D9D9', borderRadius: 9999}} />
-          <div style={{left: 631, top: 117, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 24, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>Pet 1</div>
-          <div style={{left: 631, top: 227, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 24, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>Pet 2</div>
-          <div style={{width: 50, height: 50, left: 561, top: 328, position: 'absolute', background: '#D9D9D9', borderRadius: 9999}} />
-          <div style={{left: 631, top: 338, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 24, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>Pet 2</div>
-          <div style={{width: 546, height: 91, left: 542, top: 307, position: 'absolute', border: '1px black solid'}} />
-          <div style={{width: 546, height: 91, left: 542, top: 418, position: 'absolute', border: '1px black solid'}} />
-          <div style={{width: 195, height: 25, left: 717, top: 529, position: 'absolute', textAlign: 'center', color: '#8A8A8A', fontSize: 24, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>32 people like u</div>
-          <div style={{width: 50, height: 50, left: 561, top: 439, position: 'absolute', background: '#D9D9D9', borderRadius: 9999}} />
-          <div style={{left: 631, top: 449, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 24, fontFamily: 'Mali', fontWeight: '400', wordWrap: 'break-word'}}>Pet 2</div>
-          <div style={{width: 20, height: 23.70, left: 1043, top: 121, position: 'absolute'}}>
-            <div style={{width: 19.95, height: 23.59, left: 0.03, top: 0.06, position: 'absolute', background: 'black'}}></div>
-            <div style={{width: 1.67, height: 12.09, left: 12.03, top: 7.42, position: 'absolute', background: 'black'}}></div>
-            <div style={{width: 1.62, height: 11.93, left: 6.83, top: 7.50, position: 'absolute', background: 'black'}}></div>
-          </div>
-          <div style={{width: 20, height: 23.70, left: 1043, top: 229, position: 'absolute'}}>
-            <div style={{width: 19.95, height: 23.59, left: 0.03, top: 0.06, position: 'absolute', background: 'black'}}></div>
-            <div style={{width: 1.67, height: 12.09, left: 12.03, top: 7.42, position: 'absolute', background: 'black'}}></div>
-            <div style={{width: 1.62, height: 11.93, left: 6.83, top: 7.50, position: 'absolute', background: 'black'}}></div>
-          </div>
-          <div style={{width: 20, height: 23.70, left: 1043, top: 341, position: 'absolute'}}>
-            <div style={{width: 19.95, height: 23.59, left: 0.03, top: 0.06, position: 'absolute', background: 'black'}}></div>
-            <div style={{width: 1.67, height: 12.09, left: 12.03, top: 7.42, position: 'absolute', background: 'black'}}></div>
-            <div style={{width: 1.62, height: 11.93, left: 6.83, top: 7.50, position: 'absolute', background: 'black'}}></div>
-          </div>
-          <div style={{width: 20, height: 23.70, left: 1043, top: 452, position: 'absolute'}}>
-            <div style={{width: 19.95, height: 23.59, left: 0.03, top: 0.06, position: 'absolute', background: 'black'}}></div>
-            <div style={{width: 1.67, height: 12.09, left: 12.03, top: 7.42, position: 'absolute', background: 'black'}}></div>
-            <div style={{width: 1.62, height: 11.93, left: 6.83, top: 7.50, position: 'absolute', background: 'black'}}></div>
-          </div> */}
         </div>
       </div>
     );

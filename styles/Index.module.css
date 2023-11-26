@@ -71,20 +71,6 @@
 }
 
 .catHeadComponent {
-  /* {width: 102, 
-    height: 49.75, 
-    paddingBottom: 0.07, 
-    paddingRight: 0.50, 
-    left: 259.50, 
-    top: 178.5, 
-    position: 'absolute', 
-    flexDirection: 'column', 
-    justifyContent: 'center', 
-    alignItems: 'flex-start', 
-    gap: 0.03, 
-    display: 'inline-flex'} */
-    /* left: 259.50;
-    top: 178.5; */
     display: flex;
     width: 102px;
     height: 49.754px;
@@ -104,31 +90,13 @@
   align-items: flex-end;
   gap: -0.01px;
   flex-shrink: 0;
-  /* {width: 37.88, 
-    height: 75, 
-    left: 370.48, 
-    top: 260.60, 
-    position: 'absolute', 
-    justifyContent: 'center', 
-    alignItems: 'flex-end', 
-    display: 'inline-flex'} */
 }
 
 .inputHeader {
-  /* {left: 81, 
-    top: 261.60, 
-    position: 'absolute', 
-    textAlign: 'center', 
-    color: 'black', 
-    fontSize: 24, 
-    fontFamily: 'Mali', 
-    fontWeight: '400', 
-    wordWrap: 'break-word'} */
     color: #000;
     text-align: left;
     padding: 10px;
     padding-left: 10px;
-    /* padding-right: 10px; */
     font-family: Mali;
     font-size: 24px;
     font-style: normal;
@@ -137,12 +105,6 @@
 }
 
 .inputBox {
-/* {width: 274, 
-  height: 42, 
-  left: 79, 
-  top: 301.60, 
-  position: 'absolute', 
-  border: '1px black solid'} */
   width: 274px;
   height: 42px;
   flex-shrink: 0;
@@ -161,11 +123,6 @@
 }
 
 .signUpButton2 {
-  /* {
-    left: 119, top: 662, position: 'absolute', background: 'white', 
-  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', 
-  justifyContent: 'center', alignItems: 'center', display: 'inline-flex'} */
-  /* display: flex; */
   padding: 19px 32px;
   margin-top: 23px;
   justify-content: center;
@@ -180,7 +137,7 @@
   font-size: 23px;
   font-style: normal;
   font-weight: 700;
-  line-height: 110%; /* 26.4px */
+  line-height: 110%;
   letter-spacing: 3.84px;
   text-transform: uppercase;
 }
@@ -195,15 +152,7 @@
 
 }
 
-.loginTxt {
-  /* color: #000;
-  text-align: center;
-  font-family: Mali;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal; */
-  
+.loginTxt {  
   color: #000;
   text-align: center;
   font-family: Mali;
@@ -211,7 +160,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  /* text-decoration: underline; */
   margin-top: 10px;
   margin-bottom: 75px;
 
@@ -267,15 +215,6 @@
   z-index: -1;
 }
 
-/* .buttons { */
-  /* position: absolute;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px; */
-  /* top: 80%; */
-/* } */
-
 .button {
   cursor: pointer;
 }
@@ -292,13 +231,9 @@
   font-family: Mali;
   font-size: 24px;
   font-style: normal;
-  /* font-weight: 700; */
-  line-height: 110%; /* 26.4px */
+  line-height: 110%;
   letter-spacing: 3.84px;
   text-transform: uppercase;
-  /* padding-left: 3vh;
-  padding-right: 3vh;
-  padding-top:  1vh; */
 }
 
 .btnText {
@@ -307,7 +242,7 @@
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
-  line-height: 110%; /* 26.4px */
+  line-height: 110%;
   letter-spacing: 3.84px;
   text-transform: uppercase;
 }
@@ -317,12 +252,9 @@
 }
 
 .tbl {
-  /* width: 100%; */
   table-layout: fixed;
   border-collapse: collapse;
   margin-top: '7vh';
-
-  /* background-color: red;  */
 }
 
 /* register button on the home pg */
@@ -333,18 +265,7 @@
   align-items: center;
   gap: 9px;
   background: #000;
-  /* top: 81.8%;
-  left: 49.5%;
-  transform: translate(-50%, -50%);
-  color: clear;
-  width: 320px;
-  height: 80px;
-  line-height: 50px;
-  text-align: center;
-  font-size: 69px;
-  min-width: 100px;
-  min-height: 20px;
-  padding: 0px 70px; */
+  border: 2px solid black;
 }
 
 .registerButton:hover {
@@ -364,7 +285,6 @@
 }
 
 .signInButton2 {
-  /* top: 70%; */
   border: none;
   width: 200px;
   height: 10px;
@@ -376,11 +296,6 @@
   align-items: center;
   gap: 9px;
   background: #000;
-  /* display: flex;
-padding: 20px 32px;
-justify-content: center;
-align-items: center;
-gap: 9px; */
 }
 
 .signUpButton {

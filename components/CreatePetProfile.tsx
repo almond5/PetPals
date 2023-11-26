@@ -151,8 +151,8 @@ const PetProfileCreation = () => {
               position: "relative",
               width: "250px",
               height: "250px",
-              marginLeft: "50px", // Adjust the value as needed
-              marginRight: "50px", // Adjust the value as needed
+              marginLeft: "50px",
+              marginRight: "50px",
             }}
           >
             <label htmlFor="fileInput">

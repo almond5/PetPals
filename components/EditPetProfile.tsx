@@ -273,7 +273,6 @@ const EditPetProfile = (props: {
               placeHolder={cityName}
             />
           </div>
-          {/* <div className={"flex mx-auto justify-center font-bold mb-6"}> */}
           <div className={styles.ownerTitle}>
             <span>Owner</span>
           </div>

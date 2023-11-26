@@ -177,7 +177,6 @@ const Settings = ({
                   />
                 </button>
               </span>
-              {/* TODO - hide view and make read only */}
             </div>
             <EditPetProfile
               petProfile={petProfile}

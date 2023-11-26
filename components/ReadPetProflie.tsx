@@ -107,12 +107,6 @@ const ReadPetProfile = (props: {
           }}>
           <div className={`${styles.accountSettingText} ${styles.displayFont}`}>ACCOUNT SETTINGS</div>
         </button>
-        {/* <button className={styles.accountSettingButton}
-            onClick={() => signOut({ callbackUrl: '/' })}
-
-          >
-          <div className={`${styles.accountSettingText} ${styles.displayFont}`}>logout</div>
-        </button> */}
       </div>
       <div className={`${"flex items-center justify-center"} ${styles.mobileOnly}`}>
         <button
