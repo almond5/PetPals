@@ -164,7 +164,7 @@ const Settings = ({
               setEditView={displayEditView}
               setAccountView={displayAccountView}
             ></ReadPetProfile>
-          </div>
+            </div>
 
           <div className={`${editView ? '' : 'hidden'} ${styles.container4}`}>
             <div className={styles.navHeader}>
@@ -177,7 +177,6 @@ const Settings = ({
                   />
                 </button>
               </span>
-              {/* TODO - hide view and make read only */}
             </div>
             <EditPetProfile
               petProfile={petProfile}

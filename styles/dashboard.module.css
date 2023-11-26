@@ -6,6 +6,7 @@
   padding-left: 25px;
   padding-top: 25px;
   border-radius: 10px;
+  margin-top: 60px;
   overflow: auto;
 }
 
@@ -62,19 +63,112 @@
 }
 
 .relativeT {
-  position: relative;
+  overflow: auto;
+}
+
+.icons {
+  position: fixed;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 40px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: white;
+  bottom: 0px;
+  width: 100%;
+  max-width: 546px;
+  z-index: 1;
+}
+
+.container3 {
+  display: none;
   justify-content: center;
-  /* overflow: auto; */
-  /* margin-top: 170px; */
+  align-items: center;
+  z-index: 1;
+}
+
+.maliTxt2 {
+  font-family: Mali;
+  padding-left: 8px;
+  text-align: left;
+  font-size: 23px;
+}
+
+.normalTxt2 {
+  font-family: Mali;
+  font-size: 15px;
+  color: gray;
+}
+
+.bigTxt2 {
+  margin-bottom: 10px;
+}
+
+
+.btn {
+  background-color: #000;
+  width: 377px;
+  padding: 10px 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.btnNoBack {
+  color: #000;
+  width: 377px;
+  padding: 10px 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.btnTxt {
+  color: #FFF;
+  font-size: 15px;
+  letter-spacing: 3.84px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background-color: transparent;
+  border: 1px solid #000; 
+}
+
+.btn:hover .btnTxt {
+  color: #000;
 }
 
 @media (min-height: 500px) {
   .swipe {
-    margin-top: 20px;
+    margin-top: 2rem;    
+    overflow: auto;
   }
-  /* .swipe {
-    position: absolute;
-  } */
+}
+
+@media (max-width: 600px) {
+  .swipe {
+    margin-top: 20px;
+    outline: 2px solid rgb(255, 255, 255);
+    padding-bottom: 150px;
+  }
+  .icons {
+    border-color:rgb(189, 183, 183);
+    border-top-width: 1px;
+  }
 }

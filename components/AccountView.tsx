@@ -44,7 +44,12 @@ const AccountView = (props: { userProfile: any; setReadView: any }) => {
     e.preventDefault();
 
     const userEmail = props.userProfile.email;
-
+    
+    if (oldPassword !== '' && newPassword === '') {
+      alert('Please enter a new password.');
+      return;
+    }
+    
     const userProfile = {
       userEmail,
       newEmail,
@@ -109,7 +114,6 @@ const AccountView = (props: { userProfile: any; setReadView: any }) => {
               value={newPassword}
               type="password"
               id="newPassword"
-              required
               placeholder="Enter your password"
               className={styles.input}
             />
@@ -121,7 +125,6 @@ const AccountView = (props: { userProfile: any; setReadView: any }) => {
               value={oldPassword}
               type="password"
               id="oldPassword"
-              required
               placeholder="Enter your password"
               className={styles.input}
             />
@@ -135,7 +138,7 @@ const AccountView = (props: { userProfile: any; setReadView: any }) => {
           </div>
         </form>
         <button
-          className="font-bold flex flex-col"
+          className={`$"font-bold flex flex-col mb-4" ${styles.mobileOnly}`}
           onClick={() => setDeleteModalView(true)}
           style={{fontFamily: 'Mali'}}
         >

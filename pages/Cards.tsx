@@ -4,6 +4,7 @@ import router from 'next/router';
 import prisma from '@/lib/prismadb';
 import CardsView from '@/components/CardsView';
 import styles from '../styles/matches.module.css';
+import style from '../styles/dashboard.module.css';
 import { PetProfile } from '@prisma/client';
 
 export async function getServerSideProps(context: any) {
@@ -179,59 +180,22 @@ const Dashboard = ({
         </div>
         <div className={styles.rightBar}>
           <div className={styles.container3}>
-            <span className={styles.icons}>
-              <button
-                className={styles.icon}
-                onClick={() => {
-                  router.push('/Cards');
-                }}
-              >
-                <img
-                  src="/img/homeD.svg"
-                  style={{ maxWidth: 40, maxHeight: 44 }}
-                />
-              </button>
-              <button
-                className={styles.icon}
-                onClick={() => {
-                  router.push('/Matches');
-                }}
-              >
-                <img
-                  src="/img/heartD.svg"
-                  style={{ maxWidth: 40, maxHeight: 40.8 }}
-                />
-              </button>
-              <button
-                className={styles.icon}
-                onClick={() => {
-                  router.push('/Settings');
-                }}
-              >
-                <img
-                  src="/img/userD.svg"
-                  alt="U"
-                  style={{ maxWidth: 40, maxHeight: 40.8 }}
-                />
-              </button>
+            <span className={style.icons}>
+              <span className={styles.icon} onClick={() => {router.push('/Cards');}}>
+                <img src = "/img/homeD.svg" style={{maxWidth: 40, maxHeight: 44}}/>
+              </span>
+              <span className={styles.icon} onClick={() => {router.push('/Matches');}}>
+                <img src = "/img/heartD.svg" style={{maxWidth: 40, maxHeight: 40.80}}/>
+              </span>
+              <span className={styles.icon} onClick={() => {router.push('/Settings');}}>
+                <img src = "/img/userD.svg" alt="U" style={{maxWidth: 40, maxHeight: 40.80}}/>
+              </span>
             </span>
           </div>
-          {/*           
           <div className={styles.container4}>
-            <div className={styles.head}>
-              <div className="flex justify-center">Home</div>
+            <div className={`${styles.head} ${styles.flag}`}>
+              <span className={styles.navHead}>Home</span>
             </div>
-            <div className={`${styles.container4Cards} ${'h-96'}`}>
-              <CardsView
-                petProfile={petProfile}
-                petProfiles={profiles}
-                setProfiles={setProfiles}
-              />
-            </div>
-
-          </div> */}
-
-          <div className={styles.container4}>
             <CardsView
               petProfile={petProfile}
               petProfiles={profiles}

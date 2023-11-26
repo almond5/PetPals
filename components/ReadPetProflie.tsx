@@ -1,7 +1,6 @@
+import { getSession, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import styles from '../styles/readPetProflie.module.css';
-// import style from '/styles/Index.module.css';
-
 
 const ReadPetProfile = (props: {
   petProfile: any;
@@ -17,10 +16,8 @@ const ReadPetProfile = (props: {
             className="mt-8 mb-8"
             style={{
               position: 'relative',
-              width: '250px',
-              height: '250px',
-              marginLeft: '50px',
-              marginRight: '50px',
+              width: '210px',
+              height: '210px',
             }}
           >
             <Image
@@ -75,19 +72,16 @@ const ReadPetProfile = (props: {
                   <div className={styles.bigTxt}>{props.petProfile.location.cityName},{' '}
                   {props.petProfile.location.stateName}</div>
                 </div>
-
               </div>
             </div>
           </div>
-        </div>
-
+        </div>        
       </div>
         <div className="flex items-center justify-center">
           <div className={styles.displayDivider}>
             <span className='px-4'>Owner</span>
           </div>
         </div>
-
       <div className="flex items-center justify-center">
         <div className={styles.displayDescriptionBox}>
           <div className="flex items-center justify-center">
@@ -114,9 +108,19 @@ const ReadPetProfile = (props: {
           <div className={`${styles.accountSettingText} ${styles.displayFont}`}>ACCOUNT SETTINGS</div>
         </button>
       </div>
+      <div className={`${"flex items-center justify-center"} ${styles.mobileOnly}`}>
+        <button
+          className="flex flex-col p-2 mb-4 px-4 justify-center font-bold"
+          onClick={() => signOut({ callbackUrl: '/' })}
+          style={{fontFamily: 'Mali', letterSpacing: '2px'}}
+          >
+          <div className="flex flex-col px-10 justify-center text">
+            Logout
+          </div>
+        </button>
+      </div>
 
     </div>
-    // </div>
   );
 };
 
