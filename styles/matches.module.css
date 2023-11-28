@@ -146,9 +146,9 @@
 
 .navHead {
   margin: 0px auto;
+  padding-left: 40px;
   font-size: 24px;
   font-family: 'Mali';
-  padding-left: 5%;
 }
 
 .matches {
@@ -433,6 +433,11 @@
   }
   .flag {
     display: none;
+  }
+  .navHead{
+    margin: 0px auto;
+    font-size: 24px;
+    font-family: 'Mali';
   }
 }
 
